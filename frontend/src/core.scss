@@ -1,0 +1,50 @@
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+$wander-gray-100 : #f8f9fa;
+$wander-gray-200 : #e9ecef;
+$wander-gray-500 : #adb5bd;
+$wander-green : #228B22;
+$wander-green-light : #44FF93;
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Apple SD Gothic Neo', 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
+html,
+body,
+#root{
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+li,ul,ol {
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input, textarea{
+  outline: none;
+}
+
+.txt-bold {
+  font-weight: bolder;
+}
+
