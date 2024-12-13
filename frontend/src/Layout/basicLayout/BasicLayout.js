@@ -17,7 +17,7 @@ const BasicLayout = ({ children }) => {
           <div className="header-top">
             <div className="logo">
               <Link to="/">
-                <img src="/wanderlustLogoHeader.svg" alt="Wanderlust Logo" />
+                <img src="/wanderlustHeadLogo.svg" alt="Wanderlust Logo" />
               </Link>
             </div>
             <div className="searchbar">
