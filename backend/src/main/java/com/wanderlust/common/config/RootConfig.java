@@ -6,11 +6,11 @@ package com.wanderlust.common.config;
  * PackageName    : com.wanderlust.common.config
  * FileName       : RootConfig
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:26  paesir      최초 생성
+ * 24. 12. 16.오후 2:17  paesir      최초 생성
  */
 
 
@@ -22,14 +22,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RootConfig {
 
-  @Bean
-  public ModelMapper getMapper() {
-    ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration()
-        .setFieldMatchingEnabled(true)
-        .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-        .setMatchingStrategy(MatchingStrategies.LOOSE);
+    @Bean
+    public ModelMapper getMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+            .setFieldMatchingEnabled(true)
+            .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
+            .setMatchingStrategy(MatchingStrategies.LOOSE);
 
-    return modelMapper;
-  }
+        return modelMapper;
+    }
 }

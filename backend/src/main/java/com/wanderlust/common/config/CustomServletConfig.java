@@ -6,11 +6,11 @@ package com.wanderlust.common.config;
  * PackageName    : com.wanderlust.common.config
  * FileName       : CustomServletConfig
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:26  paesir      최초 생성
+ * 24. 12. 16.오후 2:16  paesir      최초 생성
  */
 
 
@@ -22,9 +22,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CustomServletConfig implements WebMvcConfigurer {
 
-  @Override
-  public void addFormatters(FormatterRegistry registry) {
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
 
-    registry.addFormatter(new LocalDateFormatter());
-  }
+        registry.addFormatter(new LocalDateFormatter());
+    }
 }

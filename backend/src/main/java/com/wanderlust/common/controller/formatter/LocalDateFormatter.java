@@ -3,14 +3,14 @@ package com.wanderlust.common.controller.formatter;
 /*
  * Description    :
  * ProjectName    : wanderlust
- * PackageName    : com.wanderlust.common.controller
+ * PackageName    : com.wanderlust.common.controller.formatter
  * FileName       : LocalDateFormatter
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:27  paesir      최초 생성
+ * 24. 12. 16.오후 2:18  paesir      최초 생성
  */
 
 

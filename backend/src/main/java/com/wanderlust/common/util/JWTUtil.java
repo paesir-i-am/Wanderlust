@@ -6,11 +6,11 @@ package com.wanderlust.common.util;
  * PackageName    : com.wanderlust.common.util
  * FileName       : JWTUtil
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:30  paesir      최초 생성
+ * 24. 12. 16.오후 2:31  paesir      최초 생성
  */
 
 
@@ -25,58 +25,58 @@ import java.util.Map;
 
 @Log4j2
 public class JWTUtil {
-  // 30자 이상
-  private static String key = "1234567890123456789012345678901234567890";
+    // 30자 이상
+    private static String key = "wanderlustjwtutilkey974991200101743090";
 
-  // jwt 토큰을 생성하기 위한 메서드.
-  public static String generateToken(Map<String, Object> valueMap, int min){
+    // jwt 토큰을 생성하기 위한 메서드.
+    public static String generateToken(Map<String, Object> valueMap, int min){
 
-    SecretKey key = null;
+        SecretKey key = null;
 
-    try{
-      key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
+        try{
+            key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
 
-    }catch(Exception e){
-      throw new RuntimeException(e.getMessage());
+        }catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+
+        String jwtStr = Jwts.builder()
+            .setHeader(Map.of("typ","JWT"))
+            .setClaims(valueMap)
+            .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
+            .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))
+            .signWith(key)
+            .compact();
+
+        return jwtStr;
     }
+    // 검증을 위한 메서드
+    public static Map<String, Object> validateToken(String token) {
 
-    String jwtStr = Jwts.builder()
-        .setHeader(Map.of("typ","JWT"))
-        .setClaims(valueMap)
-        .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
-        .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))
-        .signWith(key)
-        .compact();
+        Map<String, Object> claim = null;
 
-    return jwtStr;
-  }
-  // 검증을 위한 메서드
-  public static Map<String, Object> validateToken(String token) {
+        try{
 
-    Map<String, Object> claim = null;
+            SecretKey key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
 
-    try{
+            claim = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token) // 파싱 및 검증, 실패 시 에러
+                .getBody();
 
-      SecretKey key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
-
-      claim = Jwts.parserBuilder()
-          .setSigningKey(key)
-          .build()
-          .parseClaimsJws(token) // 파싱 및 검증, 실패 시 에러
-          .getBody();
-
-    }catch(MalformedJwtException malformedJwtException){
-      throw new CustomJWTException("MalFormed");
-    }catch(ExpiredJwtException expiredJwtException){
-      throw new CustomJWTException("Expired");
-    }catch(InvalidClaimException invalidClaimException){
-      throw new CustomJWTException("Invalid");
-    }catch(JwtException jwtException){
-      throw new CustomJWTException("JWTError");
-    }catch(Exception e){
-      throw new CustomJWTException("Error");
+        }catch(MalformedJwtException malformedJwtException){
+            throw new CustomJWTException("MalFormed");
+        }catch(ExpiredJwtException expiredJwtException){
+            throw new CustomJWTException("Expired");
+        }catch(InvalidClaimException invalidClaimException){
+            throw new CustomJWTException("Invalid");
+        }catch(JwtException jwtException){
+            throw new CustomJWTException("JWTError");
+        }catch(Exception e){
+            throw new CustomJWTException("Error");
+        }
+        return claim;
     }
-    return claim;
-  }
 
 }

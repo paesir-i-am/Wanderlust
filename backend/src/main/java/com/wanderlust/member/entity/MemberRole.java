@@ -1,16 +1,16 @@
-package com.wanderlust.member.domain;
+package com.wanderlust.member.entity;
 
 /*
- * Description    : 유저권한 이넘
+ * Description    :
  * ProjectName    : wanderlust
- * PackageName    : com.wanderlust.member.domain
+ * PackageName    : com.wanderlust.member.entity
  * FileName       : MemberRole
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 2:32  paesir      최초 생성
+ * 24. 12. 16.오후 2:23  paesir      최초 생성
  */
 
 

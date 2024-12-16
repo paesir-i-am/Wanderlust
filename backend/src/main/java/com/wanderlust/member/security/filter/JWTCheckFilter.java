@@ -1,16 +1,16 @@
-package com.wanderlust.common.security.filter;
+package com.wanderlust.member.security.filter;
 
 /*
  * Description    :
  * ProjectName    : wanderlust
- * PackageName    : com.wanderlust.common.security.filter
+ * PackageName    : com.wanderlust.member.security.filter
  * FileName       : JWTCheckFilter
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:33  paesir      최초 생성
+ * 24. 12. 16.오후 2:25  paesir      최초 생성
  */
 
 
@@ -70,22 +70,20 @@ public class JWTCheckFilter extends OncePerRequestFilter {
 
       log.info("JWT claims: " + claims);
 
-      Long id = (Long) claims.get("id");
       String email = (String) claims.get("email");
-      String name = (String) claims.get("name");
-      Boolean isSocial = (Boolean) claims.get("isSocial");
-      String provider = (String) claims.get("provider");
-      String providerUserId = (String) claims.get("providerUserId");
-      List<String> roles = (List<String>) claims.get("roles");
+      String pw = (String) claims.get("pw");
+      String nickname = (String) claims.get("nickname");
+      Boolean social = (Boolean) claims.get("social");
+      List<String> roleNames = (List<String>) claims.get("roleNames");
 
-      MemberDTO memberDTO = new MemberDTO(id, email, name, isSocial, provider, providerUserId, roles);
+      MemberDTO memberDTO = new MemberDTO(email, pw, nickname, social.booleanValue(), roleNames);
 
       log.info("-----------------------------------");
       log.info(memberDTO);
       log.info(memberDTO.getAuthorities());
 
       UsernamePasswordAuthenticationToken authenticationToken
-          = new UsernamePasswordAuthenticationToken(memberDTO, memberDTO.getAuthorities());
+          = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
 
       SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 

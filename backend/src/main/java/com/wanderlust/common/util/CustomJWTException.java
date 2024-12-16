@@ -6,11 +6,11 @@ package com.wanderlust.common.util;
  * PackageName    : com.wanderlust.common.util
  * FileName       : CustomJWTException
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:29  paesir      최초 생성
+ * 24. 12. 16.오후 2:32  paesir      최초 생성
  */
 
 

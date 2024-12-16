@@ -6,11 +6,11 @@ package com.wanderlust.common.controller.advice;
  * PackageName    : com.wanderlust.common.controller.advice
  * FileName       : CustomControllerAdvice
  * Author         : paesir
- * Date           : 24. 12. 13.
+ * Date           : 24. 12. 16.
  * ===========================================================
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
- * 24. 12. 13.오후 5:31  paesir      최초 생성
+ * 24. 12. 16.오후 2:18  paesir      최초 생성
  */
 
 
@@ -28,28 +28,28 @@ import java.util.NoSuchElementException;
 public class CustomControllerAdvice {
 
 
-  @ExceptionHandler(NoSuchElementException.class)
-  protected ResponseEntity<?> notExist(NoSuchElementException e) {
+    @ExceptionHandler(NoSuchElementException.class)
+    protected ResponseEntity<?> notExist(NoSuchElementException e) {
 
-    String msg = e.getMessage();
+        String msg = e.getMessage();
 
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("msg", msg));
-  }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("msg", msg));
+    }
 
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  protected ResponseEntity<?> handleIllegalArgumentException(MethodArgumentNotValidException e) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    protected ResponseEntity<?> handleIllegalArgumentException(MethodArgumentNotValidException e) {
 
-    String msg = e.getMessage();
+        String msg = e.getMessage();
 
-    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Map.of("msg", msg));
-  }
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Map.of("msg", msg));
+    }
 
-  @ExceptionHandler(CustomJWTException.class)
-  protected ResponseEntity<?> handleJWTException(CustomJWTException e) {
+    @ExceptionHandler(CustomJWTException.class)
+    protected ResponseEntity<?> handleJWTException(CustomJWTException e) {
 
-    String msg = e.getMessage();
+        String msg = e.getMessage();
 
-    return ResponseEntity.ok().body(Map.of("error", msg));
-  }
+        return ResponseEntity.ok().body(Map.of("error", msg));
+    }
 
 }
