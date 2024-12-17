@@ -1,9 +1,9 @@
 import React from "react";
 import "./core.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/login/LoginPage";
-import MainPage from "./pages/main/MainPage";
-import BasicLayout from "./Layout/basicLayout/BasicLayout";
+import LoginPage from "./member/pages/login/LoginPage";
+import MainPage from "./main/pages/MainPage";
+import BasicLayout from "./common/layout/basicLayout/BasicLayout";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <BasicLayout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/member" element={<LoginPage />} />
         </Routes>
       </BasicLayout>
     </Router>

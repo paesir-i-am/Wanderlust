@@ -1,0 +1,345 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.basic-layout {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  background-color: #f8f9fa;
+}
+.basic-layout header {
+  height: 350px;
+  background: url("/public/header-backgroung.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 0 -480px;
+  color: #fff;
+}
+.basic-layout header .header-overlay {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.basic-layout header .header-overlay .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.basic-layout header .header-overlay .header-top .logo {
+  flex: 0 0 auto;
+}
+.basic-layout header .header-overlay .header-top .logo img {
+  padding-top: 1rem;
+  height: 100px;
+}
+.basic-layout header .header-overlay .header-top .searchbar {
+  flex: 0 0 50%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  height: 40px;
+}
+.basic-layout header .header-overlay .header-top .searchbar .search-input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  font-size: 1rem;
+}
+.basic-layout header .header-overlay .header-top .searchbar .search-buttons button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.basic-layout header .header-overlay .header-top .searchbar .search-buttons button img {
+  margin: 0.4rem 0.4rem 0 0.4rem;
+  height: 30px;
+  width: 30px;
+  display: block;
+}
+.basic-layout header .header-overlay .header-top .searchbar .search-buttons button:hover {
+  background-color: rgb(203.4736842105, 210.5, 217.5263157895);
+  border-radius: 4px;
+}
+.basic-layout header .header-overlay .header-top .icons {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+.basic-layout header .header-overlay .header-top .icons button {
+  margin: 0 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.basic-layout header .header-overlay .header-top .icons button img {
+  margin-top: 1rem;
+  height: 45px;
+}
+@media (max-width: 768px) {
+  .basic-layout header .header-overlay .header-top {
+    flex-direction: column;
+  }
+  .basic-layout header .header-overlay .header-top .searchbar {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+@media (max-width: 576px) {
+  .basic-layout header .header-overlay .header-top {
+    flex-direction: column;
+  }
+  .basic-layout header .header-overlay .header-top .searchbar {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+.basic-layout header .header-overlay .nav {
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  margin-top: 7rem;
+  padding-left: 1rem;
+  left: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.basic-layout header .header-overlay .nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+.basic-layout header .header-overlay .nav a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 576px) {
+  .basic-layout header .header-overlay .nav {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+}
+@media (max-width: 576px) {
+  .basic-layout header .header-top {
+    flex-direction: column;
+  }
+  .basic-layout header .header-top .searchbar {
+    margin: 0.5rem 0;
+  }
+  .basic-layout header .header-top .icons {
+    margin-top: 0.5rem;
+  }
+  .basic-layout header .nav {
+    flex-direction: column;
+    text-align: center;
+  }
+  .basic-layout header .nav a {
+    margin: 0.5rem 0;
+  }
+}
+.basic-layout .search {
+  position: relative;
+  z-index: 10;
+  margin-top: -4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.basic-layout .search .search-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+.basic-layout .search .search-container .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25%;
+  height: 50px;
+  border: 2px solid #44ff93;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.basic-layout .search .search-container .options button {
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+  transition: all 0.3s ease;
+}
+.basic-layout .search .search-container .options button.active {
+  background: #44ff93;
+  color: white;
+}
+.basic-layout .search .search-container .options button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+.basic-layout .search .search-container .fields {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.basic-layout .search .search-container .fields input,
+.basic-layout .search .search-container .fields select,
+.basic-layout .search .search-container .fields button {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #adb5bd;
+  border-radius: 8px;
+}
+.basic-layout .search .search-container .fields button {
+  background-color: #228B22;
+  color: #fff;
+  cursor: pointer;
+}
+.basic-layout .search .search-container .fields button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .basic-layout .search {
+    margin-top: -2rem;
+  }
+  .basic-layout .search .search-container {
+    padding: 1rem;
+  }
+  .basic-layout .search .search-container .options {
+    width: 100%;
+    justify-content: center;
+  }
+  .basic-layout .search .search-container .fields {
+    flex-direction: column;
+  }
+}
+.basic-layout .content {
+  flex: 1;
+  padding: 2rem;
+}
+@media (max-width: 576px) {
+  .basic-layout .content {
+    padding: 1rem;
+  }
+}
+
+/*# sourceMappingURL=basicLayout.css.map */

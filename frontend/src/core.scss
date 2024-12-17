@@ -1,50 +1,126 @@
 @import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
-$wander-gray-100 : #f8f9fa;
-$wander-gray-200 : #e9ecef;
-$wander-gray-500 : #adb5bd;
-$wander-green : #228B22;
-$wander-green-light : #44FF93;
+// 1. SCSS 변수 설정
+$primary-color: #228B22;     // 메인 색상
+$secondary-color: #44FF93;   // 보조 색상
+$background-color: #f8f9fa;  // 기본 배경
+$gray-light: #e9ecef;        // 라이트 그레이
+$gray-dark: #adb5bd;         // 다크 그레이
 
+// 폰트 설정
+$font-primary: 'Apple SD Gothic Neo', sans-serif;
+$font-secondary: 'Spoqa Han Sans Neo', sans-serif;
 
+// 브레이크포인트
+$breakpoints: (
+    "mobile": 576px,
+    "tablet": 768px,
+    "desktop": 1024px
+);
 
+// 2. 반응형 믹스인
+@mixin respond-to($breakpoint) {
+  @media (max-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
 
+// 3. 기본 스타일
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Apple SD Gothic Neo', 'Spoqa Han Sans Neo', 'sans-serif';
+  font-family: $font-primary;
 }
 
-html,
-body,
-#root{
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+body {
+  width: 100%;
+  background-color: $background-color;
+  color: $gray-dark;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-li,ul,ol {
-  list-style: none;
+// 4. 공통 컨테이너 스타일
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  @include respond-to("tablet") {
+    max-width: 90%;
+  }
+
+  @include respond-to("mobile") {
+    padding: 1rem;
+  }
 }
 
-a{
-  text-decoration: none;
-  color: inherit;
-}
-
-button{
+// 5. 버튼 스타일
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: $primary-color;
+  color: #fff;
   border: none;
-  outline: none;
+  border-radius: 8px;
+  font-family: $font-secondary;
+  font-weight: bold;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  @include respond-to("mobile") {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
 }
 
-input, textarea{
+// 6. 입력 필드 스타일
+input {
+  background-color: $gray-light;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: $font-primary;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
   outline: none;
+
+  @include respond-to("mobile") {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 }
 
-.txt-bold {
-  font-weight: bolder;
+// 7. 유틸리티 클래스
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.text-primary {
+  color: $primary-color;
+}
+
+.bg-primary {
+  background-color: $primary-color;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

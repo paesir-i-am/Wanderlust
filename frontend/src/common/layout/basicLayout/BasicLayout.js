@@ -59,27 +59,29 @@ const BasicLayout = ({ children }) => {
 
       {/* 검색 섹션 */}
       <div className="search">
-        <div className="options">
-          {["왕복", "편도", "다구간"].map((option) => (
-            <button
-              key={option}
-              className={activeOption === option ? "active" : ""}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-        <div className="fields">
-          <input type="text" placeholder="출발지 선택" />
-          <span>⇌</span>
-          <input type="text" placeholder="도착지 선택" />
-          <input type="date" />
-          <input type="date" />
-          <select>
-            <option>승객1, 일반석</option>
-          </select>
-          <button>검색</button>
+        <div className="search-container">
+          <div className="options">
+            {["왕복", "편도", "다구간"].map((option) => (
+              <button
+                key={option}
+                className={activeOption === option ? "active" : ""}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+          <div className="fields">
+            <input type="text" placeholder="출발지 선택" />
+            <span>⇌</span>
+            <input type="text" placeholder="도착지 선택" />
+            <input type="date" />
+            <input type="date" />
+            <select>
+              <option>승객1, 일반석</option>
+            </select>
+            <button>검색</button>
+          </div>
         </div>
       </div>
 

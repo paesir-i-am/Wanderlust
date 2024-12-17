@@ -61,7 +61,7 @@ public class CustomSecurityConfig {
         http.csrf(config -> config.disable());
 
         http.formLogin(config -> {
-            config.loginPage("/api/member/login");
+            config.loginPage("/member/login");
             config.successHandler(new APILoginSuccessHandler());
             config.failureHandler(new APILoginFailHandler());
         });

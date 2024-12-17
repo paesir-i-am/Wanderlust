@@ -29,7 +29,7 @@ import java.util.Map;
 @Log4j2
 public class APIRefreshController {
 
-    @RequestMapping("/api/member/refresh")
+    @RequestMapping("/member/refresh")
     public Map<String, Object> refresh(@RequestHeader("Authorization") String authHeader, String refreshToken){
 
         if(refreshToken == null) {

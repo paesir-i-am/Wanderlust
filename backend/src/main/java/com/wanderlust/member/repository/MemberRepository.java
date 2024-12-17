@@ -20,6 +20,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface MemberRepository extends JpaRepository<Member, String> {
 
     // 이메일이 일치한다면 즉시로딩 시켜라.
@@ -28,4 +30,5 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     @Query("select m from Member m where m.email = :email")
     Member getWithRoles(@Param("email") String email);
 
+    Optional<Member> findByNickname(String nickname);
 }
