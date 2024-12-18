@@ -113,6 +113,9 @@ img {
   background-position: 0 -480px;
   color: #fff;
 }
+.basic-layout header .searchbar.mobile-only {
+  display: none;
+}
 .basic-layout header .header-overlay {
   height: 350px;
   display: flex;
@@ -129,11 +132,12 @@ img {
   flex: 0 0 auto;
 }
 .basic-layout header .header-overlay .header-top .logo img {
-  height: 80px;
+  padding-top: 1rem;
+  height: 120px;
 }
 .basic-layout header .header-overlay .header-top .searchbar.desktop-only {
   flex: 0 0 50%;
-  max-width: 600px;
+  max-width: 800px;
   display: flex;
   align-items: center;
   background-color: #e9ecef;
@@ -151,16 +155,12 @@ img {
 .basic-layout header .header-overlay .header-top .searchbar.desktop-only .search-buttons button {
   background-color: transparent;
   border: none;
-  padding: 0;
+  padding: 0.7rem;
   cursor: pointer;
 }
 .basic-layout header .header-overlay .header-top .searchbar.desktop-only .search-buttons button img {
-  height: 24px;
-  width: 24px;
-}
-.basic-layout header .header-overlay .header-top .searchbar.desktop-only .search-buttons button:hover {
-  background-color: rgb(203.4736842105, 210.5, 217.5263157895);
-  border-radius: 4px;
+  height: 30px;
+  width: 30px;
 }
 .basic-layout header .header-overlay .header-top .icons.desktop-only {
   display: flex;
@@ -172,7 +172,8 @@ img {
   cursor: pointer;
 }
 .basic-layout header .header-overlay .header-top .icons.desktop-only button img {
-  height: 30px;
+  margin: 1rem 0.4rem 0 0.2rem;
+  height: 60px;
 }
 @media (max-width: 768px) {
   .basic-layout header .header-overlay .header-top {
@@ -214,14 +215,15 @@ img {
 }
 .basic-layout header .header-overlay .nav {
   display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
+  justify-content: flex-start;
+  margin: 5rem 0 0 18rem;
 }
 .basic-layout header .header-overlay .nav a {
   color: #fff;
   text-decoration: none;
   margin: 0 1rem;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 .basic-layout header .header-overlay .nav a:hover {
   text-decoration: underline;
@@ -243,7 +245,7 @@ img {
 .basic-layout header .search .search-container {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #e9ecef;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   padding: 1.5rem;
@@ -254,8 +256,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #44ff93;
-  border-radius: 50px;
+  border: 2px solid #44FF93;
+  border-radius: 40px;
   overflow: hidden;
 }
 .basic-layout header .search .search-container .options button {
@@ -274,20 +276,19 @@ img {
   background: #44ff93;
   color: white;
 }
-.basic-layout header .search .search-container .options button:hover {
-  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
-}
 .basic-layout header .search .search-container .fields {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  color: black;
 }
 .basic-layout header .search .search-container .fields input,
 .basic-layout header .search .search-container .fields select,
 .basic-layout header .search .search-container .fields button {
   flex: 1;
   padding: 0.8rem;
+  background-color: white;
   border: 1px solid #adb5bd;
   border-radius: 8px;
 }
