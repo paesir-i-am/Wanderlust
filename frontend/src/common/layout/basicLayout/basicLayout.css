@@ -215,6 +215,7 @@ img {
 }
 .basic-layout header .header-overlay .nav {
   display: flex;
+  align-items: flex-start;
   justify-content: flex-start;
   margin: 5rem 0 0 18rem;
 }

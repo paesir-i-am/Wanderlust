@@ -47,10 +47,11 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     if (path.startsWith("/member/")) {
       return true;
     }
-    return false;
+//    return false;
+  return false;
   }
 
-  @Override// validateToken()를 활용해서 예외의 발생여부를 확인.
+  @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
 
@@ -59,44 +60,44 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     String authHeaderStr = request.getHeader("Authorization");
 
     try {
-      //Bearer accestoken...
+      // "Bearer " 이후의 토큰만 추출
       String accessToken = authHeaderStr.substring(7);
-      Map<String, Object> claims = JWTUtil.validateToken(accessToken);
 
+      // 토큰 검증
+      Map<String, Object> claims = JWTUtil.validateToken(accessToken);
       log.info("JWT claims: " + claims);
 
+      // 클레임에서 사용자 정보 추출
       String email = (String) claims.get("email");
       String pw = (String) claims.get("pw");
       String nickname = (String) claims.get("nickname");
       Boolean social = (Boolean) claims.get("social");
       List<String> roleNames = (List<String>) claims.get("roleNames");
 
+      // MemberDTO 생성 및 인증 컨텍스트 설정
       MemberDTO memberDTO = new MemberDTO(email, pw, nickname, social.booleanValue(), roleNames);
-
       log.info("-----------------------------------");
       log.info(memberDTO);
       log.info(memberDTO.getAuthorities());
 
-      UsernamePasswordAuthenticationToken authenticationToken
-          = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
+      UsernamePasswordAuthenticationToken authenticationToken =
+          new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
 
       SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
       filterChain.doFilter(request, response);
 
-    }catch(Exception e){
-
-      log.error("JWT Check Error..............");
-      log.error(e.getMessage());
+    } catch (Exception e) {
+      log.error("JWT Check Error:", e);
 
       Gson gson = new Gson();
       String msg = gson.toJson(Map.of("error", "ERROR_ACCESS_TOKEN"));
 
       response.setContentType("application/json");
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
       PrintWriter printWriter = response.getWriter();
       printWriter.println(msg);
       printWriter.close();
-
     }
   }
 }

@@ -8,7 +8,8 @@ const BasicLayout = ({ children }) => {
   const [menuActive, setMenuActive] = useState(false); // 모바일 메뉴 상태
   const [showSearch, setShowSearch] = useState(false); // 모바일 검색창 상태
 
-  const { isLogin, moveToLogin, doLogout, moveToPath } = useCustomLogin();
+  const { isLogin, moveToLogin, doLogout, moveToPath, doLoginPopup } =
+    useCustomLogin();
 
   return (
     <div className="basic-layout">
@@ -68,7 +69,7 @@ const BasicLayout = ({ children }) => {
                   <img src="/icons/logout.svg" alt="Logout" />
                 </button>
               ) : (
-                <button onClick={moveToLogin}>
+                <button onClick={doLoginPopup}>
                   <img src="/icons/login.svg" alt="Login" />
                 </button>
               )}
