@@ -25,8 +25,8 @@ export const useCustomLogin = () => {
   const openPopup = (
     url,
     windowName = "PopupWindow",
-    width = 600,
-    height = 700,
+    width = 1000,
+    height = 600,
   ) => {
     const left = window.screenX + (window.innerWidth - width) / 2;
     const top = window.screenY + (window.innerHeight - height) / 2;

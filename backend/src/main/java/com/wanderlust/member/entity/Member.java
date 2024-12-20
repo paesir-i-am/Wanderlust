@@ -14,10 +14,7 @@ package com.wanderlust.member.entity;
  */
 
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -28,16 +25,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString(exclude = "RoleList")
 public class Member {
 
   @Id
+  @Column(unique = true, nullable = false)
   private String email;
 
+  @Column(nullable = false)
   private String pw;
 
+  @Column(unique = true, nullable = false)
   private String nickname;
 
+  @Column(nullable = false)
   private boolean social;
 
   @ElementCollection(fetch = FetchType.LAZY)

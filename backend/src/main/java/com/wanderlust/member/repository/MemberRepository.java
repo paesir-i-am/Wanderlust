@@ -11,10 +11,13 @@ package com.wanderlust.member.repository;
  * DATE                  AUTHOR       NOTE
  * -----------------------------------------------------------
  * 24. 12. 16.오후 2:24  paesir      최초 생성
+ * 24. 12. 20.오후 5:59  paesir      register method create
  */
 
 
 import com.wanderlust.member.entity.Member;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +33,9 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     @Query("select m from Member m where m.email = :email")
     Member getWithRoles(@Param("email") String email);
 
-    Optional<Member> findByNickname(String nickname);
+    boolean existsByEmail(@Email(message = "유효한 이메일 주소를 입력해주세요")
+                          @NotBlank(message = "이메일은 필수 입력 값입니다") String email);
+
+    Optional<Member> findByEmail(String email);
+
 }

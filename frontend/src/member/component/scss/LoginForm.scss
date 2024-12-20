@@ -1,0 +1,83 @@
+@import "../../../core";
+
+.login-form {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    .icon {
+      font-size: 0.5rem;
+      color: $primary-color;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  .use-email{
+    margin-bottom: 1rem;
+    }
+
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+
+  .warning{
+    color: red;
+    font-size: 0.8rem;
+    text-align: right;
+    line-height: 0.6rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+}

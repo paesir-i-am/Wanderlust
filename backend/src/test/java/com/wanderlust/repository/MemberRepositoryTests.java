@@ -13,9 +13,12 @@ package com.wanderlust.repository;
  * 24. 12. 16.오후 3:32  paesir      최초 생성
  */
 
+import com.wanderlust.member.dto.MemberDTO;
+import com.wanderlust.member.dto.MemberRegisterDTO;
 import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.entity.MemberRole;
 import com.wanderlust.member.repository.MemberRepository;
+import com.wanderlust.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,8 @@ public class MemberRepositoryTests {
   private MemberRepository memberRepository;
   @Autowired
   private PasswordEncoder passwordEncoder;
+  @Autowired
+  private MemberService memberService;
 
   @Test
   public void insert() {
@@ -43,14 +48,14 @@ public class MemberRepositoryTests {
   }
 
   @Test
-  public void getMember(){
+  public void getMember() {
     String email = "email100@aaa.bbb";
     Member member = memberRepository.getWithRoles(email);
     log.info(member);
   }
 
   @Test
-  public void updatePassword(){
+  public void updatePassword() {
     String email = "email1@aaa.bbb";
     Member member = memberRepository.getWithRoles(email);
 
@@ -59,4 +64,5 @@ public class MemberRepositoryTests {
 
     memberRepository.save(member);
   }
-}
+
+  }
