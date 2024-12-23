@@ -166,3 +166,5 @@ export const useCustomLogin = () => {
     exceptionHandle,
   };
 };
+
+export default useCustomLogin;

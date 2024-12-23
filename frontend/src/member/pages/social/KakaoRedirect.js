@@ -1,24 +1,37 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { getAccessToken, getMemberWithAccessToken } from "../../api/kakaoApi";
 import { useDispatch } from "react-redux";
-import { kakaoLoginAsync } from "../../slice/loginSlice";
+import { login } from "../../slice/loginSlice";
+import useCustomLogin from "../../hook/useCustomLogin";
 
 const KakaoRedirectPage = () => {
   const [searchParams] = useSearchParams();
+
+  const { moveToPath } = useCustomLogin();
+
   const dispatch = useDispatch();
 
-  const authCode = searchParams.get("code"); // 카카오에서 전달된 인증 코드
+  // 인가코드 받기위한 변수
+  const authCode = searchParams.get("code");
 
   useEffect(() => {
-    if (authCode) {
-      dispatch(kakaoLoginAsync(authCode)); // Redux를 통해 카카오 로그인 처리
-    }
-  }, [authCode, dispatch]);
+    getAccessToken(authCode).then((accessToken) => {
+      console.log(accessToken);
 
+      // back에서 사용자 정보를 받아와서 memberInfo로 전달.
+      getMemberWithAccessToken(accessToken).then((memberInfo) => {
+        console.log("------------------");
+        console.log(memberInfo);
+
+        dispatch(login(memberInfo));
+      });
+    });
+  }, [authCode]);
   return (
     <div>
-      <h1>카카오 로그인 중...</h1>
-      <p>잠시만 기다려주세요.</p>
+      <div>Kakao Login Redirect</div>
+      <div>{authCode}</div>
     </div>
   );
 };

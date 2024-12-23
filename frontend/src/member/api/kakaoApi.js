@@ -1,19 +1,43 @@
 import axios from "axios";
+import { API_SERVER_HOST } from "../../common/api/mainApi";
+
+const rest_api_key = `53cfe78f27c2f1daa93450c68125dd24`; // rest키값
+const redirect_uri = `http://localhost:3000/member/kakao`;
+
+const auth_code_path = `https://kauth.kakao.com/oauth/authorize`;
+
+const access_token_url = `https://kauth.kakao.com/oauth/token`;
 
 export const getKakaoLoginLink = () => {
-  return `/oauth2/authorization/kakao`;
+  const kakaoURL = `${auth_code_path}?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+
+  return kakaoURL;
 };
 
-export const fetchMemberInfo = async (accessToken) => {
-  try {
-    const response = await axios.get("/member/info", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+export const getAccessToken = async (authCode) => {
+  const header = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  };
+  const params = {
+    grant_type: "authorization_code",
+    client_id: rest_api_key,
+    redirect_uri: redirect_uri,
+    code: authCode,
+  };
+
+  const res = await axios.post(access_token_url, params, header);
+
+  const accessToken = res.data.access_token;
+
+  return accessToken;
+};
+
+export const getMemberWithAccessToken = async (accessToken) => {
+  const res = await axios.get(
+    `${API_SERVER_HOST}/api/member/kakao?accessToken=${accessToken}`,
+  );
+
+  return res.data;
 };

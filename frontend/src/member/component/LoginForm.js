@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import naverLogin from "../img/naver_login.png";
 import kakaoLogin from "../img/kakao_login.png";
 import googleLogin from "../img/google_login.png";
+import { getKakaoLoginLink } from "../api/kakaoApi";
 
 const initState = {
   email: "",
@@ -19,10 +20,6 @@ const LoginForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginParam((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleKakaoLogin = () => {
-    window.location.href = "/oauth2/authorization/kakao";
   };
 
   const handleSubmit = async (e) => {
@@ -60,11 +57,12 @@ const LoginForm = () => {
     }
   };
 
+  const link = getKakaoLoginLink();
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h1>로그인</h1>
       <div className="social-icons">
-        <Link onClick={handleKakaoLogin} className="icon">
+        <Link to={link} className="icon">
           <img src={kakaoLogin} alt="kakao" className="fa-brands fa-kakao-k" />
         </Link>
         <Link to="#" className="icon">
@@ -102,7 +100,7 @@ const LoginForm = () => {
         required
         autoComplete="current-password"
       />
-      <Link to="#">Forget Your Password?</Link>
+      <a href="#">Forget Your Password?</a>
       <br />
       {error && <p className="error-message">{error}</p>}
       <button type="submit">로그인</button>
