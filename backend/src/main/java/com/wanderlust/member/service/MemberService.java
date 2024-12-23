@@ -27,8 +27,6 @@ import java.util.stream.Collectors;
 @Transactional
 public interface MemberService {
 
-    MemberDTO getKakaoMember(String accessToken);
-
     void modifyMember(MemberModifyDTO memberModifyDTO);
 
     void registerMember(MemberRegisterDTO memberRegisterDTO);

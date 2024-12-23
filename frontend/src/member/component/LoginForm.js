@@ -21,6 +21,10 @@ const LoginForm = () => {
     setLoginParam((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleKakaoLogin = () => {
+    window.location.href = "/oauth2/authorization/kakao";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -60,7 +64,7 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} className="login-form">
       <h1>로그인</h1>
       <div className="social-icons">
-        <Link to="#" className="icon">
+        <Link onClick={handleKakaoLogin} className="icon">
           <img src={kakaoLogin} alt="kakao" className="fa-brands fa-kakao-k" />
         </Link>
         <Link to="#" className="icon">
@@ -98,7 +102,7 @@ const LoginForm = () => {
         required
         autoComplete="current-password"
       />
-      <a href="#">Forget Your Password?</a>
+      <Link to="#">Forget Your Password?</Link>
       <br />
       {error && <p className="error-message">{error}</p>}
       <button type="submit">로그인</button>

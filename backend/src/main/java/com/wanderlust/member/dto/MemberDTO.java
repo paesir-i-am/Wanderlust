@@ -19,6 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @ToString
-public class MemberDTO extends User {
+public class MemberDTO extends User implements OAuth2User {
 
     private String email;
 
@@ -40,6 +41,8 @@ public class MemberDTO extends User {
     private boolean social;
 
     private List<String> roleNames = new ArrayList<>();
+
+    private Map<String, Object> props;
 
     public MemberDTO(String email, String pw, String nickname, boolean social, List<String> roleNames) {
         super(
@@ -67,4 +70,12 @@ public class MemberDTO extends User {
         return dataMap;
     }
 
+    public Map<String, Object> getAttributes() {
+        return this.getProps();
+    }
+
+    @Override
+    public String getName() {
+        return this.email;
+    }
 }

@@ -13,6 +13,7 @@ package com.wanderlust.member.controller;
  * 24. 12. 20.오후 5:27  paesir      최초 생성
  * 24. 12. 20.오후 5:58  paesir      회원가입 메서드 생성
  */
+import com.wanderlust.member.dto.MemberModifyDTO;
 import com.wanderlust.member.dto.MemberRegisterDTO;
 import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.repository.MemberRepository;
@@ -23,6 +24,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -55,4 +58,14 @@ public class MemberRegisterController {
       return ResponseEntity.ok(isDuplicate);
   }
 
+  @PutMapping("/modify")
+  public Map<String,String> modify(@RequestBody MemberModifyDTO memberModifyDTO) {
+
+    log.info("member modify: " + memberModifyDTO);
+
+    memberService.modifyMember(memberModifyDTO);
+
+    return Map.of("result","modified");
+
+  }
 }

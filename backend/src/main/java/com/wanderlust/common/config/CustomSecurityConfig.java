@@ -39,61 +39,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-/*@Configuration
-@Log4j2
-@RequiredArgsConstructor
-@EnableMethodSecurity
-public class CustomSecurityConfig {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        log.info("---------------------security config---------------------------");
-
-        http.cors(httpSecurityCorsConfigurer -> {
-            httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
-        });
-
-        http.sessionManagement(sessionConfig ->
-            sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        );
-
-        http.csrf(config -> config.disable());
-
-        // Form Login 비활성화
-        http.formLogin(config -> config.disable());
-
-        // JWT 필터 추가
-        http.addFilterAfter(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        // 예외 처리 핸들러
-        http.exceptionHandling(config -> {
-            config.accessDeniedHandler(new CustomAccessDeniedHandler());
-        });
-
-        return http.build();
-    }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setAllowCredentials(true); // 쿠키 인증 허용
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
-}*/
-
-
 @Configuration
 @Log4j2
 @RequiredArgsConstructor

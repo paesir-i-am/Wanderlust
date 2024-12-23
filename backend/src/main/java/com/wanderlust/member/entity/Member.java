@@ -51,6 +51,9 @@ public class Member {
     RoleList.add(memberRole);
   }
 
+  @Column(nullable = false)
+  public String provider;
+
   public void clearRole(){
     RoleList.clear();
   }

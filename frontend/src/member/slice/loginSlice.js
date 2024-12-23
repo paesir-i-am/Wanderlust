@@ -46,6 +46,15 @@ export const loginPostAsync = createAsyncThunk(
   },
 );
 
+// 카카오 로그인 API 호출 비동기
+export const kakaoLoginAsync = createAsyncThunk(
+  "kakaoLoginAsync",
+  async (authCode) => {
+    const res = await axios.get(`/member/kakao/${authCode}`);
+    return res.data;
+  },
+);
+
 // Slice 생성
 const loginSlice = createSlice({
   name: "LoginSlice",
@@ -136,6 +145,21 @@ const loginSlice = createSlice({
       })
       .addCase(registerPostAsync.rejected, (state, action) => {
         console.log("회원가입 실패 : " + action.error.message);
+      })
+      .addCase(kakaoLoginAsync.fulfilled, (state, action) => {
+        console.log("카카오 로그인 완료");
+        const payload = action.payload;
+
+        state.refreshToken = payload.refreshToken;
+        state.accessToken = payload.accessToken;
+        state.email = payload.email;
+        state.nickname = payload.nickname;
+        state.roleNames = payload.roleNames;
+        state.loginSuccess = true;
+      })
+      .addCase(kakaoLoginAsync.rejected, (state) => {
+        console.log("카카오 로그인 실패");
+        state.loginSuccess = false;
       });
   },
 });
