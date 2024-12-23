@@ -35,6 +35,8 @@ public interface MemberService {
 
     Member findByEmail(String email);
 
+    boolean isEmailDuplicate(String email);
+
     default MemberDTO entityToDTO(Member member){
 
         MemberDTO dto = new MemberDTO(

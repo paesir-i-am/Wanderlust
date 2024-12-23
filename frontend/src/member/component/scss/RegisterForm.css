@@ -98,6 +98,7 @@ img {
 }
 
 .register-form {
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -130,6 +131,34 @@ img {
 .register-form .use-email {
   margin-bottom: 1rem;
 }
+.register-form .email-check {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.register-form .email-check input {
+  flex: 1;
+  height: 45px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.register-form .email-check button {
+  height: 45px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #228B22;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.register-form .email-check button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
 .register-form input {
   width: 100%;
   padding: 0.75rem;
@@ -140,6 +169,12 @@ img {
 }
 .register-form input:focus {
   border-color: #228B22;
+}
+.register-form .warning {
+  color: red;
+  font-size: 0.8rem;
+  text-align: right;
+  line-height: 0.6rem;
 }
 .register-form button {
   padding: 0.75rem 1.5rem;

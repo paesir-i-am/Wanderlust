@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginPost } from "../api/memberApi";
+import { loginPost, registerPost } from "../api/memberApi";
 import {
   getCookie,
   removeCookie,
   setCookie,
 } from "../../common/util/cookieUtil";
+import axios from "axios";
 
 // 초기 상태
 const initState = {
@@ -26,6 +27,15 @@ const loadMemberCookie = () => {
     return null;
   }
 };
+
+// 회원가입 API 호출 비동기 작업
+export const registerPostAsync = createAsyncThunk(
+  "registerPostAsync",
+  async (registerParam) => {
+    const res = await registerPost(registerParam);
+    return res;
+  },
+);
 
 // 로그인 API 호출 비동기 작업
 export const loginPostAsync = createAsyncThunk(
@@ -120,6 +130,12 @@ const loginSlice = createSlice({
       .addCase(loginPostAsync.rejected, (state, action) => {
         console.log("rejected", action.error); // 에러
         state.loginSuccess = false; // 로그인 실패 상태 설정
+      })
+      .addCase(registerPostAsync.fulfilled, (state, action) => {
+        console.log("회원가입 완료 : " + action.payload);
+      })
+      .addCase(registerPostAsync.rejected, (state, action) => {
+        console.log("회원가입 실패 : " + action.error.message);
       });
   },
 });

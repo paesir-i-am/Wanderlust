@@ -43,7 +43,7 @@ const LoginForm = () => {
             targetOrigin,
           );
           console.log("로그인 메시지 전송 성공");
-          window.close(); // 팝업 창 닫기 (필요 시 주석 제거)
+          window.close(); // 팝업 창 닫기
         } else {
           throw new Error("응답에 토큰이 포함되지 않았습니다.");
         }

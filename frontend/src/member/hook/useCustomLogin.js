@@ -1,6 +1,11 @@
 import { useNavigate, Navigate, createSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginPostAsync, logout, loginSuccess } from "../slice/loginSlice";
+import {
+  loginPostAsync,
+  logout,
+  loginSuccess,
+  registerPostAsync,
+} from "../slice/loginSlice";
 import { setCookie, getCookie } from "../../common/util/cookieUtil";
 import { useEffect } from "react";
 
@@ -92,6 +97,27 @@ export const useCustomLogin = () => {
     navigate("/");
   };
 
+  // 회원가입 함수
+  const doRegister = async (registerParam) => {
+    try {
+      const action = await dispatch(registerPostAsync(registerParam));
+      const responseData = action.payload;
+
+      if (responseData) {
+        console.log("회원가입 성공 : " + responseData);
+        return responseData;
+      } else {
+        throw new Error("회원가입 응답이 비어있습니다");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      if (error.response?.status === 401) {
+        console.log("401 Error");
+        throw error;
+      }
+    }
+  };
+
   // 페이지 이동
   const moveToPath = (path) => {
     navigate({ pathname: path }, { replace: true });
@@ -131,6 +157,7 @@ export const useCustomLogin = () => {
     isLogin,
     doLogin,
     doLogout,
+    doRegister,
     doLoginPopup,
     doLogoutPopup,
     moveToPath,

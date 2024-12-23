@@ -97,8 +97,13 @@ public class MemberServiceImpl implements MemberService {
         return buffer.toString();
     }
 
-    // accesstoken을 기반으로 사용자의 정보를 얻기위한 메서드
 
+    @Override
+    public boolean isEmailDuplicate(String email) {
+        return memberRepository.existsByEmail(email);
+    }
+
+    // accesstoken을 기반으로 사용자의 정보를 얻기위한 메서드
     private String getEmailFromKakaoAccessToken(String accessToken){
 
         String kakaoGetUserURL = "https://kapi.kakao.com/v2/user/me";
