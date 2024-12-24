@@ -57,7 +57,6 @@ public class MemberServiceImpl implements MemberService {
         Member member = result.orElseThrow();
 
         member.changePw(passwordEncoder.encode(memberModifyDTO.getPw()));
-        member.changeSocial(false);
         member.changeNickname(memberModifyDTO.getNickname());
 
         memberRepository.save(member);

@@ -16,17 +16,25 @@ const KakaoRedirectPage = () => {
   const authCode = searchParams.get("code");
 
   useEffect(() => {
-    getAccessToken(authCode).then((accessToken) => {
-      console.log(accessToken);
+    getAccessToken(authCode)
+      .then((accessToken) => {
+        console.log(accessToken);
 
-      // back에서 사용자 정보를 받아와서 memberInfo로 전달.
-      getMemberWithAccessToken(accessToken).then((memberInfo) => {
-        console.log("------------------");
-        console.log(memberInfo);
+        // back에서 사용자 정보를 받아와서 memberInfo로 전달.
+        getMemberWithAccessToken(accessToken).then((memberInfo) => {
+          console.log("------------------");
+          console.log(memberInfo);
 
-        dispatch(login(memberInfo));
+          dispatch(login(memberInfo));
+
+          alert("로그인 성공! 환영합니다" + memberInfo.nickname + "님");
+          window.close();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("로그인 중 오류가 발생하였습니다");
       });
-    });
   }, [authCode]);
   return (
     <div>
