@@ -40,7 +40,7 @@ public class Member {
   private String nickname;
 
   @Column(nullable = false)
-  private boolean social;
+  private boolean social = false;
 
   @ElementCollection(fetch = FetchType.LAZY)
   @Builder.Default

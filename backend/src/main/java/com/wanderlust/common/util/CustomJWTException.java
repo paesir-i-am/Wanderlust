@@ -20,4 +20,8 @@ public class CustomJWTException extends RuntimeException{
         super(msg);
     }
 
+    public CustomJWTException(String msg, Throwable cause){
+        super(msg, cause);
+    }
+
 }

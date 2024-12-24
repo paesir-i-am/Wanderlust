@@ -71,7 +71,7 @@ public class JWTCheckFilter extends OncePerRequestFilter {
       String email = (String) claims.get("email");
       String pw = (String) claims.get("pw");
       String nickname = (String) claims.get("nickname");
-      Boolean social = (Boolean) claims.get("social");
+      Boolean social = claims.containsKey("social") ? (Boolean) claims.get("social") : false;
       List<String> roleNames = (List<String>) claims.get("roleNames");
 
       // MemberDTO 생성 및 인증 컨텍스트 설정
