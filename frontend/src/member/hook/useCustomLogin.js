@@ -105,6 +105,7 @@ export const useCustomLogin = () => {
 
       if (responseData) {
         console.log("회원가입 성공 : " + responseData);
+        window.location.reload();
         return responseData;
       } else {
         throw new Error("회원가입 응답이 비어있습니다");
