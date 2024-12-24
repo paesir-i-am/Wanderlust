@@ -6,6 +6,7 @@ import naverLogin from "../img/naver_login.png";
 import googleLogin from "../img/google_login.png";
 import { useCustomLogin } from "../hook/useCustomLogin";
 import { checkEmailDuplicate } from "../api/memberApi";
+import { getKakaoLoginLink } from "../api/kakaoApi";
 
 const initState = {
   email: "",
@@ -80,11 +81,13 @@ const RegisterForm = () => {
     }
   };
 
+  const link = getKakaoLoginLink();
+
   return (
     <form onSubmit={handleSubmit} className="register-form">
       <h1>회원가입</h1>
       <div className="social-icons">
-        <Link to="#" className="icon">
+        <Link to={link} className="icon">
           <img src={kakaoLogin} alt="kakao" className="fa-brands fa-kakao-k" />
         </Link>
         <Link to="#" className="icon">
