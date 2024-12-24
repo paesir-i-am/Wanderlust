@@ -1,4 +1,4 @@
-package com.wanderlust.common.config;
+package com.wanderlust.member.security;
 
 /*
  * Description    :
@@ -14,7 +14,6 @@ package com.wanderlust.common.config;
  */
 
 
-import com.wanderlust.member.security.CustomUserDetailsService;
 import com.wanderlust.member.security.filter.JWTCheckFilter;
 import com.wanderlust.member.security.handler.APILoginFailHandler;
 import com.wanderlust.member.security.handler.APILoginSuccessHandler;
@@ -23,9 +22,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
