@@ -1,0 +1,104 @@
+@import "../../../core.scss";
+
+.auth-container {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+
+  button {
+    background-color: $primary-color;
+    color: #fff;
+    padding: 10px 45px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 10px;
+
+    &.hidden {
+      background-color: transparent;
+      border: 1px solid #fff;
+    }
+  }
+
+  .sign-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px;
+
+    input {
+      width: 100%;
+      background-color: #eeeeee;
+      border: none;
+      margin: 8px 0 ;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+  }
+
+  .sign-in-container {
+  }
+
+  .sign-up-container {
+  }
+
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+
+    &.loginMode {
+      transform: translateX(-100%);
+      border-radius: 0 150px 100px 0;
+    }
+
+    .overlay {
+      background: linear-gradient(to right, $secondary-color, transparent);
+      color: white;
+      position: relative;
+      width: 200%;
+      height: 100%;
+      left: -100%;
+      transform: translateX(0);
+      transition: all 0.6s ease-in-out;
+
+
+      .overlay-panel {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 30px;
+        text-align: center;
+
+
+        .ghost {
+        }
+      }
+
+      &.overlay-left {
+        transform: translateX(-200%);
+      }
+
+      &.overlay-right {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  //end overlay container
+}

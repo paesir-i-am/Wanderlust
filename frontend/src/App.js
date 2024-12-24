@@ -1,15 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './login/LoginPage';
+import React from "react";
+import "./core.css";
+import { RouterProvider } from "react-router-dom";
+import root from "./common/router/root";
 
 const App = () => {
-  return (
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
-      </Router>
-  );
+  return <RouterProvider router={root} />;
 };
 
 export default App;

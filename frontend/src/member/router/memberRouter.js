@@ -1,0 +1,46 @@
+import { Suspense, lazy } from "react";
+const Loading = <div>Loading....</div>;
+const Login = lazy(() => import("../pages/login/LoginPage"));
+const Logout = lazy(() => import("../pages/logout/LogoutPage"));
+const MemberModify = lazy(() => import("../pages/modify/MemberModify"));
+const KakaoRedirect = lazy(() => import("../pages/social/KakaoRedirect"));
+
+const memberRouter = () => {
+  return [
+    {
+      path: "login",
+      element: (
+        <Suspense fallback={Loading}>
+          <Login />
+        </Suspense>
+      ),
+    },
+    {
+      path: "logout",
+      element: (
+        <Suspense fallback={Loading}>
+          <Logout />
+        </Suspense>
+      ),
+    },
+    {
+      path: "kakao",
+      element: (
+        <Suspense fallback={Loading}>
+          <KakaoRedirect />
+        </Suspense>
+      ),
+    },
+
+    {
+      path: "modify",
+      element: (
+        <Suspense fallback={Loading}>
+          <MemberModify />
+        </Suspense>
+      ),
+    },
+  ];
+};
+
+export default memberRouter;

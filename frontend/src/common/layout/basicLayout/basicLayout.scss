@@ -1,0 +1,316 @@
+@import "../../../core.scss";
+
+// 기본 레이아웃 스타일
+.basic-layout {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: $font-primary;
+  background-color: $background-color;
+
+  // 헤더
+  header {
+    .searchbar.mobile-only{
+      display: none;
+    }
+    height: 350px;
+    background: url("/public/header-backgroung.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 0 -480px;
+    color: #fff;
+
+    .header-overlay {
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 4rem;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+          flex: 0 0 auto;
+
+          img {
+            padding-top: 1rem;
+            height: 120px;
+          }
+        }
+
+        .searchbar.desktop-only {
+          flex: 0 0 50%;
+          max-width: 800px;
+          display: flex;
+          align-items: center;
+          background-color: $gray-light;
+          border-radius: 5px;
+          height: 40px;
+
+          .search-input {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            font-size: 1rem;
+          }
+
+          .search-buttons {
+            button {
+              background-color: transparent;
+              border: none;
+              padding: 0.7rem;
+              cursor: pointer;
+
+              img {
+                height: 30px;
+                width: 30px;
+              }
+            }
+          }
+        }
+
+        .icons.desktop-only {
+          display: flex;
+          gap: 0.5rem;
+
+          button {
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            img {
+              margin : 1rem 0.4rem 0 0.2rem;
+              height: 60px;
+            }
+          }
+        }
+
+        @include respond-to("tablet") {
+          flex-direction: column;
+
+          .searchbar {
+            width: 100%;
+            margin-top: 1rem;
+          }
+        }
+
+        @include respond-to("mobile") {
+          flex-direction: column;
+
+          .searchbar.desktop-only {
+            display: none;
+          }
+          .icons.desktop-only {
+            display: none;
+          }
+          .searchbar.mobile-only {
+            display: flex;
+            width: 100%;
+            margin-top: 1rem;
+          }
+          .search-buttons.mobile-only {
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.5rem;
+            padding: 0.5rem;
+            display: flex;
+
+            img {
+              padding: 0.1rem;
+              display: block;
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
+        //end mobile
+      }
+
+      .nav {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin: 5rem 0 0 18rem;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          margin: 0 1rem;
+          font-size: 1.6rem;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        @include respond-to("mobile") {
+          display: none;
+        }
+      }
+    }
+
+
+    // 검색 섹션
+    .search {
+      position: relative;
+      z-index: 10;
+      margin-top: -4rem;
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .search-container {
+        display: flex;
+        flex-direction: column;
+        background-color: $gray-light;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        gap: 1rem;
+
+        .options {
+          width: 30%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 2px solid $secondary-color;
+          border-radius: 40px;
+          overflow: hidden;
+
+          button {
+            flex: 1;
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+
+            &.active {
+              background: #44ff93;
+              color: white;
+            }
+
+          }
+        }
+
+        .fields {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          color: black;
+
+          input,
+          select,
+          button {
+            flex: 1;
+            padding: 0.8rem;
+            background-color: white;
+            border: 1px solid $gray-dark;
+            border-radius: 8px;
+
+          }
+
+          button {
+            background-color: $primary-color;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+              background-color: darken($primary-color, 10%);
+            }
+          }
+        }
+      }
+
+      @include respond-to("mobile") {
+        margin-top: -9rem;
+
+        .search-container {
+          padding: 1rem;
+
+          .fields {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+
+
+  // 본문 콘텐츠
+  .content {
+    margin-top: 100px;
+    flex: 1;
+    padding: 2rem;
+
+    @include respond-to("mobile") {
+      margin-top: 25rem;
+      padding: 1rem;
+    }
+  }
+
+  // 하단 네비게이션
+  .bottom-nav {
+    display: none;
+
+    @include respond-to("mobile") {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      background-color: #fff;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        img {
+          height: 24px;
+        }
+      }
+    }
+
+    .menu-modal {
+      position: fixed;
+      bottom: 3rem;
+      left: 0;
+      width: 100%;
+      background-color: $gray-light;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1100;
+
+      a {
+        display: block;
+        margin: 0.5rem 0;
+        color: $primary-color;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+}
