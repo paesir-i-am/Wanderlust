@@ -17,6 +17,7 @@ const LogoutPage = () => {
 
     // 홈 페이지로 리다이렉트
     navigate("/");
+    window.location.reload();
   }, [dispatch, navigate]);
 
   return <div>로그아웃 중입니다...</div>;

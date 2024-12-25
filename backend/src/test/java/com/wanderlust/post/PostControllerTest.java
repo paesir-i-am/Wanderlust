@@ -73,4 +73,9 @@ public class PostControllerTest {
             .param("content", "Test Content11"))
         .andExpect(status().isOk());
   }
+
+  @Test
+  void getPost_success() throws Exception {
+
+  }
 }

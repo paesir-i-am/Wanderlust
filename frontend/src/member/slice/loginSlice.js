@@ -5,7 +5,6 @@ import {
   removeCookie,
   setCookie,
 } from "../../common/util/cookieUtil";
-import axios from "axios";
 
 // 초기 상태
 const initState = {
@@ -20,8 +19,19 @@ const initState = {
 // 쿠키에서 사용자 정보 로드
 const loadMemberCookie = () => {
   try {
-    const memberInfo = getCookie("member");
-    return memberInfo ? JSON.parse(memberInfo) : null;
+    const memberCookie = getCookie("member");
+    if (!memberCookie) return null; // 쿠키가 없으면 null 반환
+
+    if (typeof memberCookie === "string") {
+      // 문자열인 경우 JSON 파싱
+      return JSON.parse(decodeURIComponent(memberCookie));
+    } else if (typeof memberCookie === "object") {
+      // 객체인 경우 바로 반환
+      return memberCookie;
+    } else {
+      console.warn("Unexpected member cookie format:", memberCookie);
+      return null; // 알 수 없는 형식이면 null 반환
+    }
   } catch (error) {
     console.error("Failed to parse member cookie:", error);
     return null;
@@ -46,6 +56,30 @@ export const loginPostAsync = createAsyncThunk(
   },
 );
 
+const updateStateAndCookie = (state, payload) => {
+  Object.assign(state, initState);
+
+  state.accessToken = payload.accessToken;
+  state.refreshToken = payload.refreshToken;
+  state.nickname = payload.nickname;
+  state.email = payload.email;
+  state.roleNames = payload.roleNames;
+  state.loginSuccess = true;
+
+  setCookie("accessToken", payload.accessToken, {
+    path: "/",
+    maxAge: 86400,
+  });
+  setCookie("refreshToken", payload.refreshToken, {
+    path: "/",
+    maxAge: 86400,
+  });
+  setCookie("member", JSON.stringify(payload), {
+    path: "/",
+    maxAge: 86400,
+  });
+};
+
 // Slice 생성
 const loginSlice = createSlice({
   name: "LoginSlice",
@@ -53,27 +87,7 @@ const loginSlice = createSlice({
   reducers: {
     login: (state, action) => {
       console.log("login...");
-
-      // Redux 상태 업데이트
-      const payload = action.payload;
-      state.email = payload.email;
-      state.nickname = payload.nickname;
-      state.accessToken = payload.accessToken;
-      state.refreshToken = payload.refreshToken;
-      state.roleNames = payload.roleNames;
-      state.loginSuccess = true; // 로그인 성공 상태 설정
-
-      // 쿠키에 저장
-      setCookie("member", JSON.stringify(payload), {
-        path: "/",
-        maxAge: 86400,
-      }); // 1일
-      setCookie("accessToken", payload.accessToken, {
-        maxAge: 86400,
-      });
-      setCookie("refreshToken", payload.refreshToken, {
-        maxAge: 86400,
-      });
+      updateStateAndCookie(state, action.payload);
     },
 
     logout: (state) => {
@@ -100,36 +114,17 @@ const loginSlice = createSlice({
     builder
       .addCase(loginPostAsync.fulfilled, (state, action) => {
         console.log("fulfilled"); // 완료
-        const payload = action.payload;
-
-        if (!payload.error) {
-          // Redux 상태 업데이트
-          state.accessToken = payload.accessToken;
-          state.refreshToken = payload.refreshToken;
-          state.email = payload.email;
-          state.nickname = payload.nickname;
-          state.roleNames = payload.roleNames;
-          state.loginSuccess = true; // 로그인 성공 상태 설정
-
-          // 쿠키에 저장
-          setCookie("member", JSON.stringify(payload), {
-            path: "/",
-            maxAge: 86400,
-          });
-          setCookie("accessToken", payload.accessToken, {
-            maxAge: 86400,
-          });
-          setCookie("refreshToken", payload.refreshToken, {
-            maxAge: 86400,
-          });
-        }
+        updateStateAndCookie(state, action.payload);
+        state.loading = false;
       })
-      .addCase(loginPostAsync.pending, () => {
+      .addCase(loginPostAsync.pending, (state) => {
         console.log("pending"); // 처리 중
+        state.loading = true;
       })
       .addCase(loginPostAsync.rejected, (state, action) => {
         console.log("rejected", action.error); // 에러
         state.loginSuccess = false; // 로그인 실패 상태 설정
+        state.loading = false;
       })
       .addCase(registerPostAsync.fulfilled, (state, action) => {
         console.log("회원가입 완료 : " + action.payload);

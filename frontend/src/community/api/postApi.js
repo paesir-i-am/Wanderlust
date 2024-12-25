@@ -1,28 +1,42 @@
-import axios from "axios";
-import { API_SERVER_HOST } from "../../common/api/mainApi";
+import axiosInstance from "../../common/api/mainApi";
 
-const API_BASE_URL = `${API_SERVER_HOST}/community`;
+// 게시글 목록 가져오기
+export const fetchPosts = async () => {
+  const res = await axiosInstance.get("/community/posts");
+  console.log(res.data);
+  return res.data;
+};
+// 게시글 생성
+export const createPost = (postData, image) => {
+  const formData = new FormData();
+  formData.append("content", postData.content);
+  formData.append("authorNickname", postData.authorNickname);
+  if (image) {
+    formData.append("image", image);
+  }
 
-export const createPost = async (formData) => {
-  const response = await axios.post(`${API_BASE_URL}/posts`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+  return axiosInstance.post("/community/posts", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
-  return response.data;
 };
 
-export const getPosts = async () => {
-  const response = await axios.get(`${API_BASE_URL}/posts`);
-  return response.data;
-};
+// 게시글 수정
+export const updatePost = (id, postData, image) => {
+  const formData = new FormData();
+  formData.append("content", postData.content);
+  if (image) {
+    formData.append("image", image);
+  }
 
-export const updatePost = async (id, formData) => {
-  const response = await axios.put(`${API_BASE_URL}/posts/${id}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+  return axiosInstance.put(`/community/posts/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
-  return response.data;
 };
 
-export const deletePost = async (id) => {
-  const response = await axios.delete(`${API_BASE_URL}/posts/${id}`);
-  return response.data;
-};
+// 게시글 삭제
+export const deletePost = (id) =>
+  axiosInstance.delete(`/community/posts/${id}`);

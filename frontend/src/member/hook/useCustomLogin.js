@@ -59,10 +59,6 @@ export const useCustomLogin = () => {
     }, 500);
   };
 
-  const doLogoutPopup = () => {
-    openPopup("/member/logout", "LogoutPopup");
-  };
-
   // 로그인 함수
   const doLogin = async (loginParam) => {
     try {
@@ -93,8 +89,7 @@ export const useCustomLogin = () => {
 
   // 로그아웃 함수
   const doLogout = () => {
-    dispatch(logout());
-    navigate("/");
+    navigate("/member/logout");
   };
 
   // 회원가입 함수
@@ -160,7 +155,6 @@ export const useCustomLogin = () => {
     doLogout,
     doRegister,
     doLoginPopup,
-    doLogoutPopup,
     moveToPath,
     moveToLogin,
     moveToLoginReturn,

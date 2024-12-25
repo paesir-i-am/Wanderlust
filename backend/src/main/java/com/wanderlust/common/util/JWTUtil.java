@@ -68,15 +68,15 @@ public class JWTUtil {
                 .getBody();
 
         }catch(MalformedJwtException malformedJwtException){
-            throw new CustomJWTException("MalFormed");
+            throw new CustomJWTException("MalFormed", malformedJwtException);
         }catch(ExpiredJwtException expiredJwtException){
-            throw new CustomJWTException("Expired");
+            throw new CustomJWTException("Expired", expiredJwtException);
         }catch(InvalidClaimException invalidClaimException){
-            throw new CustomJWTException("Invalid");
+            throw new CustomJWTException("Invalid", invalidClaimException);
         }catch(JwtException jwtException){
-            throw new CustomJWTException("JWTError");
+            throw new CustomJWTException("JWTError", jwtException);
         }catch(Exception e){
-            throw new CustomJWTException("Error");
+            throw new CustomJWTException("Error", e);
         }
         return claim;
     }

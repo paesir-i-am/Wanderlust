@@ -18,6 +18,7 @@ import com.wanderlust.common.util.CustomJWTException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -52,4 +53,8 @@ public class CustomControllerAdvice {
         return ResponseEntity.ok().body(Map.of("error", msg));
     }
 
+    @ExceptionHandler(MissingRequestHeaderException.class)
+    public ResponseEntity<String> handleMissingRequestHeader(MissingRequestHeaderException ex) {
+        return ResponseEntity.badRequest().body("Missing required header: " + ex.getHeaderName());
+    }
 }
