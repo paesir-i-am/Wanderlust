@@ -48,9 +48,16 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public Page<PostResponseDTO> getPosts(PageRequest pageRequest) {
-      return postRepository.findAllNotDeleted(pageRequest)
-          .map(post -> entityToDto(post));
+    // PageRequest 검증
+    if (pageRequest.getPageNumber() < 0 || pageRequest.getPageSize() <= 0) {
+      throw new IllegalArgumentException("Invalid page request parameters.");
     }
+    Page<Post> posts = postRepository.findAllNotDeleted(pageRequest);
+    // 디버깅용 로그
+    System.out.println("Total Elements: " + posts.getTotalElements());
+    System.out.println("Page Content: " + posts.getContent());
+    return posts.map(this::entityToDto);
+  }
 
   @Override
   public Post dtoToEntity(PostRequestDTO requestDto, String imageUrl) {
