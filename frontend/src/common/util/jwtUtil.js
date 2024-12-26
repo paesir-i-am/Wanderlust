@@ -4,10 +4,10 @@ import { API_SERVER_HOST } from "../api/mainApi";
 
 const jwtAxios = axios.create();
 
-const refreshJWT = async (accessToken, refreshToken) => {
+const refreshJWT = async (refreshToken) => {
   const host = API_SERVER_HOST;
 
-  const header = { headers: { Authorization: `Bearer ${accessToken}` } };
+  const header = { headers: { "Refresh-Token": getCookie("refreshToken") } };
 
   const res = await axios.get(
     `${host}/member/refresh?refreshToken=${refreshToken}`,

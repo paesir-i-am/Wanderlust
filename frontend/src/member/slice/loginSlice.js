@@ -13,14 +13,14 @@ const initState = {
   email: "",
   nickname: "",
   roleNames: [],
-  loginSuccess: false, // 로그인 성공 여부 추가
+  loginSuccess: false,
 };
 
 // 쿠키에서 사용자 정보 로드
 const loadMemberCookie = () => {
   try {
     const memberCookie = getCookie("member");
-    if (!memberCookie) return null; // 쿠키가 없으면 null 반환
+    if (!memberCookie) return initState; // 쿠키가 없으면 null 반환
 
     if (typeof memberCookie === "string") {
       // 문자열인 경우 JSON 파싱
@@ -30,11 +30,11 @@ const loadMemberCookie = () => {
       return memberCookie;
     } else {
       console.warn("Unexpected member cookie format:", memberCookie);
-      return null; // 알 수 없는 형식이면 null 반환
+      return initState; // 알 수 없는 형식이면 null 반환
     }
   } catch (error) {
     console.error("Failed to parse member cookie:", error);
-    return null;
+    return initState;
   }
 };
 
@@ -114,8 +114,8 @@ const loginSlice = createSlice({
     builder
       .addCase(loginPostAsync.fulfilled, (state, action) => {
         console.log("fulfilled"); // 완료
-        updateStateAndCookie(state, action.payload);
         state.loading = false;
+        updateStateAndCookie(state, action.payload);
       })
       .addCase(loginPostAsync.pending, (state) => {
         console.log("pending"); // 처리 중

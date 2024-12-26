@@ -108,9 +108,14 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     String path = request.getRequestURI();
     log.info("Checking URI for filtering: " + path);
 
+    // POST 요청만 필터를 적용
+    if (path.equals("/community/posts") && request.getMethod().equalsIgnoreCase("POST")) {
+      return false; // 필터 적용
+    }
+
     // 필터를 적용할 경로만 지정
     List<String> protectedPaths = Arrays.asList(
-        "/community/posts/private",
+        "/community/posts/{id}",
         "/user/profile",
         "/admin/"
     );

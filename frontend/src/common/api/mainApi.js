@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie } from "../util/cookieUtil";
+import { getCookie, setCookie } from "../util/cookieUtil";
 
 export const API_SERVER_HOST = "http://localhost:8080";
 
@@ -14,13 +14,10 @@ const axiosInstance = axios.create({
 // 요청 인터셉터에서 Authorization 헤더 추가
 axiosInstance.interceptors.request.use(
   (config) => {
-    const accessToken = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("accessToken="))
-      ?.split("=")[1];
+    const accessToken = getCookie("accessToken");
 
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken.replace(/%22/g, "")}`;
+      config.headers.Authorization = `Bearer ${accessToken}`;
       console.log("Authorization Header:", config.headers.Authorization);
     } else {
       console.log("Access token not found in cookies.");
@@ -49,12 +46,12 @@ axiosInstance.interceptors.response.use(
             },
           },
         );
+        setCookie("accessToken", data.accessToken, {
+          path: "/",
+          maxAge: data.maxAge,
+        });
 
-        const newAccessToken = data.accessToken;
-
-        // 새로운 Access Token 저장
-        document.cookie = `accessToken=${newAccessToken}; path=/`;
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
 
         // 실패한 요청 재시도
         return axiosInstance(originalRequest);

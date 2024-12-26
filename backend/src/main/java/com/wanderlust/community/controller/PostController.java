@@ -14,6 +14,7 @@ package com.wanderlust.community.controller;
  */
 
 
+import com.wanderlust.common.util.JWTUtil;
 import com.wanderlust.community.dto.PostRequestDTO;
 import com.wanderlust.community.dto.PostResponseDTO;
 import com.wanderlust.community.service.PostService;
@@ -24,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-@CrossOrigin
+@CrossOrigin("/community/**")
 @RestController
 @RequestMapping("/community/posts")
 public class PostController {
@@ -35,10 +38,20 @@ public class PostController {
   @PostMapping
   public ResponseEntity<PostResponseDTO> createPost(
       @ModelAttribute PostRequestDTO requestDto,
-      @RequestParam MultipartFile image) throws IOException {
+      @RequestParam(required = false) MultipartFile image,
+      @RequestHeader("Authorization") String authorization) throws IOException {
+    String token = authorization.substring(7);
+    Map<String, Object> claims = JWTUtil.validateToken(token);
+    String nickname = (String) claims.get("nickname");
+
+    // 사용자 닉네임 설정
+    requestDto.setAuthorNickname(nickname);
+
+    // 게시글 생성
     PostResponseDTO response = postService.createPost(requestDto, image);
     return ResponseEntity.ok(response);
   }
+
 
   @GetMapping
   public ResponseEntity<List<PostResponseDTO>> getPosts() {

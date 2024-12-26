@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 import MainPage from "../../main/pages/MainPage";
 import memberRouter from "../../member/router/memberRouter";
-import postRouter from "../../community/router/postRouter";
+import communityRouter from "../../community/router/communityRouter";
 
 const Loading = <div>Loading...</div>;
 
@@ -21,7 +21,7 @@ const root = createBrowserRouter([
   },
   {
     path: "community",
-    children: postRouter(),
+    children: communityRouter(),
   },
 ]);
 
