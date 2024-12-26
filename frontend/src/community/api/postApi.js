@@ -1,11 +1,18 @@
 import axiosInstance from "../../common/api/mainApi";
 
 // 게시글 목록 가져오기
-export const fetchPosts = async () => {
-  const res = await axiosInstance.get("/community/posts");
-  console.log(res.data);
-  return res.data;
+export const fetchPosts = async (page) => {
+  try {
+    const response = await axiosInstance.get(
+      `/community/posts?page=${page}&size=5`,
+    );
+    return response.data; // 데이터 전체 반환
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    return { content: [], last: true }; // 기본값 설정
+  }
 };
+
 // 게시글 생성
 export const createPost = (postData, image) => {
   const formData = new FormData();

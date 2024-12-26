@@ -5,15 +5,21 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   font-family: $font-primary;
   background-color: $background-color;
 
   // 헤더
-  header {
+  .header-fixed {
     .searchbar.mobile-only{
       display: none;
     }
+
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
     height: 350px;
     background: url("/public/header-backgroung.jpg") no-repeat center center;
     background-size: cover;
@@ -252,8 +258,9 @@
 
   // 본문 콘텐츠
   .content {
-    margin-top: 100px;
+    margin-top: 470px;
     flex: 1;
+    overflow-y: auto;
     padding: 2rem;
 
     @include respond-to("mobile") {

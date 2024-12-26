@@ -34,6 +34,6 @@ public class FileService {
     System.out.println(destination.getAbsolutePath());
 
     // 반환 경로
-    return "/uploads/" + fileName;
+    return "/backend/uploads/" + fileName;
   }
 }

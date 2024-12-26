@@ -19,6 +19,9 @@ import com.wanderlust.community.dto.PostRequestDTO;
 import com.wanderlust.community.dto.PostResponseDTO;
 import com.wanderlust.community.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,8 +35,12 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/community/posts")
 public class PostController {
-  @Autowired
-  private PostService postService;
+
+  private final PostService postService;
+
+  public PostController(PostService postService) {
+    this.postService = postService;
+  }
 
   @PostMapping
   public ResponseEntity<PostResponseDTO> createPost(
@@ -52,10 +59,12 @@ public class PostController {
     return ResponseEntity.ok(response);
   }
 
-
   @GetMapping
-  public ResponseEntity<List<PostResponseDTO>> getPosts() {
-    List<PostResponseDTO> posts = postService.getPosts();
+  public ResponseEntity<Page<PostResponseDTO>> getPosts(
+      @RequestParam int page,
+      @RequestParam int size
+  ) {
+    Page<PostResponseDTO> posts = postService.getPosts(PageRequest.of(page, size));
     return ResponseEntity.ok(posts);
   }
 

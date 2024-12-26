@@ -19,13 +19,14 @@ import com.wanderlust.community.dto.PostResponseDTO;
 import com.wanderlust.community.entity.Post;
 import com.wanderlust.community.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.data.domain.Pageable;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -46,12 +47,10 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<PostResponseDTO> getPosts() {
-    List<Post> posts = postRepository.findAllNotDeleted();
-    return posts.stream()
-        .map(this::entityToDto)
-        .collect(Collectors.toList());
-  }
+  public Page<PostResponseDTO> getPosts(PageRequest pageRequest) {
+      return postRepository.findAllNotDeleted(pageRequest)
+          .map(post -> entityToDto(post));
+    }
 
   @Override
   public Post dtoToEntity(PostRequestDTO requestDto, String imageUrl) {
