@@ -74,3 +74,22 @@ export const fetchLikesCount = async (id) => {
     return 0; // 오류 시 기본값 반환
   }
 };
+
+// 좋아요 상태 확인
+export const fetchLikeStatus = async (id, token) => {
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const response = await axiosInstance.get(`/community/posts/${id}/isLiked`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Failed to fetch likes count for post ${id}:`, error);
+    return false;
+  }
+};

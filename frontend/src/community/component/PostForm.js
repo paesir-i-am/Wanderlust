@@ -10,7 +10,7 @@ const PostForm = () => {
   const nickname = useSelector((state) => state.loginSlice.nickname);
 
   if (!nickname) {
-    return <p>닉네임을 불러올 수 없습니다</p>;
+    return <p>포스트 작성을 하기 위해선 로그인이 필요합니다</p>;
   }
 
   const handleContentChange = (e) => {

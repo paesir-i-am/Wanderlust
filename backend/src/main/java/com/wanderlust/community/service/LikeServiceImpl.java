@@ -69,4 +69,12 @@ public class LikeServiceImpl implements LikeService {
     Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
     return post.getLikesCount();
   }
+
+  @Override
+  public boolean isLiked(Long id, String email) {
+    Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+    Member member = memberRepository.getWithRoles(email);
+
+    return likeRepository.existsByPostAndMember(post, member);
+  }
 }

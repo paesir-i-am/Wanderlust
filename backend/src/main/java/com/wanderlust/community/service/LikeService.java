@@ -14,8 +14,12 @@ package com.wanderlust.community.service;
  */
 
 
+import com.wanderlust.member.entity.Member;
+
 public interface LikeService {
     void toggleLike(Long id, String Email);
 
     int getLikesCount(Long id);
+
+    boolean isLiked(Long id, String  email);
 }
