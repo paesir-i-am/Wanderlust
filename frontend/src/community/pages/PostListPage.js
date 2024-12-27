@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux"; // Redux 상태 가져오기
 import InfiniteScroll from "react-infinite-scroll-component";
-import axios from "axios";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 import PostForm from "../component/PostForm";
 import PostList from "../component/PostList";
-import { deletePost, updatePost } from "../api/postApi";
+import { deletePost, fetchPosts, updatePost } from "../api/postApi";
 
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
@@ -16,22 +15,20 @@ const PostListPage = () => {
   // Redux에서 현재 사용자 닉네임 가져오기
   const currentUserNickname = useSelector((state) => state.loginSlice.nickname);
 
-  const fetchPosts = async (currentPage) => {
+  const loadPosts = async (currentPage) => {
     if (isLoading || !hasMore) return;
     setIsLoading(true);
 
     try {
-      const response = await axios.get("/community/posts", {
-        params: { page: currentPage, size: 10 },
-      });
+      const data = await fetchPosts(currentPage, 10);
+      const newPosts = data.content;
 
-      const newPosts = response.data.content;
       if (newPosts.length > 0) {
         setPosts((prevPosts) => [...prevPosts, ...newPosts]);
       }
-      setHasMore(!response.data.last);
+      setHasMore(!data.last);
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.error("Failed to fetch posts:", error);
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +64,7 @@ const PostListPage = () => {
 
   useEffect(() => {
     if (hasMore) {
-      fetchPosts(page);
+      loadPosts(page);
     }
   }, [page]);
 

@@ -2,6 +2,9 @@ import React from "react";
 import PostItem from "./PostItem";
 
 const PostList = ({ posts, onEdit, onDelete, currentUserNickname }) => {
+  if (posts.length === 0) {
+    return <p>No posts found.</p>;
+  }
   return (
     <div>
       {posts.map((post) => (

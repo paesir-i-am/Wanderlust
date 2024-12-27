@@ -20,7 +20,6 @@ import com.wanderlust.community.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
 

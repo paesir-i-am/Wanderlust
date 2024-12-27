@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { createPost } from "../api/postApi";
-import { getCookie } from "../../common/util/cookieUtil";
 
 const PostForm = () => {
   const [content, setContent] = useState("");
@@ -9,10 +8,6 @@ const PostForm = () => {
 
   // Redux에서 로그인된 사용자 정보 가져오기
   const nickname = useSelector((state) => state.loginSlice.nickname);
-  const loginState = useSelector((state) => state.loginSlice);
-  console.log("Redux State : " + loginState);
-  console.log(getCookie("member"));
-  console.log(nickname);
 
   if (!nickname) {
     return <p>닉네임을 불러올 수 없습니다</p>;

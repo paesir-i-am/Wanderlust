@@ -1,15 +1,17 @@
 import axiosInstance from "../../common/api/mainApi";
 
 // 게시글 목록 가져오기
-export const fetchPosts = async (page) => {
+export const fetchPosts = async (page = 0, size = 10) => {
   try {
-    const response = await axiosInstance.get(
-      `/community/posts?page=${page}&size=5`,
-    );
+    // Axios 인스턴스 사용하여 API 호출
+    const response = await axiosInstance.get("/community/posts", {
+      params: { page, size },
+    });
+    // 응답 데이터 반환
     return response.data;
   } catch (error) {
     console.error("Failed to fetch posts:", error);
-    return { content: [], last: true };
+    return { content: [], last: true }; // 기본값 반환
   }
 };
 
@@ -47,4 +49,28 @@ export const updatePost = async (id, postData, image) => {
 // 게시글 삭제
 export const deletePost = async (id) => {
   return axiosInstance.delete(`/community/posts/${id}`);
+};
+
+// 좋아요 토글
+export const toggleLike = async (id, token) => {
+  return axiosInstance.post(
+    `/community/posts/${id}/like`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+};
+
+// 좋아요 개수 가져오기
+export const fetchLikesCount = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/community/posts/${id}/likes`);
+    return response.data.count;
+  } catch (error) {
+    console.error(`Failed to fetch likes count for post ${id}:`, error);
+    return 0; // 오류 시 기본값 반환
+  }
 };
