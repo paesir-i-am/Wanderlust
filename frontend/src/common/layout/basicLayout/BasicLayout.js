@@ -14,7 +14,7 @@ const BasicLayout = ({ children }) => {
   return (
     <div className="basic-layout">
       {/* 상단 헤더 */}
-      <header>
+      <header className="header-fixed">
         <div className="header-overlay">
           <div className="header-top">
             <div className="logo">

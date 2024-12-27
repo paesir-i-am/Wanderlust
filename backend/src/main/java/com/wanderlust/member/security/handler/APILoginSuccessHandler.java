@@ -66,8 +66,8 @@ public class APILoginSuccessHandler implements AuthenticationSuccessHandler {
         Map<String, Object> claims = memberDTO.getClaims();
 
         // JWT 토큰 생성
-        String accessToken = JWTUtil.generateToken(claims, 60); // 유효기간 60분
-        String refreshToken = JWTUtil.generateToken(claims, 60 * 24); // 유효기간 24시간
+        String accessToken = JWTUtil.generateToken(claims, 60*24); // 유효기간 60분
+        String refreshToken = JWTUtil.generateToken(claims, 60 * 24 * 30); // 유효기간 30일
 
         // 반환할 JSON 데이터 구조
         Map<String, Object> responseData = Map.of(

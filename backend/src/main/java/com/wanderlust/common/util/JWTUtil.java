@@ -17,6 +17,7 @@ package com.wanderlust.common.util;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.time.ZonedDateTime;
@@ -24,9 +25,10 @@ import java.util.Date;
 import java.util.Map;
 
 @Log4j2
+@Component
 public class JWTUtil {
     // 30자 이상
-    private static String key = "wanderlustjwtutilkey974991200101743090";
+    private static String key = "wanderlustjwtutilkey974991200101743090dksltlqkfdhodkseho";
 
     // jwt 토큰을 생성하기 위한 메서드.
     public static String generateToken(Map<String, Object> valueMap, int min){
@@ -66,15 +68,15 @@ public class JWTUtil {
                 .getBody();
 
         }catch(MalformedJwtException malformedJwtException){
-            throw new CustomJWTException("MalFormed");
+            throw new CustomJWTException("MalFormed", malformedJwtException);
         }catch(ExpiredJwtException expiredJwtException){
-            throw new CustomJWTException("Expired");
+            throw new CustomJWTException("Expired", expiredJwtException);
         }catch(InvalidClaimException invalidClaimException){
-            throw new CustomJWTException("Invalid");
+            throw new CustomJWTException("Invalid", invalidClaimException);
         }catch(JwtException jwtException){
-            throw new CustomJWTException("JWTError");
+            throw new CustomJWTException("JWTError", jwtException);
         }catch(Exception e){
-            throw new CustomJWTException("Error");
+            throw new CustomJWTException("Error", e);
         }
         return claim;
     }

@@ -1,4 +1,4 @@
-package com.wanderlust.common.config;
+package com.wanderlust.member.security;
 
 /*
  * Description    :
@@ -14,7 +14,6 @@ package com.wanderlust.common.config;
  */
 
 
-import com.wanderlust.member.security.CustomUserDetailsService;
 import com.wanderlust.member.security.filter.JWTCheckFilter;
 import com.wanderlust.member.security.handler.APILoginFailHandler;
 import com.wanderlust.member.security.handler.APILoginSuccessHandler;
@@ -23,9 +22,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -62,7 +58,13 @@ public class CustomSecurityConfig {
 
         http.sessionManagement(sessionConfig ->  sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        http.csrf(config -> config.disable());
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(csrf -> csrf.disable())
+            .authorizeRequests(auth -> auth
+                .requestMatchers("/community/posts", "/member").permitAll() // 공개 경로
+                .requestMatchers("/member/profile", "/admin/**").authenticated() // 보호 경로
+                .anyRequest().permitAll() // 기타 요청은 허용
+            );
 
         http.formLogin(config -> {
             config.usernameParameter("email");
@@ -90,9 +92,9 @@ public class CustomSecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type", "Origin", "Refresh-Token"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

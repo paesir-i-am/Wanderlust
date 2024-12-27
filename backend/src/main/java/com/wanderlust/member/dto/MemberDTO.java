@@ -21,10 +21,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -46,15 +43,19 @@ public class MemberDTO extends User implements OAuth2User {
 
     public MemberDTO(String email, String pw, String nickname, boolean social, List<String> roleNames) {
         super(
-            email,
-            pw,                             // Security에서 권한을 나타내는 기본 구현체
-            roleNames.stream().map(str -> new SimpleGrantedAuthority("ROLE_"+str)).collect(Collectors.toList()));
+            Optional.ofNullable(email).orElseThrow(() -> new IllegalArgumentException("Email cannot be null")),
+            Optional.ofNullable(pw).orElseThrow(() -> new IllegalArgumentException("Password cannot be null")),
+            (roleNames != null ? roleNames : Collections.emptyList())
+                .stream()
+                .map(str -> new SimpleGrantedAuthority("ROLE_" + str))
+                .collect(Collectors.toList())
+        );
 
         this.email = email;
         this.pw = pw;
         this.nickname = nickname;
         this.social = social;
-        this.roleNames = roleNames;
+        this.roleNames = roleNames != null ? roleNames : new ArrayList<>();
     }
 
     public Map<String, Object> getClaims() {
@@ -70,6 +71,7 @@ public class MemberDTO extends User implements OAuth2User {
         return dataMap;
     }
 
+    @Override
     public Map<String, Object> getAttributes() {
         return this.getProps();
     }

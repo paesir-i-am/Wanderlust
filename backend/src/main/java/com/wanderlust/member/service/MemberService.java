@@ -51,6 +51,7 @@ public interface MemberService {
             .email(memberRegisterDTO.getEmail())
             .pw(encodePw)
             .nickname(memberRegisterDTO.getNickname())
+            .provider("local")
             .RoleList(List.of(MemberRole.USER))
             .build();
 

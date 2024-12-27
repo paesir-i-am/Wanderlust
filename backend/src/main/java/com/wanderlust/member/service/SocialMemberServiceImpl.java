@@ -116,8 +116,15 @@ public class SocialMemberServiceImpl implements SocialMemberService {
 
     log.info("tempPassword: " + tempPassword);
 
-    String nickname = userInfo.getOrDefault("nickname", "소셜회원");
+    String originalNickname = userInfo.getOrDefault("nickname", "소셜회원");
+    String nickname = originalNickname;
     String provider = userInfo.getOrDefault("provider", "local");
+
+    int suffix = 1;
+    while (memberRepository.existsByNickname(nickname)) {
+      nickname = originalNickname + suffix;
+      suffix++;
+    }
 
     Member member = Member.builder()
         .email(email)
