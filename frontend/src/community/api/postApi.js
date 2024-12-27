@@ -6,10 +6,10 @@ export const fetchPosts = async (page) => {
     const response = await axiosInstance.get(
       `/community/posts?page=${page}&size=5`,
     );
-    return response.data; // 데이터 전체 반환
+    return response.data;
   } catch (error) {
     console.error("Failed to fetch posts:", error);
-    return { content: [], last: true }; // 기본값 설정
+    return { content: [], last: true };
   }
 };
 
