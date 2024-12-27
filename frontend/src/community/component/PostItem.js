@@ -1,36 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 
-const PostItem = ({ post }) => {
-  if (!post) return null;
+const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(post.content);
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+    setEditedContent(post.content); // 초기값으로 복원
+  };
+
+  const handleEditSave = () => {
+    onEdit(post.id, editedContent);
+    setIsEditing(false);
+  };
+
+  const handleDelete = () => {
+    onDelete(post.id);
+  };
+
+  const isOwner = currentUserNickname === post.authorNickname;
 
   return (
-    <li
+    <div
       style={{
-        margin: "20px 0",
-        padding: "10px",
+        height: "auto",
         border: "1px solid #ddd",
+        padding: "10px",
         borderRadius: "8px",
+        backgroundColor: "#fff",
+        marginBottom: "10px",
       }}
     >
       <h3>{post.authorNickname}</h3>
-      <p>{post.content}</p>
+      {isEditing ? (
+        <textarea
+          value={editedContent}
+          onChange={(e) => setEditedContent(e.target.value)}
+          style={{
+            width: "100%",
+            height: "100px",
+            marginBottom: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            padding: "10px",
+          }}
+        />
+      ) : (
+        <p>{post.content}</p>
+      )}
       {post.imageUrl && (
         <img
-          src={`http://localhost:8080${post.imageUrl}`}
+          src={post.imageUrl}
           alt="Post"
           style={{
             width: "100%",
-            maxWidth: "400px",
             height: "auto",
+            objectFit: "cover",
             borderRadius: "8px",
-            marginTop: "10px",
           }}
         />
       )}
-      <p style={{ fontSize: "12px", color: "#666" }}>
-        Created At: {new Date(post.createdAt).toLocaleString()}
-      </p>
-    </li>
+      {isOwner && (
+        <div style={{ marginTop: "10px" }}>
+          {isEditing ? (
+            <button onClick={handleEditSave} style={{ marginRight: "10px" }}>
+              저장
+            </button>
+          ) : (
+            <button onClick={handleEditToggle} style={{ marginRight: "10px" }}>
+              수정
+            </button>
+          )}
+          <button onClick={handleDelete} style={{ color: "red" }}>
+            삭제
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

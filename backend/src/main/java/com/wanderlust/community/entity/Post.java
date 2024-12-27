@@ -41,6 +41,16 @@ public class Post {
   @Builder.Default
   private Boolean isDeleted = false;
 
+  public void updatePost(String content, String imageUrl) {
+    if (content != null && !content.isEmpty()) {
+      this.content = content;
+    }
+    if (imageUrl != null && !imageUrl.isEmpty()) {
+      this.imageUrl = imageUrl;
+    }
+    this.updatedAt = LocalDateTime.now();
+  }
+
   public void markAsDeleted() {
     this.isDeleted = true;
     this.updatedAt = LocalDateTime.now();

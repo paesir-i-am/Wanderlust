@@ -73,8 +73,8 @@ public class PostController {
       @PathVariable Long id,
       @ModelAttribute PostRequestDTO requestDto,
       @RequestParam(required = false) MultipartFile image) throws IOException {
-    PostResponseDTO updatedPost = postService.updatePost(id, requestDto, image);
-    return ResponseEntity.ok(updatedPost);
+    postService.updatePost(id, requestDto, image);
+    return ResponseEntity.noContent().build();
   }
 
   @DeleteMapping("/{id}")

@@ -22,6 +22,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.data.domain.Pageable;
@@ -60,6 +61,29 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  @Transactional
+  public void updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException {
+    Post post = postRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Post not found with ID: " + id));
+
+    String imageUrl = null;
+    if (image != null && !image.isEmpty()) {
+      imageUrl = fileService.saveFile(image);
+    }
+    post.updatePost(requestDto.getContent(), imageUrl);
+    postRepository.save(post);
+  }
+
+  @Override
+  public void deletePost(Long id) {
+    Post post = postRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Post not found with ID: " + id));
+
+    post.markAsDeleted();
+    postRepository.save(post);
+  }
+
+  @Override
   public Post dtoToEntity(PostRequestDTO requestDto, String imageUrl) {
     return Post.builder()
         .authorNickname(requestDto.getAuthorNickname())
@@ -78,30 +102,5 @@ public class PostServiceImpl implements PostService {
         .imageUrl(post.getImageUrl())
         .createdAt(post.getCreatedAt())
         .build();
-  }
-
-  @Override
-  public PostResponseDTO updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException {
-    Post post = postRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Post not found with ID: " + id));
-
-    if (requestDto.getContent() != null) {
-      post.setContent(requestDto.getContent());
-    }
-    if (image != null) {
-      String imageUrl = fileService.saveFile(image);
-      post.setImageUrl(imageUrl);
-    }
-    Post updatedPost = postRepository.save(post);
-    return entityToDto(updatedPost);
-  }
-
-  @Override
-  public void deletePost(Long id) {
-    Post post = postRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Post not found with ID: " + id));
-
-    post.markAsDeleted();
-    postRepository.save(post);
   }
 }

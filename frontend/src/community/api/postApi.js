@@ -30,7 +30,7 @@ export const createPost = (postData, image) => {
 };
 
 // 게시글 수정
-export const updatePost = (id, postData, image) => {
+export const updatePost = async (id, postData, image) => {
   const formData = new FormData();
   formData.append("content", postData.content);
   if (image) {
@@ -45,5 +45,6 @@ export const updatePost = (id, postData, image) => {
 };
 
 // 게시글 삭제
-export const deletePost = (id) =>
-  axiosInstance.delete(`/community/posts/${id}`);
+export const deletePost = async (id) => {
+  return axiosInstance.delete(`/community/posts/${id}`);
+};

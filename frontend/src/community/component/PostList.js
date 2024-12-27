@@ -1,17 +1,19 @@
 import React from "react";
 import PostItem from "./PostItem";
 
-const PostList = ({ posts }) => {
-  if (!posts || posts.length === 0) {
-    return <p>No Posts Available</p>;
-  }
-
+const PostList = ({ posts, onEdit, onDelete, currentUserNickname }) => {
   return (
-    <ul style={{ listStyle: "none", padding: "0" }}>
+    <div>
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <PostItem
+          key={post.id}
+          post={post}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          currentUserNickname={currentUserNickname}
+        />
       ))}
-    </ul>
+    </div>
   );
 };
 

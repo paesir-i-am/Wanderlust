@@ -29,7 +29,7 @@ public interface PostService {
 
   Page<PostResponseDTO> getPosts(PageRequest pageRequest);
 
-  PostResponseDTO updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException;
+  void updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException;
 
   void deletePost(Long id);
 
