@@ -68,7 +68,7 @@ export const toggleLike = async (id, token) => {
 export const fetchLikesCount = async (id) => {
   try {
     const response = await axiosInstance.get(`/community/posts/${id}/likes`);
-    return response.data.count;
+    return response.data;
   } catch (error) {
     console.error(`Failed to fetch likes count for post ${id}:`, error);
     return 0; // 오류 시 기본값 반환

@@ -31,7 +31,7 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
           }}
         />
       )}
-      <LikeButton postId={post.id} token={token} />
+      <LikeButton id={post.id} token={token} />
       {isOwner && (
         <div style={{ marginTop: "10px" }}>
           <button

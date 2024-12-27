@@ -14,8 +14,6 @@ export const refreshJWT = async () => {
       withCredentials: true,
     },
   );
-
-  console.log("----------------------");
   console.log(res.data);
 
   setCookie("accessToken", res.data.accessToken, {
