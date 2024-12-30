@@ -59,7 +59,8 @@ public class Post {
   }
 
   @Column(nullable = false)
-  private int likesCount;
+  @Builder.Default
+  private int likesCount = 0;
 
   public void increaseLikes() {
     this.likesCount++;

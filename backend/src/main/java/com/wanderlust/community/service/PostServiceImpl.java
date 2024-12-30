@@ -24,12 +24,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import org.springframework.data.domain.Pageable;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Service
+@Transactional
 public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
   private final FileService fileService;
@@ -54,14 +53,10 @@ public class PostServiceImpl implements PostService {
       throw new IllegalArgumentException("Invalid page request parameters.");
     }
     Page<Post> posts = postRepository.findAllNotDeleted(pageRequest);
-    // 디버깅용 로그
-    System.out.println("Total Elements: " + posts.getTotalElements());
-    System.out.println("Page Content: " + posts.getContent());
     return posts.map(this::entityToDto);
   }
 
   @Override
-  @Transactional
   public void updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException {
     Post post = postRepository.findById(id)
         .orElseThrow(() -> new IllegalArgumentException("Post not found with ID: " + id));
@@ -89,7 +84,10 @@ public class PostServiceImpl implements PostService {
         .authorNickname(requestDto.getAuthorNickname())
         .content(requestDto.getContent())
         .imageUrl(imageUrl)
+        .likesCount(0)
         .createdAt(LocalDateTime.now())
+        .updatedAt(null)
+        .isDeleted(false)
         .build();
   }
 
@@ -100,7 +98,9 @@ public class PostServiceImpl implements PostService {
         .authorNickname(post.getAuthorNickname())
         .content(post.getContent())
         .imageUrl(post.getImageUrl())
+        .likesCount(post.getLikesCount())
         .createdAt(post.getCreatedAt())
+        .updatedAt(post.getUpdatedAt())
         .build();
   }
 }

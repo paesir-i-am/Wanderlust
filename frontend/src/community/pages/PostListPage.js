@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux"; // Redux 상태 가져오기
+import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 import PostForm from "../component/PostForm";
 import PostList from "../component/PostList";
 import { deletePost, fetchPosts, updatePost } from "../api/postApi";
+import CommentList from "../component/CommentList";
 
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
@@ -34,18 +35,25 @@ const PostListPage = () => {
     }
   };
 
-  const handleEdit = async (id, newContent, image) => {
+  const handleEdit = async (id, formData) => {
     try {
-      await updatePost(id, { content: newContent }, image);
+      const response = await updatePost(id, formData);
+      alert("수정되었습니다.");
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
-          post.id === id ? { ...post, content: newContent } : post,
+          post.id === id
+            ? {
+                ...post,
+                content: response.data.content,
+                imageUrl: response.data.imageUrl,
+              }
+            : post,
         ),
       );
-      alert("Successfully updated posts.");
+      window.location.reload();
     } catch (error) {
-      console.error("Error fetching posts:", error);
-      alert("Failed to update posts. Please try again.");
+      console.error("수정 실패:", error);
+      alert("수정 중 문제가 발생했습니다.");
     }
   };
 
@@ -103,6 +111,12 @@ const PostListPage = () => {
             onEdit={handleEdit}
             onDelete={handleDelete}
             currentUserNickname={currentUserNickname}
+            renderComments={(postId) => (
+              <CommentList
+                postId={postId}
+                currentUserNickname={currentUserNickname}
+              />
+            )}
           />
         </InfiniteScroll>
       </div>
