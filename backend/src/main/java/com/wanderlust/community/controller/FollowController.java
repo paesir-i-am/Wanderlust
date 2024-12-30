@@ -85,4 +85,18 @@ public class FollowController {
     // 팔로워 목록 조회
     return ResponseEntity.ok(followService.getFollowers(nickname));
   }
+
+  // 팔로우 상태 조회
+  @GetMapping("/status/{nickname}")
+  public ResponseEntity<Boolean> checkFollowStatus(
+      @PathVariable String nickname,
+      @RequestHeader("Authorization") String authorization) {
+    String token = authorization.substring(7);
+    Map<String, Object> claims = JWTUtil.validateToken(token);
+    String currentUserNickname = (String) claims.get("nickname");
+
+    // 서비스에서 팔로우 상태 확인
+    boolean isFollowing = followService.isFollowing(currentUserNickname, nickname);
+    return ResponseEntity.ok(isFollowing);
+  }
 }

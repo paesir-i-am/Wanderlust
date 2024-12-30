@@ -22,4 +22,6 @@ public interface FollowService {
 
   List<String> getFollowers(String nickname);
   List<String> getFollowings(String nickname);
+
+  boolean isFollowing(String followerNickname, String followingNickname);
 }

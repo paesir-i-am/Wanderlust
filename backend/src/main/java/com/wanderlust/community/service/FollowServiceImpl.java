@@ -71,4 +71,17 @@ public class FollowServiceImpl implements FollowService {
         .map(follow -> follow.getFollower().getNickname())
         .collect(Collectors.toList());
   }
+
+  // 팔로우 상태 조회
+  @Override
+  public boolean isFollowing(String followerNickname, String followingNickname) {
+    // 팔로워와 팔로잉 사용자 정보를 조회
+    Member follower = memberRepository.findByNickname(followerNickname)
+        .orElseThrow(() -> new IllegalArgumentException("Follower not found"));
+    Member following = memberRepository.findByNickname(followingNickname)
+        .orElseThrow(() -> new IllegalArgumentException("Following not found"));
+
+    // 팔로우 관계가 존재하는지 확인
+    return followRepository.existsByFollowerAndFollowing(follower, following);
+  }
 }

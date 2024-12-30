@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LikeButton from "../component/LikeButton";
+import FollowButton from "../component/FollowButton"; // FollowButton import
 import { useSelector } from "react-redux";
 
 const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
@@ -29,7 +30,17 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
     <div
       style={{ border: "1px solid #ddd", padding: "10px", borderRadius: "8px" }}
     >
-      <h3>{post.authorNickname}</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h3>{post.authorNickname}</h3>
+        {!isOwner && <FollowButton targetNickname={post.authorNickname} />}{" "}
+        {/* Follow Button */}
+      </div>
 
       {isEditing ? (
         <>
