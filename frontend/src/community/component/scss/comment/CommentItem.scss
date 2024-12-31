@@ -1,0 +1,65 @@
+@import "../../../../core";
+
+.comment-item {
+  margin-bottom: 0.8rem; /* 마진 축소 */
+  padding: 8px; /* 패딩 축소 */
+  border-bottom: 1px solid $gray-light;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .comment-item__author {
+      font-weight: bold;
+      color: $gray-dark;
+      font-size: 0.9rem; /* 글자 크기 축소 */
+    }
+
+    .comment-item__date {
+      font-size: 0.75rem; /* 날짜 글자 크기 축소 */
+      color: $gray-dark;
+    }
+  }
+
+  &__content {
+    margin-top: 0.4rem; /* 마진 축소 */
+    font-size: 0.85rem; /* 글자 크기 축소 */
+    color: black;
+    line-height: 1.4; /* 줄 간격 축소 */
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.4rem; /* 버튼 간격 축소 */
+    margin-top: 0.4rem;
+
+    button {
+      background: none;
+      border: none;
+      color: $gray-dark;
+      cursor: pointer;
+      font-size: 0.8rem; /* 버튼 글자 크기 축소 */
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.delete {
+        color: $error-color;
+
+        &:hover {
+          color: darken($error-color, 10%);
+        }
+      }
+    }
+  }
+
+  &__reply {
+    margin-top: 0.8rem; /* 대댓글 마진 축소 */
+    border-left: 2px solid $primary-color; /* 구분선 */
+    padding-left: 10px; /* 대댓글 패딩 축소 */
+    line-height: 1.4; /* 줄 간격 축소 */
+    font-size: 0.85rem; /* 대댓글 글자 크기 축소 */
+  }
+}

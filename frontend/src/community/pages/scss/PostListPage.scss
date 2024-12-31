@@ -1,0 +1,56 @@
+@import "../../../core";
+
+.post-list-page {
+  display: flex;
+  gap: 1rem;
+  height: auto;
+  background-color: $background-color;
+
+  // 왼쪽 80% 영역
+  &__main {
+    overflow-y: auto;
+    flex: 4;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0 5rem 0 5rem ;
+
+    &__post-form {
+      margin-bottom: 1rem; /* 폼과 리스트 간격 */
+    }
+
+    &__post-list {
+      max-height: 600px;
+      padding-right: 0.5rem;
+    }
+  }
+
+  // 오른쪽 20% 영역
+  &__sidebar {
+    margin-right: 4rem;
+    flex: 1;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    position: sticky;
+    top: 0.5rem;
+
+    &__follow-list {
+      margin-bottom: 1rem; /* 팔로우 리스트와 기타 기능 간격 */
+    }
+
+    &__other-features {
+      margin-top: 1rem;
+    }
+
+    &__section-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

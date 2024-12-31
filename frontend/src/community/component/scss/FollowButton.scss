@@ -1,0 +1,55 @@
+@import "../../../core.scss";
+
+.follow-button {
+  margin : 0.2rem 0 0 0.4rem;
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 20px;
+  border: 1px solid $primary-color;
+  background-color: #fff;
+  color: $primary-color;
+  font-family: $font-primary;
+  font-size: 0.65rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color;
+    color: #fff;
+  }
+
+  &:disabled {
+    background-color: $gray-light;
+    color: $gray-dark;
+    cursor: not-allowed;
+  }
+
+  // 로딩 상태
+  &.loading {
+    cursor: wait;
+    background-color: $gray-light;
+    color: $gray-dark;
+
+    &:hover {
+      background-color: $gray-light;
+      color: $gray-dark;
+    }
+  }
+
+  // 팔로우 상태
+  &.following {
+    background-color: $gray-light;
+    color: $gray-dark;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  @include respond-to("mobile") {
+    font-size: 0.5rem;
+    padding: 0.3rem 0.5rem;
+  }
+}

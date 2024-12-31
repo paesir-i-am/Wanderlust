@@ -1,0 +1,31 @@
+@import "../../../../core";
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  textarea {
+    margin-top: 1rem;
+    flex: 1;
+    height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid $gray-light;
+    resize: none;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}

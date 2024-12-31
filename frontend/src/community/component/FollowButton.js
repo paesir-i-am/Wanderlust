@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { followUser, unfollowUser, checkFollowStatus } from "../api/followApi";
-import { getCookie } from "../../common/util/cookieUtil"; // 쿠키에서 토큰 가져오는 유틸
+import { getCookie } from "../../common/util/cookieUtil";
+import "./scss/FollowButton.css";
 
 const FollowButton = ({ targetNickname }) => {
   const [isFollowing, setIsFollowing] = useState(false); // 팔로우 상태
@@ -67,8 +68,14 @@ const FollowButton = ({ targetNickname }) => {
   }
 
   return (
-    <button onClick={isFollowing ? handleUnfollow : handleFollow}>
-      {isFollowing ? "Unfollow" : "Follow"}
+    <button
+      className={`follow-button ${isLoading ? "loading" : ""} ${
+        isFollowing ? "following" : ""
+      }`}
+      onClick={isFollowing ? handleUnfollow : handleFollow}
+      disabled={isLoading}
+    >
+      {isLoading ? "Loading..." : isFollowing ? "Unfollow" : "Follow"}
     </button>
   );
 };

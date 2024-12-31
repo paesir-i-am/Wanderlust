@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
-import PostForm from "../component/PostForm";
-import PostList from "../component/PostList";
+import PostForm from "../component/post/PostForm";
+import PostList from "../component/post/PostList";
 import { deletePost, fetchPosts, updatePost } from "../api/postApi";
-import CommentList from "../component/CommentList";
+import "./scss/PostListPage.css";
 
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
@@ -13,7 +13,6 @@ const PostListPage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Redux에서 현재 사용자 닉네임 가져오기
   const currentUserNickname = useSelector((state) => state.loginSlice.nickname);
 
   const loadPosts = async (currentPage) => {
@@ -83,42 +82,49 @@ const PostListPage = () => {
 
   return (
     <BasicLayout>
-      <div
-        id="scrollableDiv"
-        style={{
-          height: "500px",
-          overflow: "auto",
-          backgroundColor: "#f8f9fa",
-          borderRadius: "8px",
-          padding: "10px",
-        }}
-      >
-        <PostForm />
-        <InfiniteScroll
-          dataLength={posts.length}
-          next={loadMore}
-          hasMore={hasMore}
-          loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center", margin: "20px 0" }}>
-              모든 포스트를 불러왔습니다!
-            </p>
-          }
-          scrollableTarget="scrollableDiv"
-        >
-          <PostList
-            posts={posts}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            currentUserNickname={currentUserNickname}
-            renderComments={(postId) => (
-              <CommentList
-                postId={postId}
+      <div className="post-list-page">
+        {/* 왼쪽 80% */}
+        <div className="post-list-page__main" id="scrollableDiv">
+          <div className="post-list-page__main__post-form">
+            <PostForm />
+          </div>
+          <div className="post-list-page__main__post-list">
+            <InfiniteScroll
+              dataLength={posts.length}
+              next={loadMore}
+              hasMore={hasMore}
+              loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
+              endMessage={
+                <p style={{ textAlign: "center", margin: "20px 0" }}>
+                  모든 포스트를 불러왔습니다!
+                </p>
+              }
+              scrollableTarget="scrollableDiv"
+            >
+              <PostList
+                posts={posts}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
                 currentUserNickname={currentUserNickname}
               />
-            )}
-          />
-        </InfiniteScroll>
+            </InfiniteScroll>
+          </div>
+        </div>
+
+        {/* 오른쪽 20% */}
+        <div className="post-list-page__sidebar">
+          <div className="post-list-page__sidebar__follow-list">
+            <h3 className="post-list-page__sidebar__section-title">
+              팔로우 리스트
+            </h3>
+          </div>
+          <div className="post-list-page__sidebar__other-features">
+            <h3 className="post-list-page__sidebar__section-title">
+              기타 기능
+            </h3>
+            <p>그만 넣고 싶다 슈바라라발베러ㅜㄷㅈ배ㅜㅠ퍄ㅐㅂ</p>
+          </div>
+        </div>
       </div>
     </BasicLayout>
   );

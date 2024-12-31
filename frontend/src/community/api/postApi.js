@@ -16,7 +16,7 @@ export const fetchPosts = async (page = 0, size = 10) => {
 };
 
 // 게시글 생성
-export const createPost = (postData, image) => {
+export const createPost = (postData, image, token) => {
   const formData = new FormData();
   formData.append("content", postData.content);
   formData.append("authorNickname", postData.authorNickname);
@@ -27,6 +27,7 @@ export const createPost = (postData, image) => {
   return axiosInstance.post("/community/posts", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
     },
   });
 };
