@@ -16,10 +16,14 @@ package com.wanderlust.community.service;
 
 import com.wanderlust.community.dto.ProfileRequestDTO;
 import com.wanderlust.community.dto.ProfileResponseDTO;
+import com.wanderlust.member.dto.MemberDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProfileService {
+        void createProfile(MemberDTO memberDTO);
         ProfileResponseDTO getProfile(String nickname);
         ProfileResponseDTO saveOrUpdateProfile(String nickname, ProfileRequestDTO profileRequestDTO, MultipartFile profileImage);
         void deleteProfile(String nickname);
+
+        ProfileResponseDTO getProfileByNickname(String nickname);
 }

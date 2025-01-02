@@ -8,7 +8,6 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // 쿠키를 포함하여 전송
 });
 
 // 요청 및 응답 인터셉터 등록

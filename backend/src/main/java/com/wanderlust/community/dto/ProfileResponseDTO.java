@@ -11,4 +11,6 @@ public class ProfileResponseDTO {
   private String nickname;
   private String bio;
   private String profileImage;
+  private int followerCount;
+  private int followingCount;
 }

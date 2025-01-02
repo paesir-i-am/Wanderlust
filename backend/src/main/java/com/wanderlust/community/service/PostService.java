@@ -32,6 +32,8 @@ public interface PostService {
 
   void deletePost(Long id);
 
+  Page<PostResponseDTO> getPostsByAuthor(String authorNickname, PageRequest pageRequest);
+
   Post dtoToEntity(PostRequestDTO requestDto, String imageUrl);
 
   PostResponseDTO entityToDto(Post post);

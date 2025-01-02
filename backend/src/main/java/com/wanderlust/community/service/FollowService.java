@@ -14,14 +14,18 @@ package com.wanderlust.community.service;
  */
 
 
-import java.util.List;
+import com.wanderlust.community.dto.ProfileResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface FollowService {
   void follow(String followerNickname, String followingNickname);
   void unfollow(String followerNickname, String followingNickname);
-
-  List<String> getFollowers(String nickname);
-  List<String> getFollowings(String nickname);
-
   boolean isFollowing(String followerNickname, String followingNickname);
+
+  Page<ProfileResponseDTO> getFollowers(String nickname, Pageable pageable);
+  Page<ProfileResponseDTO> getFollowing(String nickname, Pageable pageable);
+
+  long getFollowersCount(String nickname);
+  long getFollowingCount(String nickname);
 }

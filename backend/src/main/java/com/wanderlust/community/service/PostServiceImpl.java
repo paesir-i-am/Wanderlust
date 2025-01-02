@@ -79,6 +79,17 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  public Page<PostResponseDTO> getPostsByAuthor(String authorNickname, PageRequest pageRequest) {
+    if(pageRequest.getPageNumber() < 0 || pageRequest.getPageSize() <= 0) {
+      throw new IllegalArgumentException("Invalid page request parameters.");
+    }
+
+    Page<Post> posts = postRepository.findAllNotDeletedByAuthorNickname(authorNickname, pageRequest);
+
+    return posts.map(this::entityToDto);
+  }
+
+  @Override
   public Post dtoToEntity(PostRequestDTO requestDto, String imageUrl) {
     return Post.builder()
         .authorNickname(requestDto.getAuthorNickname())

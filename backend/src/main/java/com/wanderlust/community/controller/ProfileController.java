@@ -33,7 +33,7 @@ public class ProfileController {
     // 프로필 조회
     @GetMapping("/{nickname}")
     public ResponseEntity<ProfileResponseDTO> getProfile(@PathVariable String nickname) {
-        ProfileResponseDTO profile = profileService.getProfile(nickname);
+        ProfileResponseDTO profile = profileService.getProfileByNickname(nickname);
         return ResponseEntity.ok(profile);
     }
 

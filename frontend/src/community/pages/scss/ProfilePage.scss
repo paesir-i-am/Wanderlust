@@ -1,0 +1,34 @@
+.profile-page {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .post-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background: #ff6b6b;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background: #fa5252;
+      }
+    }
+  }
+}

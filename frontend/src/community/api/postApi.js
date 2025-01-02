@@ -15,6 +15,21 @@ export const fetchPosts = async (page = 0, size = 10) => {
   }
 };
 
+// 아이디별 게시글 목록 가져오기
+export const fetchPostsByNickname = async (nickname, page = 0, size = 9) => {
+  try {
+    // Axios 인스턴스 사용하여 API 호출
+    const response = await axiosInstance.get(`/community/posts/${nickname}`, {
+      params: { page, size },
+    });
+    // 응답 데이터 반환
+    return response.data;
+  } catch (error) {
+    console.error(`Failed to fetch posts by nickname : ${nickname}`, error);
+    return { content: [], last: true }; // 기본값 반환
+  }
+};
+
 // 게시글 생성
 export const createPost = (postData, image, token) => {
   const formData = new FormData();

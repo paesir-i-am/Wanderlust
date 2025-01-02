@@ -18,18 +18,14 @@ import com.wanderlust.common.util.JWTUtil;
 import com.wanderlust.community.dto.PostRequestDTO;
 import com.wanderlust.community.dto.PostResponseDTO;
 import com.wanderlust.community.service.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @CrossOrigin("/community/**")
 @RestController
@@ -65,6 +61,18 @@ public class PostController {
       @RequestParam int size
   ) {
     Page<PostResponseDTO> posts = postService.getPosts(PageRequest.of(page, size));
+    return ResponseEntity.ok(posts);
+  }
+
+  @GetMapping("/{nickname}")
+  public ResponseEntity<Page<PostResponseDTO>> getPostsByNickname(
+      @PathVariable String nickname,
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "9") int size) {
+
+    PageRequest pageRequest = PageRequest.of(page, size);
+    Page<PostResponseDTO> posts = postService.getPostsByAuthor(nickname, pageRequest);
+
     return ResponseEntity.ok(posts);
   }
 
