@@ -1,0 +1,32 @@
+.profile-page {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.profile-page .post-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.profile-page .post-modal h1 {
+  margin-bottom: 1rem;
+}
+.profile-page .post-modal button {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.profile-page .post-modal button:hover {
+  background: #fa5252;
+}
+
+/*# sourceMappingURL=ProfilePage.css.map */
