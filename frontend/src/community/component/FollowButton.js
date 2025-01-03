@@ -72,12 +72,12 @@ const FollowButton = ({ targetNickname }) => {
   return (
     <button
       className={`follow-button ${isLoading ? "loading" : ""} ${
-        isFollowing ? "following" : ""
+        isFollowing ? "following" : "not-following"
       }`}
       onClick={isFollowing ? handleUnfollow : handleFollow}
       disabled={isLoading}
     >
-      {isLoading ? "Loading..." : isFollowing ? "Unfollow" : "Follow"}
+      {isLoading ? "Loading..." : isFollowing ? "팔로잉" : "팔로우"}
     </button>
   );
 };

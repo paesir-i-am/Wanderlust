@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchFollowerCount, fetchFollowingCount } from "../../api/followApi";
 import { useSelector } from "react-redux";
 import FollowButton from "../FollowButton";
+import "../scss/profile/ProfileInfo.scss";
 
 const getFullImageUrl = (imageUrl) => {
   const BASE_URL = "http://localhost:8080";
@@ -68,62 +69,64 @@ const ProfileInfo = ({
 
   return (
     <div className="profile-info">
-      <img
-        src={getFullImageUrl(profile.profileImageUrl)}
-        alt={`${profile.nickname}'s profile`}
-        className="profile-image"
-        style={{ width: `50px`, height: `50px`, borderRadius: `50px` }}
-      />
-      <h1>
-        {profile.nickname}
-        {!isOwner && <FollowButton targetNickname={profile.nickname} />}
-      </h1>
-
-      {/* bio 표시 */}
-      {isEditing ? (
-        <>
-          <textarea
-            value={editedBio}
-            onChange={(e) => setEditedBio(e.target.value)}
-            placeholder="Update your bio"
-            className="profile-bio"
-          />
-          <input
-            type="file"
-            onChange={handleImageChange}
-            className="profile-image-input"
-          />
-          <button onClick={handleSave} className="profile-save-btn">
-            Save
-          </button>
-          <button onClick={handleCancel} className="profile-cancel-btn">
-            Cancel
-          </button>
-        </>
-      ) : (
-        <p className="profile-bio">{bio ? bio : "자기소개를 입력해주세요"}</p>
-      )}
-
-      {/* 수정 버튼 */}
-      {isOwner && !isEditing && (
-        <button
-          onClick={() => {
-            setIsEditing(true);
-            onEditStart();
-          }}
-          className="profile-edit-btn"
-        >
-          Edit Profile
-        </button>
-      )}
-
-      <div className="follow-info">
-        <span onClick={onShowFollowers} className="follow-count">
-          Followers: {followerCount}
-        </span>
-        <span onClick={onShowFollowing} className="follow-count">
-          Following: {followingCount}
-        </span>
+      <div className="profile-left">
+        <img
+          src={getFullImageUrl(profile.profileImageUrl)}
+          alt={`${profile.nickname}'s profile`}
+          className="profile-image"
+        />
+      </div>
+      <div className="profile-right">
+        <div className="profile-top">
+          <h1 className="nickname">{profile.nickname}</h1>
+          {!isOwner && <FollowButton targetNickname={profile.nickname} />}
+          {isOwner && !isEditing && (
+            <div className="actions">
+              <button
+                onClick={() => {
+                  setIsEditing(true);
+                  onEditStart();
+                }}
+                className="edit-btn"
+              >
+                Edit Profile
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="follow-info">
+          <span onClick={onShowFollowers} className="follow-count">
+            Followers: {followerCount}
+          </span>
+          <span onClick={onShowFollowing} className="follow-count">
+            Following: {followingCount}
+          </span>
+        </div>
+        <div className="profile-bio">
+          {isEditing ? (
+            <>
+              <textarea
+                value={editedBio}
+                onChange={(e) => setEditedBio(e.target.value)}
+                placeholder="Update your bio"
+                className="editable-bio"
+              />
+              <input
+                type="file"
+                onChange={handleImageChange}
+                className="profile-image-input"
+              />
+              <button onClick={handleSave} className="save-btn">
+                Save
+              </button>
+              <button onClick={handleCancel} className="cancel-btn">
+                Cancel
+              </button>
+            </>
+          ) : (
+            <p>{bio ? bio : "자기소개를 입력해주세요"}</p>
+          )}
+        </div>
       </div>
     </div>
   );

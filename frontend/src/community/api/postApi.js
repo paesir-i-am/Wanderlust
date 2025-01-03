@@ -16,7 +16,7 @@ export const fetchPosts = async (page = 0, size = 10) => {
 };
 
 // 아이디별 게시글 목록 가져오기
-export const fetchPostsByNickname = async (nickname, page = 0, size = 9) => {
+export const fetchPostsByNickname = async (nickname, page = 0, size = 6) => {
   try {
     // Axios 인스턴스 사용하여 API 호출
     const response = await axiosInstance.get(`/community/posts/${nickname}`, {

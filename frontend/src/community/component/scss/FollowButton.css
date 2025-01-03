@@ -98,49 +98,36 @@ img {
 }
 
 .follow-button {
-  margin: 0.2rem 0 0 0.4rem;
-  display: inline-block;
-  padding: 0.3rem 0.5rem;
+  padding: 3px 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2rem;
   border-radius: 20px;
-  border: 1px solid #228B22;
-  background-color: #fff;
-  color: #228B22;
-  font-family: "Apple SD Gothic Neo", sans-serif;
-  font-size: 0.65rem;
-  font-weight: bold;
   cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-.follow-button:hover {
-  background-color: #228B22;
-  color: #fff;
-}
-.follow-button:disabled {
-  background-color: #e9ecef;
-  color: #adb5bd;
-  cursor: not-allowed;
-}
-.follow-button.loading {
-  cursor: wait;
-  background-color: #e9ecef;
-  color: #adb5bd;
-}
-.follow-button.loading:hover {
-  background-color: #e9ecef;
-  color: #adb5bd;
+  transition: background-color 0.3s, color 0.3s;
 }
 .follow-button.following {
   background-color: #e9ecef;
-  color: #adb5bd;
+  color: black;
+  border: 1px solid #e9ecef;
 }
 .follow-button.following:hover {
-  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+  background-color: rgb(203.4736842105, 210.5, 217.5263157895);
+  color: #fff;
+}
+.follow-button.not-following {
+  background-color: #228B22;
+  color: white;
+  border: 1px solid #228B22;
+}
+.follow-button.not-following:hover {
+  background-color: rgb(44.0231213873, 179.9768786127, 44.0231213873);
+  color: white;
 }
 @media (max-width: 576px) {
   .follow-button {
-    font-size: 0.5rem;
-    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+    padding: 4px 10px;
   }
 }
 

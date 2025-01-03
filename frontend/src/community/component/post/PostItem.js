@@ -4,6 +4,7 @@ import FollowButton from "../FollowButton";
 import CommentList from "../comment/CommentList";
 import { useSelector } from "react-redux";
 import "../scss/post/PostItem.css";
+import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,7 +13,11 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [commentCount, setCommentCount] = useState(0); // 댓글 개수 상태
+  const navigate = useNavigate();
 
+  const handleNavigate = () => {
+    navigate(`/community/profile/${post.authorNickname}`);
+  };
   const MAX_LENGTH = 15;
 
   const token = useSelector((state) => state.loginSlice.accessToken);
@@ -46,10 +51,10 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
     <div className="post">
       <div className="post__header">
         <div className="post__info">
-          <h3 className="post__nickname">
-            {post.authorNickname}
+          <div className="post__nickname">
+            <h3 onClick={handleNavigate}>{post.authorNickname}</h3>
             {!isOwner && <FollowButton targetNickname={post.authorNickname} />}
-          </h3>
+          </div>
           <span className="post__date">{formatDate(post.createdAt)}</span>
         </div>
         {isOwner && (

@@ -72,7 +72,7 @@ export const fetchFollowers = async (nickname, page = 0, size = 10) => {
         params: { page, size },
       },
     );
-    return response.data;
+    return response.data.content || response.data;
   } catch (error) {
     console.error(`Failed to fetch followers for ${nickname}:`, error);
     throw error;
@@ -88,7 +88,7 @@ export const fetchFollowing = async (nickname, page = 0, size = 10) => {
         params: { page, size },
       },
     );
-    return response.data;
+    return response.data.content || response.data;
   } catch (error) {
     console.error(`Failed to fetch following for ${nickname}:`, error);
     throw error;

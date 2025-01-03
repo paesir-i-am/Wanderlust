@@ -1,30 +1,147 @@
-.post-section {
-  margin-top: 2rem;
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
 }
-.post-section h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.post-section .posts-grid {
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.profile-post-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.profile-post-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #228B22;
+}
+.profile-post-section .posts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 15px;
+  margin-top: 20px;
 }
-.post-section .posts-grid .post-item {
-  position: relative;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 4px;
-  overflow: hidden;
+@media (max-width: 768px) {
+  .profile-post-section .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-.post-section .posts-grid .post-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@media (max-width: 576px) {
+  .profile-post-section .posts-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.profile-post-section .post-item {
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.post-section .posts-grid .post-item img:hover {
-  filter: brightness(0.8);
+.profile-post-section .post-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.profile-post-section .post-item .post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.profile-post-section p {
+  font-size: 1rem;
+  color: #228B22;
+  text-align: center;
+  margin-top: 20px;
 }
 
 /*# sourceMappingURL=ProfilePostSection.css.map */

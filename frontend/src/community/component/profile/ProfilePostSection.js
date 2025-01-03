@@ -1,14 +1,26 @@
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import "../scss/profile/ProfilePostSection.css";
 
-const ProfilePostSection = ({ posts = [], onPostClick }) => {
+const ProfilePostSection = ({
+  posts = [],
+  onPostClick,
+  loadMorePosts,
+  hasMore,
+}) => {
   return (
     <div className="profile-post-section">
       <h3>Posts</h3>
       {posts.length === 0 ? (
         <p>No posts available.</p>
       ) : (
-        <div className="posts-grid">
+        <InfiniteScroll
+          dataLength={posts.length}
+          next={loadMorePosts}
+          hasMore={hasMore}
+          loader={<p>Loading...</p>}
+          className="posts-grid"
+        >
           {posts.map((post) => (
             <div
               key={post.id}
@@ -19,11 +31,10 @@ const ProfilePostSection = ({ posts = [], onPostClick }) => {
                 src={`http://localhost:8080${post.imageUrl}`}
                 alt="Post"
                 className="post-image"
-                style={{ width: "50px" }}
               />
             </div>
           ))}
-        </div>
+        </InfiniteScroll>
       )}
     </div>
   );

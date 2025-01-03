@@ -1,60 +1,138 @@
-.follow-info {
-  display: flex;
-  justify-content: space-around;
-  margin: 1rem 0;
-}
+@import "../../../../core";
 
-.follow-count {
-  cursor: pointer;
-  color: #007bff;
-  text-decoration: underline;
-}
-
-.follow-count:hover {
-  color: #0056b3;
-}
-
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-}
-
-.modal h2 {
-  margin-bottom: 1rem;
-}
-
-.modal ul {
-  list-style: none;
-  padding: 0;
-}
-
-.modal ul li {
+.profile-info {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-}
+  padding: 20px;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-.modal ul li img {
-  margin-right: 1rem;
-}
+  .profile-left {
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid $primary-color;
+      margin-right: 20px;
+    }
+  }
 
-.modal button {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
+  .profile-right {
+    flex: 1;
 
-.modal button:hover {
-  background: #0056b3;
+    .profile-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .nickname {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: $primary-color;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+
+        .edit-btn,
+        .settings-btn {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+
+          &.edit-btn {
+            background-color: $primary-color;
+            color: white;
+
+            &:hover {
+              background-color: darken($primary-color, 10%);
+            }
+          }
+
+          &.settings-btn {
+            background-color: $secondary-color;
+            color: white;
+
+            &:hover {
+              background-color: darken($secondary-color, 10%);
+            }
+          }
+        }
+      }
+    }
+
+    .follow-info {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+      font-size: 1rem;
+
+      .follow-count {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .profile-bio {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: $gray-dark;
+      line-height: 1.5;
+
+      .editable-bio {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $gray-light;
+        border-radius: 4px;
+        resize: none;
+        font-size: 0.9rem;
+
+        &:focus {
+          border-color: $primary-color;
+          outline: none;
+        }
+      }
+
+      .profile-image-input {
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      .save-btn,
+      .cancel-btn {
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+
+        &.save-btn {
+          background-color: $primary-color;
+          color: white;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+
+        &.cancel-btn {
+          background-color: $secondary-color;
+          color: white;
+
+          &:hover {
+            background-color: darken($secondary-color, 10%);
+          }
+        }
+      }
+    }
+  }
 }
