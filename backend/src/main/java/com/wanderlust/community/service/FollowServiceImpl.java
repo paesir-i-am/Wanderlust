@@ -24,11 +24,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class FollowServiceImpl implements FollowService {
   private final FollowRepository followRepository;
   private final MemberRepository memberRepository;
@@ -95,7 +93,7 @@ public class FollowServiceImpl implements FollowService {
     return followRepository.findFollowersByNickname(nickname, pageable)
         .map(profile -> new ProfileResponseDTO(
             profile.getNickname(),
-            profile.getProfileImage(),
+            profile.getProfileImageUrl(),
             profile.getBio(),
             profile.getFollowerCount(),
             profile.getFollowingCount()
@@ -107,7 +105,7 @@ public class FollowServiceImpl implements FollowService {
     return followRepository.findFollowingByNickname(nickname, pageable)
         .map(profile -> new ProfileResponseDTO(
             profile.getNickname(),
-            profile.getProfileImage(),
+            profile.getProfileImageUrl(),
             profile.getBio(),
             profile.getFollowerCount(),
             profile.getFollowingCount()

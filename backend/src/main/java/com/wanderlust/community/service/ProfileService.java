@@ -19,10 +19,12 @@ import com.wanderlust.community.dto.ProfileResponseDTO;
 import com.wanderlust.member.dto.MemberDTO;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 public interface ProfileService {
         void createProfile(MemberDTO memberDTO);
         ProfileResponseDTO getProfile(String nickname);
-        ProfileResponseDTO saveOrUpdateProfile(String nickname, ProfileRequestDTO profileRequestDTO, MultipartFile profileImage);
+        void saveOrUpdateProfile(String nickname, ProfileRequestDTO profileRequestDTO, MultipartFile profileImage) throws IOException;
         void deleteProfile(String nickname);
 
         ProfileResponseDTO getProfileByNickname(String nickname);

@@ -12,32 +12,19 @@ export const fetchProfile = async (nickname) => {
 };
 
 // 프로필 업데이트
-export const updateProfile = async (
-  nickname,
-  profileData,
-  profileImage,
-  token,
-) => {
-  const formData = new FormData();
-  formData.append("bio", profileData.bio); // 프로필 소개
-  if (profileImage) {
-    formData.append("profileImage", profileImage); // 이미지 파일
-  }
-
+export const updateProfile = async (nickname, formData) => {
   try {
     const response = await axiosInstance.post(
       `/community/profile/${nickname}`,
       formData,
       {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       },
     );
+    window.location.reload();
     return response.data;
   } catch (error) {
-    console.error(`Failed to update profile for ${nickname}:`, error);
+    console.error("Failed to update profile:", error);
     throw error;
   }
 };

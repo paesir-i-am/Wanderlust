@@ -1,16 +1,18 @@
 package com.wanderlust.community.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class ProfileResponseDTO {
   private String nickname;
   private String bio;
-  private String profileImage;
+  private String profileImageUrl;
   private int followerCount;
   private int followingCount;
 }

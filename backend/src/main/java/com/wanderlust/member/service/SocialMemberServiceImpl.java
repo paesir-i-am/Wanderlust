@@ -150,7 +150,7 @@ public class SocialMemberServiceImpl implements SocialMemberService {
     profile.setEmail(member.getEmail());
     profile.setMember(member);
     profile.setBio(null);
-    profile.setProfileImage(null);
+    profile.setProfileImageUrl(null);
     profile.setFollowerCount(0);
     profile.setFollowingCount(0);
 

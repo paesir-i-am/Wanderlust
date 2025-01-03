@@ -1,5 +1,10 @@
 package com.wanderlust.community.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /*
  * Description    :
  * ProjectName    : wanderlust
@@ -13,12 +18,11 @@ package com.wanderlust.community.dto;
  * 25. 1. 2.오전 12:00  paesir      최초 생성
  */
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProfileRequestDTO {
   private String bio;
-  private String profileImage;
+  private String profileImageUrl;
 }

@@ -37,6 +37,7 @@ const FollowButton = ({ targetNickname }) => {
       setIsLoading(true);
       await followUser(targetNickname);
       setIsFollowing(true); // 팔로우 상태 업데이트
+      window.location.reload();
     } catch (error) {
       console.error("Failed to follow user:", error);
     } finally {
@@ -50,6 +51,7 @@ const FollowButton = ({ targetNickname }) => {
       setIsLoading(true);
       await unfollowUser(targetNickname);
       setIsFollowing(false); // 팔로우 상태 업데이트
+      window.location.reload();
     } catch (error) {
       console.error("Failed to unfollow user:", error);
     } finally {

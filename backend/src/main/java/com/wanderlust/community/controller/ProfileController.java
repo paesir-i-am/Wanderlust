@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -41,9 +42,9 @@ public class ProfileController {
     @PostMapping("/{nickname}")
     public ResponseEntity<ProfileResponseDTO> saveOrUpdateProfile(
         @PathVariable String nickname,
-        @RequestPart("profileData") ProfileRequestDTO requestDTO,
-        @RequestPart(value = "profileImage", required = false) MultipartFile profileImage,
-        @RequestHeader("Authorization") String authorization) {
+        @ModelAttribute ProfileRequestDTO requestDTO,
+        @RequestParam(required = false) MultipartFile profileImage,
+        @RequestHeader("Authorization") String authorization) throws IOException {
 
         // JWT 검증 및 닉네임 추출
         String token = authorization.substring(7);
@@ -55,8 +56,8 @@ public class ProfileController {
             return ResponseEntity.status(403).build(); // 권한 없음
         }
 
-        ProfileResponseDTO savedProfile = profileService.saveOrUpdateProfile(nickname, requestDTO, profileImage);
-        return ResponseEntity.ok(savedProfile);
+        profileService.saveOrUpdateProfile(nickname, requestDTO, profileImage);
+        return ResponseEntity.noContent().build();
     }
 
     // 프로필 삭제

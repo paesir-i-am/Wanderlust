@@ -18,7 +18,6 @@ import com.wanderlust.community.dto.ProfileResponseDTO;
 import com.wanderlust.community.entity.Profile;
 import com.wanderlust.community.repository.ProfileRepository;
 import com.wanderlust.member.dto.MemberDTO;
-import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     return new ProfileResponseDTO(
         profile.getBio(),
-        profile.getProfileImage(),
+        profile.getProfileImageUrl(),
         profile.getMember().getNickname(),
         profile.getFollowerCount(),
         profile.getFollowingCount()
@@ -48,38 +47,17 @@ public class ProfileServiceImpl implements ProfileService {
   }
 
   @Override
-  public ProfileResponseDTO saveOrUpdateProfile(String email, ProfileRequestDTO profileRequestDTO, MultipartFile profileImage) {
-    Member member = memberRepository.findByEmail(email)
-        .orElseThrow(() -> new IllegalArgumentException("Invalid email (savaProfile) " + email));
+  public void saveOrUpdateProfile(String nickname, ProfileRequestDTO profileRequestDTO, MultipartFile profileImage) throws IOException {
 
-    Profile profile = profileRepository.findByEmail(email)
-        .orElse(new Profile());
+    Profile profile = profileRepository.findByNickname(nickname)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid nickname (getProfile)" + nickname));
 
-    String uploadedImage = null;
+    String profileImageUrl = null;
     if (profileImage != null && !profileImage.isEmpty()) {
-      try {
-        uploadedImage = fileService.saveFile(profileImage);
-      } catch (IOException e) {
-        throw new RuntimeException("Could not upload profile image", e);
-      }
+      profileImageUrl = fileService.saveFile(profileImage);
     }
-
-    profile.setMember(member);
-    profile.setNickname(member.getNickname());
-    profile.setBio(profileRequestDTO.getBio());
-    if (uploadedImage != null) {
-      profile.setProfileImage(uploadedImage);
-    }
-
-    Profile savedProfile = profileRepository.save(profile);
-
-    return new ProfileResponseDTO(
-        savedProfile.getMember().getNickname(),
-        savedProfile.getBio(),
-        savedProfile.getProfileImage(),
-        savedProfile.getFollowerCount(),
-        savedProfile.getFollowingCount()
-    );
+    profile.updateProfile(profileRequestDTO.getBio(), profileImageUrl);
+    profileRepository.save(profile);
   }
 
   @Override
@@ -96,7 +74,7 @@ public class ProfileServiceImpl implements ProfileService {
         .email(memberDTO.getEmail())
         .nickname(memberDTO.getNickname())
         .bio(null)
-        .profileImage(null)
+        .profileImageUrl(null)
         .build();
 
     profileRepository.save(profile);
@@ -111,7 +89,7 @@ public class ProfileServiceImpl implements ProfileService {
     return new ProfileResponseDTO(
         profile.getNickname(),
         profile.getBio(),
-        profile.getProfileImage(),
+        profile.getProfileImageUrl(),
         profile.getFollowerCount(),
         profile.getFollowingCount()
     );

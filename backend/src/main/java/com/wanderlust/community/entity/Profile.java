@@ -36,7 +36,7 @@ public class Profile {
 
   @Column(length = 1000) // 글자수 제한
   private String bio; // 자기소개
-  private String profileImage; // 프로필 이미지
+  private String profileImageUrl; // 프로필 이미지
 
   @Column(nullable = false)
   @Builder.Default
@@ -59,4 +59,12 @@ public class Profile {
     this.followingCount--;
   }
 
+  public void updateProfile(String bio, String profileImageUrl) {
+    if (bio != null && !bio.isEmpty()) {
+      this.bio = bio;
+    }
+    if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
+      this.profileImageUrl = profileImageUrl;
+    }
+  }
 }
