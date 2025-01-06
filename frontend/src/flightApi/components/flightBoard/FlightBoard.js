@@ -23,11 +23,10 @@ const FlightBoard = () => {
   const [airlines, setAirlines] = useState([]); // 항공사 목록 상태 추가
   const navigate = useNavigate();
 
+  const API_KEY = process.env.REACT_APP_API_KEY; // API Key
   const API_URL =
     'https://api.odcloud.kr/api/FlightStatusListDTL/v1/getFlightStatusListDetail?page=10&perPage=1000';
-  const API_KEY =
-    'avIxlq6XN/0crEeax8d+HGElMGY8J1E6a/EY358qYCM76vlbrSc7kYq3k8b0176nerPo5F5gctlWCqKm/pOYrg=='; // API Key
-
+    
   const formatTime = (time) => {
     if (!time || time === '') return '-';
 

@@ -17,7 +17,7 @@ const Home = () => {
           </Link>
           <Link to="/flightApi/parking-info" className="link-styles">
             <div className="parking-banner">
-              <p>주차장 혼잡도</p>
+              <p>주차장</p>
               <p className="english-text">Parking Lot</p>
               <img src="/icons/parkingLogo.png" alt="Parking Logo" />
             </div>
