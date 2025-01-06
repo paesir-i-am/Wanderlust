@@ -121,27 +121,61 @@ img {
   padding-right: 0.5rem;
 }
 .post-list-page__sidebar {
-  margin-right: 4rem;
   flex: 1;
-  height: 300px;
+  min-height: 300px; /* 사이드바 최대 너비 설정 */
+  height: auto;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   position: sticky;
-  top: 0.5rem;
+  top: 1rem;
+  align-self: flex-start;
 }
 .post-list-page__sidebar__follow-list {
-  margin-bottom: 1rem; /* 팔로우 리스트와 기타 기능 간격 */
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
-.post-list-page__sidebar__other-features {
+.post-list-page__sidebar__follow-list ul {
+  list-style: none;
+  padding: 0;
+}
+.post-list-page__sidebar__follow-list ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.post-list-page__sidebar__follow-list ul li:hover {
+  background-color: #e9ecef; /* 호버 효과 */
+  cursor: pointer;
+}
+.post-list-page__sidebar__follow-list ul li .profile-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+.post-list-page__sidebar__follow-list ul li span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+.post-list-page__sidebar__follow-list p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-align: center;
   margin-top: 1rem;
 }
 .post-list-page__sidebar__section-title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #228B22;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #228B22;
+  padding-bottom: 0.5rem;
 }
 
 /*# sourceMappingURL=PostListPage.css.map */

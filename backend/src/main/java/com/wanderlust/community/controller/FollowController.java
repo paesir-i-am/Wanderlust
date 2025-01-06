@@ -110,4 +110,6 @@ public class FollowController {
         "following", following
     ));
   }
+
+  //랜덤 팔로우 목록 생성
 }

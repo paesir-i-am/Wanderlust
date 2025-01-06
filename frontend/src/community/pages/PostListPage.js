@@ -6,6 +6,8 @@ import PostForm from "../component/post/PostForm";
 import PostList from "../component/post/PostList";
 import { deletePost, fetchPosts, updatePost } from "../api/postApi";
 import "./scss/PostListPage.css";
+import { useNavigate } from "react-router-dom";
+import { fetchFollowers, fetchFollowing } from "../api/followApi";
 
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
@@ -13,7 +15,44 @@ const PostListPage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [followers, setFollowers] = useState([]); // 팔로워 리스트 상태
+  const [following, setFollowing] = useState([]); // 팔로잉 리스트 상태
+  const [isLoadingFollowers, setIsLoadingFollowers] = useState(true);
+  const [isLoadingFollowing, setIsLoadingFollowing] = useState(true);
+
   const currentUserNickname = useSelector((state) => state.loginSlice.nickname);
+  const navigate = useNavigate();
+
+  const handleNavigateToProfile = () => {
+    navigate(`/community/profile/${currentUserNickname}`);
+  };
+
+  const getFullImageUrl = (imageUrl) => {
+    const BASE_URL = "http://localhost:8080";
+    return imageUrl
+      ? `${BASE_URL}${imageUrl}`
+      : `${BASE_URL}/backend/uploads/default-profile.gif`;
+  };
+
+  // 팔로워 및 팔로잉 리스트 로드
+  useEffect(() => {
+    const loadFollowLists = async () => {
+      try {
+        const followersData = await fetchFollowers(currentUserNickname);
+        const followingData = await fetchFollowing(currentUserNickname);
+
+        setFollowers(followersData);
+        setFollowing(followingData);
+      } catch (error) {
+        console.error("Failed to load follow lists:", error);
+      } finally {
+        setIsLoadingFollowers(false);
+        setIsLoadingFollowing(false);
+      }
+    };
+
+    loadFollowLists();
+  }, [currentUserNickname]);
 
   const loadPosts = async (currentPage) => {
     if (isLoading || !hasMore) return;
@@ -110,19 +149,56 @@ const PostListPage = () => {
             </InfiniteScroll>
           </div>
         </div>
-
         {/* 오른쪽 20% */}
         <div className="post-list-page__sidebar">
-          <div className="post-list-page__sidebar__follow-list">
-            <h3 className="post-list-page__sidebar__section-title">
-              팔로우 리스트
-            </h3>
+          <div className="profile-link" onClick={handleNavigateToProfile}>
+            <h3>👤 {currentUserNickname}</h3>
           </div>
-          <div className="post-list-page__sidebar__other-features">
-            <h3 className="post-list-page__sidebar__section-title">
-              기타 기능
-            </h3>
-            <p>그만 넣고 싶다 슈바라라발베러ㅜㄷㅈ배ㅜㅠ퍄ㅐㅂ</p>
+
+          {/* 팔로워 리스트 */}
+          <div className="post-list-page__sidebar__follow-list">
+            <h3>Followers</h3>
+            {isLoadingFollowers ? (
+              <p>Loading followers...</p>
+            ) : followers.length > 0 ? (
+              <ul>
+                {followers.map((follower) => (
+                  <li key={follower.nickname}>
+                    <img
+                      src={getFullImageUrl(follower.profileImageUrl)}
+                      alt={`${follower.nickname}'s profile`}
+                      className="profile-image"
+                    />
+                    <span>{follower.nickname}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No followers available.</p>
+            )}
+          </div>
+
+          {/* 팔로잉 리스트 */}
+          <div className="post-list-page__sidebar__follow-list">
+            <h3>Following</h3>
+            {isLoadingFollowing ? (
+              <p>Loading following...</p>
+            ) : following.length > 0 ? (
+              <ul>
+                {following.map((follow) => (
+                  <li key={follow.nickname}>
+                    <img
+                      src={getFullImageUrl(follow.profileImageUrl)}
+                      alt={`${follow.nickname}'s profile`}
+                      className="profile-image"
+                    />
+                    <span>{follow.nickname}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No following available.</p>
+            )}
           </div>
         </div>
       </div>

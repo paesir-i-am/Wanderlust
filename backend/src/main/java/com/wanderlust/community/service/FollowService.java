@@ -28,4 +28,6 @@ public interface FollowService {
 
   long getFollowersCount(String nickname);
   long getFollowingCount(String nickname);
+
+
 }

@@ -98,50 +98,55 @@ img {
 }
 
 .profile-post-section {
-  flex: 1;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
-.profile-post-section h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #228B22;
+.profile-post-section .end-message {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #adb5bd;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
 }
-.profile-post-section .posts-grid {
+.profile-post-section .post-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 20px;
-}
-@media (max-width: 768px) {
-  .profile-post-section .posts-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 576px) {
-  .profile-post-section .posts-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-.profile-post-section .post-item {
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.profile-post-section .post-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-.profile-post-section .post-item .post-image {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
   width: 100%;
-  height: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.profile-post-section .post-grid .post-item {
+  aspect-ratio: 1/1;
+  width: 100%;
+  background-color: #e9ecef;
+  overflow: hidden;
   border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.profile-post-section .post-grid .post-item img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-.profile-post-section p {
-  font-size: 1rem;
-  color: #228B22;
-  text-align: center;
+.profile-post-section .load-more-btn {
   margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.profile-post-section .load-more-btn:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
 
 /*# sourceMappingURL=ProfilePostSection.css.map */

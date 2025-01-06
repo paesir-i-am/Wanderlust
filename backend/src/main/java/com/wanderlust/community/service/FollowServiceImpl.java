@@ -127,4 +127,6 @@ public class FollowServiceImpl implements FollowService {
         .map(Profile::getFollowingCount)
         .orElseThrow(() -> new IllegalArgumentException("Profile not found(followingCount)" + nickname));
   }
-}
+
+  }
+

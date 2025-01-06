@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchFollowerCount, fetchFollowingCount } from "../../api/followApi";
 import { useSelector } from "react-redux";
 import FollowButton from "../FollowButton";
@@ -29,20 +29,14 @@ const ProfileInfo = ({
   const currentNickname = useSelector((state) => state.loginSlice.nickname);
   const isOwner = currentNickname === profile.nickname;
 
-  useEffect(() => {
-    const loadFollowCounts = async () => {
-      try {
-        const followers = await fetchFollowerCount(profile.nickname);
-        const following = await fetchFollowingCount(profile.nickname);
-        setFollowerCount(followers);
-        setFollowingCount(following);
-      } catch (error) {
-        console.error("Error loading follow counts:", error);
-      }
-    };
+  const fileInputRef = useRef(null); // 파일 입력 요소 참조 생성
 
-    loadFollowCounts();
-  }, [profile.nickname]);
+  const handleImageClick = () => {
+    // isEditing 상태일 때만 파일 선택 창 열기
+    if (isEditing && fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleImageChange = (e) => {
     setProfileImage(e.target.files[0]);
@@ -67,13 +61,37 @@ const ProfileInfo = ({
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    const loadFollowCounts = async () => {
+      try {
+        const followers = await fetchFollowerCount(profile.nickname);
+        const following = await fetchFollowingCount(profile.nickname);
+        setFollowerCount(followers);
+        setFollowingCount(following);
+      } catch (error) {
+        console.error("Error loading follow counts:", error);
+      }
+    };
+
+    loadFollowCounts();
+  }, [profile.nickname]);
+
   return (
     <div className="profile-info">
       <div className="profile-left">
         <img
           src={getFullImageUrl(profile.profileImageUrl)}
           alt={`${profile.nickname}'s profile`}
-          className="profile-image"
+          className={`profile-image ${isEditing ? "editable" : ""}`}
+          onClick={handleImageClick} // 이미지 클릭 이벤트 추가
+        />
+        <input
+          type="file"
+          ref={fileInputRef} // 참조 연결
+          onChange={(e) => {
+            handleImageChange(e); // 기존 핸들러 유지
+          }}
+          style={{ display: "none" }} // 파일 선택 요소 숨기기
         />
       </div>
       <div className="profile-right">
@@ -110,11 +128,6 @@ const ProfileInfo = ({
                 onChange={(e) => setEditedBio(e.target.value)}
                 placeholder="Update your bio"
                 className="editable-bio"
-              />
-              <input
-                type="file"
-                onChange={handleImageChange}
-                className="profile-image-input"
               />
               <button onClick={handleSave} className="save-btn">
                 Save

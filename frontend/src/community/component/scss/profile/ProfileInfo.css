@@ -113,6 +113,11 @@ img {
   border: 3px solid #228B22;
   margin-right: 20px;
 }
+.profile-info .profile-left .profile-image.editable {
+  cursor: pointer;
+  border: 2px dashed #228B22;
+  padding: 4px;
+}
 .profile-info .profile-right {
   flex: 1;
 }
@@ -192,7 +197,7 @@ img {
 }
 .profile-info .profile-right .profile-bio .save-btn,
 .profile-info .profile-right .profile-bio .cancel-btn {
-  margin-top: 10px;
+  margin: 10px 10px 0 0;
   padding: 8px 16px;
   font-size: 0.9rem;
   border-radius: 4px;
@@ -210,12 +215,12 @@ img {
 }
 .profile-info .profile-right .profile-bio .save-btn.cancel-btn,
 .profile-info .profile-right .profile-bio .cancel-btn.cancel-btn {
-  background-color: #44FF93;
+  background-color: red;
   color: white;
 }
 .profile-info .profile-right .profile-bio .save-btn.cancel-btn:hover,
 .profile-info .profile-right .profile-bio .cancel-btn.cancel-btn:hover {
-  background-color: rgb(17, 255, 117.5454545455);
+  background-color: #cc0000;
 }
 
 /*# sourceMappingURL=ProfileInfo.css.map */
