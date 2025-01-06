@@ -12,7 +12,7 @@
 
   // 헤더
   .header-fixed {
-    .searchbar.mobile-only{
+    .searchbar.mobile-only {
       display: none;
     }
 
@@ -91,7 +91,7 @@
             cursor: pointer;
 
             img {
-              margin : 1rem 0.4rem 0 0.2rem;
+              margin: 1rem 0.4rem 0 0.2rem;
               height: 60px;
             }
           }
@@ -162,7 +162,6 @@
       }
     }
 
-
     // 검색 섹션
     .search {
       position: relative;
@@ -207,7 +206,6 @@
               background: #44ff93;
               color: white;
             }
-
           }
         }
 
@@ -226,7 +224,6 @@
             background-color: white;
             border: 1px solid $gray-dark;
             border-radius: 8px;
-
           }
 
           button {
@@ -254,7 +251,6 @@
       }
     }
   }
-
 
   // 본문 콘텐츠
   .content {
