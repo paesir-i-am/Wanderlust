@@ -15,16 +15,16 @@ const PostListPage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [followers, setFollowers] = useState([]); // 팔로워 리스트 상태
-  const [following, setFollowing] = useState([]); // 팔로잉 리스트 상태
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const [isLoadingFollowers, setIsLoadingFollowers] = useState(true);
   const [isLoadingFollowing, setIsLoadingFollowing] = useState(true);
 
   const currentUserNickname = useSelector((state) => state.loginSlice.nickname);
   const navigate = useNavigate();
 
-  const handleNavigateToProfile = () => {
-    navigate(`/community/profile/${currentUserNickname}`);
+  const handleNavigateToProfile = (nickname) => {
+    navigate(`/community/profile/${nickname}`);
   };
 
   const getFullImageUrl = (imageUrl) => {
@@ -151,7 +151,10 @@ const PostListPage = () => {
         </div>
         {/* 오른쪽 20% */}
         <div className="post-list-page__sidebar">
-          <div className="profile-link" onClick={handleNavigateToProfile}>
+          <div
+            className="profile-link"
+            onClick={() => handleNavigateToProfile(currentUserNickname)}
+          >
             <h3>👤 {currentUserNickname}</h3>
           </div>
 
@@ -163,7 +166,10 @@ const PostListPage = () => {
             ) : followers.length > 0 ? (
               <ul>
                 {followers.map((follower) => (
-                  <li key={follower.nickname}>
+                  <li
+                    key={follower.nickname}
+                    onClick={() => handleNavigateToProfile(follower.nickname)}
+                  >
                     <img
                       src={getFullImageUrl(follower.profileImageUrl)}
                       alt={`${follower.nickname}'s profile`}
@@ -186,7 +192,10 @@ const PostListPage = () => {
             ) : following.length > 0 ? (
               <ul>
                 {following.map((follow) => (
-                  <li key={follow.nickname}>
+                  <li
+                    key={follow.nickname}
+                    onClick={() => handleNavigateToProfile(follow.nickname)}
+                  >
                     <img
                       src={getFullImageUrl(follow.profileImageUrl)}
                       alt={`${follow.nickname}'s profile`}

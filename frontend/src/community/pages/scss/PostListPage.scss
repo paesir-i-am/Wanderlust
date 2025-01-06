@@ -41,6 +41,11 @@
     top: 1rem;
     align-self: flex-start;
 
+    .profile-link{
+      cursor: pointer;
+      color: $primary-color;
+    }
+
     // 팔로우 리스트 스타일
     &__follow-list {
       margin-top: 0.5rem;
