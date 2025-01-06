@@ -1,0 +1,190 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  margin-left: 20px;
+}
+@media (max-width: 576px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+}
+.filter-container .filter-title {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: normal;
+  color: #228B22;
+  gap: 7px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+@media (max-width: 576px) {
+  .filter-container .filter-title {
+    font-size: 18px;
+  }
+}
+.filter-container .filter-title .filter-icon {
+  font-size: 22px;
+  color: #228B22;
+}
+.filter-container .selected-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+@media (max-width: 576px) {
+  .filter-container .selected-filters {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+.filter-container .selected-filters .filter-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #228B22;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background-color: transparent;
+  color: #228B22;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+.filter-container .selected-filters .filter-item:hover {
+  background-color: #e9ecef;
+}
+.filter-container .selected-filters .filter-item.selected {
+  background-color: #228B22;
+  color: #fff;
+}
+.filter-container .selected-filters .filter-item .remove-icon {
+  font-size: 14px;
+  color: #fff;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.filter-container .selected-filters .filter-item .remove-icon:hover {
+  color: red;
+}
+.filter-container .reset-button {
+  border: 1px solid #228B22;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background-color: transparent;
+  color: #228B22;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+.filter-container .reset-button:hover {
+  background-color: #e9ecef;
+}
+
+/*# sourceMappingURL=City.css.map */

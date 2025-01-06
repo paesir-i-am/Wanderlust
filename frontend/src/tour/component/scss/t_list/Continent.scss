@@ -1,0 +1,80 @@
+@import "../../../../core";
+
+.continent-component {
+  position: relative;
+
+  .continent-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 37px;
+    font-weight: bold;
+    color: $primary-color;  // core의 변수 사용
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    @include respond-to("tablet") {
+      font-size: 32px;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 28px;
+    }
+  }
+
+  .dropdown-icon {
+    font-size: 25px;
+    color: inherit;
+    margin-left: 3px;
+
+    @include respond-to("tablet") {
+      font-size: 22px;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 20px;
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: $background-color;  // core의 변수 사용
+    border: 1px solid $gray-dark;   // core의 변수 사용
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+    border-radius: 5px;
+
+    @include respond-to("mobile") {
+      width: 180px;
+      top: 45px;
+    }
+
+    .dropdown-item {
+      padding: 10px 15px;
+      font-size: 15px;
+      color: #333;
+      font-weight: normal;
+      cursor: pointer;
+      border-bottom: 1px solid $gray-dark;  // core의 변수 사용
+      font-family: $font-primary;  // core의 폰트 변수 사용
+
+      @include respond-to("mobile") {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: $gray-dark;  // core의 변수 사용
+      }
+    }
+  }
+}
