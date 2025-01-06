@@ -1,0 +1,809 @@
+// 변수 정의
+$primary-color: #2196f3;
+$secondary-color: #1976d2;
+$background-color: #f5f6f7;
+$border-color: #e0e4e8;
+$text-primary: #333;
+$text-secondary: #666;
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-default: all 0.2s ease;
+$success-color: #4caf50;
+$warning-color: #ff9800;
+$danger-color: #f44336;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card-style {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flightBoard-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4; /* 기본 배경색 */
+  width: 200px; /* 배너 크기 */
+  height: 150px; /* 배너 크기 */
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer; /* 마우스 커서 포인터 표시 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  position: relative; /* 애니메이션을 위한 상대 위치 */
+  overflow: hidden; /* 배경 색이 밖으로 나가지 않도록 처리 */
+}
+
+.flightBoard-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* 시작 위치: 왼쪽 밖 */
+  width: 100%;
+  height: 100%;
+  background-color: #44ff93; /* 호버 시 배경색 */
+  transition: left 0.5s ease; /* 슬라이드 효과 */
+}
+
+.flightBoard-banner:hover::before {
+  left: 0; /* 호버 시 왼쪽으로 슬라이드 */
+}
+
+.flightBoard-banner p {
+  margin: 0;
+  color: #34495e; /* 기본 텍스트 색상 */
+  font-weight: bold;
+  z-index: 1; /* 텍스트가 배경 위에 보이도록 설정 */
+}
+
+.flightBoard-banner .english-text {
+  color: #7f8c8d; /* 영어 텍스트 색상 */
+  font-size: 0.9rem;
+  z-index: 1; /* 텍스트가 배경 위에 보이도록 설정 */
+}
+
+.flightBoard-banner img {
+  margin-top: 10px;
+  width: 70px; /* 아이콘 크기 */
+  height: auto;
+  z-index: 1; /* 아이콘이 배경 위에 보이도록 설정 */
+}
+
+.link-styles {
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+
+.flight-board-container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 2rem;
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    color: #2c3e50;
+    font-weight: bold;
+  
+  h2 {
+    color: $text-primary;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 가로 방향 가운데 정렬 */
+    justify-content: center;  /* 세로 방향 가운데 정렬 */
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .flight-board-search {
+    @include card-style;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid $border-color;
+
+    .search-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: stretch;
+
+      .input-field {
+        flex: 1;
+        min-width: 150px;
+        margin-top: 5px;
+        height: 48px;
+        padding: 0 1rem;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        font-size: 1rem;
+        color: $text-primary;
+        
+        &:focus {
+        border-color: $secondary-color;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      select.input-field {
+        padding-right: 2rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 0.75rem) center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      .search-button {
+        flex: 0 0 auto;
+        padding: 0 2rem;
+        height: 48px;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 5px;
+
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  .flight-board-table-container {
+    @include card-style;
+    overflow: hidden;
+
+    .flight-board-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      
+      thead {
+        background-color: $primary-color;
+        
+        th {
+            padding: 1rem;
+            color: white;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid $border-color;
+          transition: $transition-default;
+
+          &:hover {
+            background-color: rgba($primary-color, 0.02);
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          td {
+            padding: 1rem;
+            text-align: center;
+            color: $text-primary;
+            font-size: 0.95rem;
+            vertical-align: middle;
+
+            &:first-child {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .loading-text {
+    @include flex-center;
+    padding: 2rem;
+    color: $text-secondary;
+    font-size: 1rem;
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .flight-board-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8fafc;
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    }
+    .flight-board-search {
+      padding: 1rem;
+
+      .search-form {
+        .input-field {
+          flex: 1 1 calc(50% - 0.75rem);
+          min-width: 140px;
+        }
+
+        .search-button {
+          flex: 1 1 100%;
+        }
+      }
+    }
+
+    .flight-board-table-container {
+      overflow-x: auto;
+      
+      .flight-board-table {
+        th, td {
+          padding: 0.75rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .flight-board-container {
+    .flight-board-search {
+      .search-form {
+        .input-field {
+          flex: 1 1 100%;
+        }
+      }
+    }
+  }
+}
+
+// parking-banner 스타일 추가
+.parking-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4; // 기본 배경색
+  width: 200px; // 배너 크기
+  height: 150px; // 배너 크기
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer; // 마우스 커서 포인터 표시
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과
+  position: relative; // 애니메이션을 위한 상대 위치
+  overflow: hidden; // 배경 색이 밖으로 나가지 않도록 처리
+}
+
+.parking-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; // 시작 위치: 왼쪽 밖
+  width: 100%;
+  height: 100%;
+  background-color: #44ff93; // 호버 시 배경색
+  transition: left 0.5s ease; // 슬라이드 효과
+}
+
+.parking-banner:hover::before {
+  left: 0; // 호버 시 왼쪽으로 슬라이드
+}
+
+.parking-banner p {
+  margin: 0;
+  color: #34495e; // 기본 텍스트 색상
+  font-weight: bold;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+}
+
+.parking-banner .english-text {
+  color: #7f8c8d; // 영어 텍스트 색상
+  font-size: 0.9rem;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+}
+
+.parking-banner img {
+  margin-top: 10px;
+  width: 70x; // 아이콘 크기
+  height: auto;
+  z-index: 1; // 아이콘이 배경 위에 보이도록 설정
+}
+
+
+
+// 주차장 정보 스타일
+.parking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+
+      .title {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+      }
+    }
+
+/* 버튼들을 하나의 공간으로 묶은 스타일 */
+.selection-buttons-container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 터미널 버튼들 간격 조정 */
+.terminal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* 터미널 버튼들 간의 간격을 2rem로 설정 */
+}
+  
+  /* 주차장 버튼들 간격 조정 */
+  .parking-type-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* 주차장 버튼들 간의 간격을 2rem로 설정 */
+  }
+
+/* 버튼 기본 스타일 */
+.button {
+  padding: 1.2rem 2rem;
+  background-color: white;
+  color: #2980b9;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px; /* 둥근 테두리 */
+  border: none; /* 테두리 없앰 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
+  border: 2px solid #000000;
+}
+
+/* 버튼 호버 효과 */
+.button:hover {
+  background-color: rgba(41, 128, 185, 0.1);
+}
+
+/* 활성화된 버튼 스타일 */
+.button.active {
+  background-color: #2980b9;
+  color: white;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+
+/* .parking-levels 스타일 */
+.parking-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    background-color: #f9f9f9; /* 배경색 추가 */
+    border-radius: 8px; /* 둥근 테두리 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    margin-top: 30px;
+  }
+
+.parking-level {
+  background-color: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 2px solid #000000;
+}
+
+.parking-level:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.parking-lot-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 1.5rem;
+}
+
+.availability {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+.occupancy-bar-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.occupancy-bar {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+.occupancy-bar.danger {
+  background-color: #e74c3c;
+}
+
+.occupancy-bar.warning {
+  background-color: #f39c12;
+}
+
+.occupancy-bar.success {
+  background-color: #2ecc71;
+}
+
+.occupancy-rate {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2980b9;
+  padding-left: 5px;
+}
+
+.parking-info {
+  margin-top: 1.5rem;
+
+  p {
+    margin: 0.75rem 0;
+    color: #7f8c8d;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+
+    strong {
+      color: #34495e;
+      font-weight: bold;
+    }
+  }
+
+  .reservation-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #2980b9;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #21618c;
+    }
+  }
+ }
+}
+
+  // 반응형 디자인
+  @media (max-width: 768px) {
+    .parking-container {
+      padding: 1rem;
+
+      .header .title {
+        font-size: 1.8rem;
+      }
+
+      .terminal-buttons,
+      .parking-type-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .button {
+          width: 100%;
+          padding: 0.75rem 1rem;
+        }
+      }
+
+      .parking-levels {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .parking-level {
+        padding: 1rem;
+
+        .parking-lot-name {
+          font-size: 1.1rem;
+        }
+
+        .occupancy-rate {
+          font-size: 1rem;
+        }
+
+        .parking-info p {
+          font-size: 0.9rem;
+        }
+
+        .reservation-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .parking-container {
+      padding: 1rem;
+
+      .header .title {
+        font-size: 1.5rem;
+      }
+
+      .terminal-buttons,
+      .parking-type-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .button {
+          width: 100%;
+          padding: 0.75rem 1rem;
+        }
+      }
+
+      .parking-levels {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .parking-level {
+        padding: 1rem;
+
+        .parking-lot-name {
+          font-size: 1.1rem;
+        }
+
+        .occupancy-rate {
+          font-size: 1rem;
+        }
+
+        .parking-info p {
+          font-size: 0.85rem;
+        }
+
+        .reservation-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+  .shuttlebus-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4; // 기본 배경색
+    width: 200px; // 배너 크기
+    height: 150px; // 배너 크기
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer; // 마우스 커서 포인터 표시
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과
+    position: relative; // 애니메이션을 위한 상대 위치
+    overflow: hidden; // 배경 색이 밖으로 나가지 않도록 처리
+  }
+  
+  .shuttlebus-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; // 시작 위치: 왼쪽 밖
+    width: 100%;
+    height: 100%;
+    background-color: #44ff93; // 호버 시 배경색
+    transition: left 0.5s ease; // 슬라이드 효과
+  }
+  
+  .shuttlebus-banner:hover::before {
+    left: 0; // 호버 시 왼쪽으로 슬라이드
+  }
+  
+  .shuttlebus-banner p {
+    margin: 0;
+    color: #34495e; // 기본 텍스트 색상
+    font-weight: bold;
+    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+    text-decoration: none;
+  }
+  
+  .shuttlebus-banner .english-text {
+    color: #7f8c8d; // 영어 텍스트 색상
+    font-size: 0.9rem;
+    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+  }
+  
+  .shuttlebus-banner img {
+    margin-top: 10px;
+    width: 70px; // 아이콘 크기
+    height: auto;
+    z-index: 1; // 아이콘이 배경 위에 보이도록 설정
+  }
+  
+
+// 공항 셔틀버스 스타일
+.airport-bus {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $background-color;
+  font-family: 'Noto Sans KR', sans-serif;
+
+  // 제목 스타일
+  h2 {
+    text-align: center;
+    color: $text-primary;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, $primary-color, lighten($primary-color, 20%));
+      border-radius: 2px;
+    }
+  }
+
+ // 버스 섹션 스타일
+    .bus {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: $shadow-md;
+    transition: $transition-default;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+  
+    // 서브 제목 스타일
+    h3 {
+      color: $primary-color;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba($primary-color, 0.2);
+      text-align: center;  // 제목 가운데 정렬 추가
+    }
+  
+    // 테이블 스타일
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background-color: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: $shadow-sm;
+  
+      // 헤더 스타일
+      thead {
+        background-color: $primary-color;
+  
+        th {
+          padding: 1rem;
+          color: white;
+          font-weight: 600;
+          font-size: 1rem;
+          text-align: center;
+          letter-spacing: 0.5px;
+          border: none;
+          white-space: nowrap;
+  
+          &:first-child {
+            padding-left: 1.5rem;
+          }
+  
+          &:last-child {
+            padding-right: 1.5rem;
+          }
+        }
+      }
+  
+      // 본문 스타일
+      tbody {
+        tr {
+          transition: background-color 0.2s ease;
+  
+          &:hover {
+            background-color: rgba($primary-color, 0.05);
+          }
+  
+          &:not(:last-child) {
+            border-bottom: 1px solid $border-color;
+          }
+  
+          td {
+            padding: 1rem;
+            text-align: center;
+            color: $text-secondary;
+            font-size: 0.95rem;
+            border: none;
+  
+            &:first-child {
+              padding-left: 1.5rem;
+              color: $text-primary;
+              font-weight: 500;
+            }
+  
+            &:last-child {
+              padding-right: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}  
