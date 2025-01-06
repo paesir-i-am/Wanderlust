@@ -251,7 +251,6 @@ const FlightList = () => {
                     {group.departure.airlineName || group.departure.airlineCode}
                   </h4>
                 </div>
-
                 <div className="flight-info">
                   <div className="route">
                     <div className="time">
@@ -291,6 +290,7 @@ const FlightList = () => {
                     </div>
                   )}
                 </div>
+                <div className="divider"></div> {/* 중간 선 추가 */}
                 <div className="price-info">
                   {group.return ? (
                     <p className="price round-trip">
@@ -315,6 +315,8 @@ const FlightList = () => {
                       </div>
                     </p>
                   )}
+                  {/* 선택하기 버튼 추가 */}
+                  <button className="select-button">선택하기</button>
                 </div>
               </div>
             ))}
