@@ -17,6 +17,7 @@
     "react-router-dom": "^7.0.2",
     "react-scripts": "^5.0.1",
     "sass": "^1.82.0",
+    "spdy": "^4.0.2",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.22"
   },
@@ -47,5 +48,8 @@
   "devDependencies": {
     "prettier": "3.4.2"
   },
-  "proxy": "http://localhost:8080"
+  "optionalDependencies": {
+    "@parcel/watcher-darwin-arm64": "2.5.0",
+    "@parcel/watcher-win32-x64": "2.5.0"
+  }
 }

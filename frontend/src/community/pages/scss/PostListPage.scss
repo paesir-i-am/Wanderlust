@@ -1,0 +1,104 @@
+@import "../../../core";
+
+.post-list-page {
+  display: flex;
+  gap: 1rem;
+  height: auto;
+  background-color: $background-color;
+
+  // 왼쪽 80% 영역
+  &__main {
+    overflow-y: auto;
+    flex: 4;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0 5rem 0 5rem;
+
+    &__post-form {
+      margin-bottom: 1rem; /* 폼과 리스트 간격 */
+    }
+
+    &__post-list {
+      max-height: 600px;
+      padding-right: 0.5rem;
+    }
+  }
+
+  // 오른쪽 20% 영역
+  &__sidebar {
+    flex: 1;
+    min-height: 300px; /* 사이드바 최대 너비 설정 */
+    height: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+
+    // Sticky 설정
+    position: sticky;
+    top: 1rem;
+    align-self: flex-start;
+
+    .profile-link{
+      cursor: pointer;
+      color: $primary-color;
+    }
+
+    // 팔로우 리스트 스타일
+    &__follow-list {
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.75rem;
+          padding: 0.5rem;
+          border-radius: 6px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #e9ecef; /* 호버 효과 */
+            cursor: pointer;
+          }
+
+          .profile-image {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+          }
+
+          span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+          }
+        }
+      }
+
+      p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 1rem;
+      }
+    }
+
+    // 섹션 제목 스타일
+    &__section-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid $primary-color;
+      padding-bottom: 0.5rem;
+    }
+  }
+}

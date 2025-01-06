@@ -5,7 +5,7 @@ import kakaoLogin from "../img/kakao_login.png";
 import naverLogin from "../img/naver_login.png";
 import googleLogin from "../img/google_login.png";
 import { useCustomLogin } from "../hook/useCustomLogin";
-import { checkEmailDuplicate } from "../api/memberApi";
+import { checkEmailDuplicate, checkNicknameDuplicate } from "../api/memberApi";
 import { getKakaoLoginLink } from "../api/kakaoApi";
 
 const initState = {
@@ -16,25 +16,29 @@ const initState = {
 
 const RegisterForm = () => {
   const [registerParam, setRegisterParam] = useState({ ...initState });
-  const [error, setError] = useState(""); //에러 상태 관리
-  const [emailError, setEmailError] = useState(""); //이메일 중복 에러 메세지
-  const [isEmailValid, setIsEmailValid] = useState(false); //이메일 유효 여부
+  const [error, setError] = useState(""); // 에러 상태 관리
+  const [emailError, setEmailError] = useState(""); // 이메일 중복 에러 메시지
+  const [nicknameError, setNicknameError] = useState(""); // 닉네임 중복 에러 메시지
+  const [isEmailValid, setIsEmailValid] = useState(false); // 이메일 유효 여부
+  const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 유효 여부
   const { doRegister, moveToLogin } = useCustomLogin();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRegisterParam((prev) => ({ ...prev, [name]: value }));
+
     if (name === "email") {
-      setIsEmailValid(false); //이메일 입력 시 유효성 초기화
-      setEmailError(""); //이메일 에러 초기화
+      setIsEmailValid(false); // 이메일 입력 시 유효성 초기화
+      setEmailError(""); // 이메일 에러 초기화
+    }
+    if (name === "nickname") {
+      setIsNicknameValid(false); // 닉네임 입력 시 유효성 초기화
+      setNicknameError(""); // 닉네임 에러 초기화
     }
   };
 
   const handleEmailCheck = async () => {
-    // 이메일 형식 정규식
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // 이메일 형식 검증
     if (!emailRegex.test(registerParam.email)) {
       setIsEmailValid(false);
       setEmailError("올바른 이메일 형식을 입력해주세요.");
@@ -56,12 +60,39 @@ const RegisterForm = () => {
     }
   };
 
+  const handleNicknameCheck = async () => {
+    if (!registerParam.nickname) {
+      setIsNicknameValid(false);
+      setNicknameError("닉네임을 입력해주세요.");
+      return;
+    }
+
+    try {
+      const isDuplicate = await checkNicknameDuplicate(registerParam.nickname);
+      if (isDuplicate) {
+        setIsNicknameValid(false);
+        setNicknameError("이미 사용 중인 닉네임입니다.");
+      } else {
+        setIsNicknameValid(true);
+        setNicknameError("사용 가능한 닉네임입니다.");
+      }
+    } catch (e) {
+      console.log(e);
+      setNicknameError("닉네임 중복 확인 중 문제가 발생하였습니다.");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
     if (!isEmailValid) {
       setError("이메일 중복 확인을 해주세요");
+      return;
+    }
+
+    if (!isNicknameValid) {
+      setError("닉네임 중복 확인을 해주세요");
       return;
     }
 
@@ -125,19 +156,31 @@ const RegisterForm = () => {
           <p style={{ color: isEmailValid ? "green" : "red" }}>{emailError}</p>
         )}
       </div>
-      <input
-        type="text"
-        name="nickname"
-        placeholder="닉네임을 입력해주세요"
-        value={registerParam.name}
-        onChange={handleChange}
-        required
-      />
-      <div className="warning">
-        {registerParam.pw &&
-          registerParam.pw.length < 8 &&
-          "비밀번호는 8자리 이상이여야 합니다"}
+      <div className="nickname-check">
+        <input
+          type="text"
+          name="nickname"
+          placeholder="닉네임을 입력해주세요"
+          value={registerParam.nickname}
+          onChange={handleChange}
+          required
+        />
+        <button
+          type="button"
+          onClick={handleNicknameCheck}
+          disabled={!registerParam.nickname}
+        >
+          중복 확인
+        </button>
       </div>
+      <div className="warning">
+        {nicknameError && (
+          <p style={{ color: isNicknameValid ? "green" : "red" }}>
+            {nicknameError}
+          </p>
+        )}
+      </div>
+
       <input
         type="password"
         name="pw"
@@ -148,6 +191,11 @@ const RegisterForm = () => {
         required
         autoComplete="new-password"
       />
+      <div className="warning">
+        {registerParam.pw &&
+          registerParam.pw.length < 8 &&
+          "비밀번호는 8자리 이상이여야 합니다"}
+      </div>
       {error && <p className="error-message">{error}</p>}
       <button type="submit">회원가입</button>
     </form>

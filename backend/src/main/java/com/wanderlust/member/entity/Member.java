@@ -14,6 +14,7 @@ package com.wanderlust.member.entity;
  */
 
 
+import com.wanderlust.community.entity.Profile;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -54,6 +55,9 @@ public class Member {
   @Column(nullable = false)
   public String provider;
 
+  @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Profile profile;
+
   public void clearRole(){
     RoleList.clear();
   }
@@ -68,6 +72,11 @@ public class Member {
 
   public void changeSocial(boolean social) {
     this.social = social;
+  }
+
+  public void setProfile(Profile profile) {
+    this.profile = profile;
+    profile.setMember(this);
   }
 
 }

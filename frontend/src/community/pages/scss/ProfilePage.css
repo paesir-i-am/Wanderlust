@@ -1,0 +1,224 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.profile-page .load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.profile-page .load-more-btn:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+
+/* 팔로우 모달 스타일링 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal .modal-content {
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+.modal .modal-content h2 {
+  font-size: 1.5rem;
+  color: #228B22;
+  margin-bottom: 15px;
+}
+.modal .modal-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.modal .modal-content ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+.modal .modal-content ul li:last-child {
+  border-bottom: none;
+}
+.modal .modal-content ul li .profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  margin-right: 10px;
+}
+.modal .modal-content ul li .nickname {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #228B22;
+}
+.modal .modal-content ul li .follow-btn {
+  margin-left: auto;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border: 1px solid #228B22;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.modal .modal-content ul li .follow-btn:hover {
+  background-color: #228B22;
+  color: white;
+}
+.modal .modal-content .close-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #44FF93;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.modal .modal-content .close-btn:hover {
+  background-color: rgb(17, 255, 117.5454545455);
+}
+
+/* 페이드 인 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/*# sourceMappingURL=ProfilePage.css.map */

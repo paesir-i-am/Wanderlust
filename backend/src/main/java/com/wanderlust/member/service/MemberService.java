@@ -34,6 +34,7 @@ public interface MemberService {
     Member findByEmail(String email);
 
     boolean isEmailDuplicate(String email);
+    boolean isNicknameDuplicate(String nickname);
 
     default MemberDTO entityToDTO(Member member){
 

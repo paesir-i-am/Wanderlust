@@ -13,6 +13,8 @@ package com.wanderlust.member.service;
  * 24. 12. 23.오후 6:48  paesir      최초 생성
  */
 
+import com.wanderlust.community.entity.Profile;
+import com.wanderlust.community.repository.ProfileRepository;
 import com.wanderlust.member.dto.MemberDTO;
 import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.entity.MemberRole;
@@ -39,6 +41,7 @@ public class SocialMemberServiceImpl implements SocialMemberService {
   private final MemberRepository memberRepository;
   private final PasswordEncoder passwordEncoder;
   private final MemberService memberService;
+  private final ProfileRepository profileRepository;
 
   // accesstoken을 기반으로 사용자의 정보를 얻기위한 메서드
   private String getEmailFromKakaoAccessToken(String accessToken, LinkedHashMap<String, String> userInfo) {
@@ -136,8 +139,22 @@ public class SocialMemberServiceImpl implements SocialMemberService {
 
     member.addRole(MemberRole.USER);
 
+
     return member;
 
+  }
+
+  private Profile createProfile(Member member) {
+    Profile profile = new Profile();
+    profile.setNickname(member.getNickname());
+    profile.setEmail(member.getEmail());
+    profile.setMember(member);
+    profile.setBio(null);
+    profile.setProfileImageUrl(null);
+    profile.setFollowerCount(0);
+    profile.setFollowingCount(0);
+
+    return profile;
   }
 
   @Override
@@ -161,10 +178,11 @@ public class SocialMemberServiceImpl implements SocialMemberService {
     // 신규회원 생성
     // 패스워드는 임의로 생성
     Member socialMember = makeSocialMember(email, userInfo);
+
+    socialMember.setProfile(createProfile(socialMember));
     memberRepository.save(socialMember);
 
-    MemberDTO memberDTO = memberService.entityToDTO(socialMember);
+    return memberService.entityToDTO(socialMember);
 
-    return memberDTO;
   }
 }

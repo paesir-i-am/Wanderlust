@@ -13,10 +13,7 @@ package com.wanderlust.community.entity;
  * 24. 12. 24.오전 11:53  paesir      최초 생성
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -41,6 +38,16 @@ public class Post {
   @Builder.Default
   private Boolean isDeleted = false;
 
+  public void updatePost(String content, String imageUrl) {
+    if (content != null && !content.isEmpty()) {
+      this.content = content;
+    }
+    if (imageUrl != null && !imageUrl.isEmpty()) {
+      this.imageUrl = imageUrl;
+    }
+    this.updatedAt = LocalDateTime.now();
+  }
+
   public void markAsDeleted() {
     this.isDeleted = true;
     this.updatedAt = LocalDateTime.now();
@@ -49,5 +56,17 @@ public class Post {
   public void restore() {
     this.isDeleted = false;
     this.updatedAt = LocalDateTime.now();
+  }
+
+  @Column(nullable = false)
+  @Builder.Default
+  private int likesCount = 0;
+
+  public void increaseLikes() {
+    this.likesCount++;
+  }
+
+  public void decreaseLikes() {
+    this.likesCount--;
   }
 }

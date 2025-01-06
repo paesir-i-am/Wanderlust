@@ -22,4 +22,5 @@ import lombok.*;
 public class PostRequestDTO {
   private String authorNickname;
   private String content;
+  private String imageUrl;
 }

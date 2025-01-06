@@ -2,92 +2,74 @@ import axios from "axios";
 import { getCookie, setCookie } from "./cookieUtil";
 import { API_SERVER_HOST } from "../api/mainApi";
 
-const jwtAxios = axios.create();
-
-const refreshJWT = async (refreshToken) => {
+/* 리프레시 토큰 재발행 */
+export const refreshJWT = async () => {
   const host = API_SERVER_HOST;
 
-  const header = { headers: { "Refresh-Token": getCookie("refreshToken") } };
-
-  const res = await axios.get(
-    `${host}/member/refresh?refreshToken=${refreshToken}`,
-    header,
-  );
-
-  console.log("----------------------");
-  console.log(res.data);
-
-  return res.data;
-};
-
-//before request
-const beforeReq = (config) => {
-  console.log("before request.............");
-
-  const memberInfo = getCookie("member");
-
-  if (!memberInfo) {
-    console.log("Member NOT FOUND");
-    return Promise.reject({ response: { data: { error: "REQUIRE_LOGIN" } } });
+  // 쿠키에서 refreshToken 가져오기
+  const refreshToken = getCookie("refreshToken");
+  if (!refreshToken) {
+    console.warn("Refresh token is missing. Skipping token refresh.");
+    return null; // 또는 적절한 처리
   }
 
-  const { accessToken } = JSON.parse(memberInfo);
+  try {
+    const res = await axios.post(
+      `${host}/member/refresh`,
+      {},
+      {
+        headers: { "Refresh-Token": refreshToken },
+        withCredentials: true,
+      },
+    );
 
-  // Authorization (허가)헤더 처리
-  config.headers.Authorization = `Bearer ${accessToken}`;
+    // 응답 데이터 검증
+    if (!res.data || !res.data.accessToken || !res.data.maxAge) {
+      console.error("Invalid response format during token refresh:", res.data);
+      return null;
+    }
 
+    // 새 accessToken 쿠키에 저장
+    setCookie("accessToken", res.data.accessToken, {
+      path: "/",
+      maxAge: res.data.maxAge,
+    });
+
+    console.log("JWT successfully refreshed:", res.data.accessToken);
+
+    return res.data;
+  } catch (err) {
+    console.error("Failed to refresh JWT:", err);
+    return null; // 오류 발생 시 null 반환
+  }
+};
+/* Axios 요청 인터셉터 */
+export const addAuthHeader = (config) => {
+  const accessToken = getCookie("accessToken");
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
   return config;
 };
 
-//fail request
-const requestFail = (err) => {
-  console.log("request error............");
+/* Axios 응답 인터셉터
+ *  토큰 갱신 처리할 때 사용*/
+export const handleAuthError = async (err) => {
+  const originalRequest = err.config;
 
-  return Promise.reject(err);
-};
-
-//before return response
-const beforeRes = async (res) => {
-  console.log("before return response...........");
-
-  console.log(res);
-
-  //'ERROR_ACCESS_TOKEN'
-  const data = res.data;
-
-  if (data && data.error === "ERROR_ACCESS_TOKEN") {
-    const memberInfo = JSON.parse(getCookie("member"));
-    const { accessToken, refreshToken } = memberInfo;
-
-    const result = await refreshJWT(accessToken, refreshToken);
-
-    memberInfo.accessToken = result.accessToken;
-    memberInfo.refreshToken = result.refreshToken;
-
-    setCookie("member", JSON.stringify(memberInfo), {
-      path: "/",
-      maxAge: 86400,
-    });
-
-    //갱신된 토큰들을 다시 저장하고 원래 원했던 호출을 다시 시도하는 작업을 추가한다.
-    const originalRequest = res.config;
-
-    originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
-
-    return axios(originalRequest);
+  if (err.response && err.response.status === 401) {
+    originalRequest.retry = true;
   }
 
-  return res;
+  try {
+    const newAccessToken = await refreshJWT();
+    originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+    return axios(originalRequest);
+  } catch (error) {
+    console.log("failed to retry request after refreshing JWT : " + error);
+    throw error;
+  }
+  throw err;
 };
 
-//fail response
-const responseFail = (err) => {
-  console.log("response fail error.............");
-  return Promise.reject(err);
-};
-
-jwtAxios.interceptors.request.use(beforeReq, requestFail);
-
-jwtAxios.interceptors.response.use(beforeRes, responseFail);
-
-export default jwtAxios;
+export default { addAuthHeader, handleAuthError };

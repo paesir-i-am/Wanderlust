@@ -34,6 +34,18 @@ export const checkEmailDuplicate = async (email) => {
   }
 };
 
+export const checkNicknameDuplicate = async (nickname) => {
+  try {
+    const res = await axios.get(`${host}/checkNickname`, {
+      params: { nickname },
+    });
+    return res.data;
+  } catch (err) {
+    console.log("닉네임 중복 체크 실패 : " + err);
+    throw err;
+  }
+};
+
 export const modifyMember = async (member) => {
   const res = await jwtAxios.put(`${host}/modify`, member);
 

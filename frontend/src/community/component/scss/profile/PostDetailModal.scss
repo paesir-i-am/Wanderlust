@@ -1,0 +1,151 @@
+@import "../../../../core.scss";
+
+.post-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); // 반투명 배경
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    height: 70%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @include respond-to("tablet") {
+      width: 95%;
+      height: 80%;
+    }
+
+    .modal-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $gray-light;
+
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .modal-right {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .author {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+
+        .created-at {
+          font-size: 0.9rem;
+          color: $gray-dark;
+        }
+      }
+
+      .post-body {
+        flex: 1;
+        margin-top: 1rem;
+        font-size: 1rem;
+
+        .edit-content {
+          width: 100%;
+          height: 100%;
+          min-height: 100px;
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid $gray-light;
+          border-radius: 5px;
+          resize: none;
+        }
+      }
+
+      .post-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+
+        .owner-actions,
+        .edit-actions {
+          display: flex;
+          gap: 10px;
+
+          .edit-btn,
+          .delete-btn,
+          .save-btn,
+          .cancel-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: lighten($primary-color, 10%);
+            }
+          }
+
+          .edit-btn,
+          .save-btn {
+            background-color: $primary-color;
+            color: #fff;
+          }
+
+          .delete-btn {
+            background-color: red;
+            color: #fff;
+          }
+
+          .cancel-btn {
+            background-color: $gray-light;
+            color: black;
+          }
+        }
+      }
+
+      .post-comments {
+        margin-top: 1rem;
+        border-top: 1px solid $gray-light;
+        padding-top: 1rem;
+
+        .comment-list {
+          max-height: 200px;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}
