@@ -111,7 +111,7 @@ img {
   position: fixed;
   width: 100%;
   top: 0;
-  height: 300px;
+  height: 280px;
   background: url("/public/header-backgroung.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
@@ -122,7 +122,7 @@ img {
   display: none;
 }
 .basic-layout .header-fixed .header-overlay {
-  height: 300px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   padding: 1rem 4rem;
@@ -321,14 +321,14 @@ img {
   }
 }
 .basic-layout .content {
-  margin-top: 410px;
+  margin-top: 350px;
   flex: 1;
   overflow-y: auto;
   padding: 2rem;
 }
 @media (max-width: 576px) {
   .basic-layout .content {
-    margin-top: 25rem;
+    margin-top: 18rem;
     padding: 1rem;
   }
 }
