@@ -58,6 +58,7 @@ body {
   display: flex;
   gap: 20px;
   overflow: visible; /* 부모 요소에 overflow 제거 */
+  margin-top: 450px;
 }
 .flight-list-container .content .filter-sidebar {
   flex: 0 0 250px;

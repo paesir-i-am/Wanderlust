@@ -8,6 +8,7 @@ import { deletePost, fetchPosts, updatePost } from "../api/postApi";
 import "./scss/PostListPage.css";
 import { useNavigate } from "react-router-dom";
 import { fetchFollowers, fetchFollowing } from "../api/followApi";
+import BasicLayoutWithoutFlight from "../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
@@ -22,6 +23,7 @@ const PostListPage = () => {
 
   const currentUserNickname = useSelector((state) => state.loginSlice.nickname);
   const navigate = useNavigate();
+  const isLoggedIn = !!currentUserNickname;
 
   const handleNavigateToProfile = (nickname) => {
     navigate(`/community/profile/${nickname}`);
@@ -120,7 +122,7 @@ const PostListPage = () => {
   };
 
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="post-list-page">
         {/* 왼쪽 80% */}
         <div className="post-list-page__main" id="scrollableDiv">
@@ -150,68 +152,70 @@ const PostListPage = () => {
           </div>
         </div>
         {/* 오른쪽 20% */}
-        <div className="post-list-page__sidebar">
-          <div
-            className="profile-link"
-            onClick={() => handleNavigateToProfile(currentUserNickname)}
-          >
-            <h3>👤 {currentUserNickname}</h3>
-          </div>
+        {isLoggedIn && (
+          <div className="post-list-page__sidebar">
+            <div
+              className="profile-link"
+              onClick={() => handleNavigateToProfile(currentUserNickname)}
+            >
+              <h3>👤 {currentUserNickname}</h3>
+            </div>
 
-          {/* 팔로워 리스트 */}
-          <div className="post-list-page__sidebar__follow-list">
-            <h3>Followers</h3>
-            {isLoadingFollowers ? (
-              <p>Loading followers...</p>
-            ) : followers.length > 0 ? (
-              <ul>
-                {followers.map((follower) => (
-                  <li
-                    key={follower.nickname}
-                    onClick={() => handleNavigateToProfile(follower.nickname)}
-                  >
-                    <img
-                      src={getFullImageUrl(follower.profileImageUrl)}
-                      alt={`${follower.nickname}'s profile`}
-                      className="profile-image"
-                    />
-                    <span>{follower.nickname}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No followers available.</p>
-            )}
-          </div>
+            {/* 팔로워 리스트 */}
+            <div className="post-list-page__sidebar__follow-list">
+              <h3>Followers</h3>
+              {isLoadingFollowers ? (
+                <p>Loading followers...</p>
+              ) : followers.length > 0 ? (
+                <ul>
+                  {followers.map((follower) => (
+                    <li
+                      key={follower.nickname}
+                      onClick={() => handleNavigateToProfile(follower.nickname)}
+                    >
+                      <img
+                        src={getFullImageUrl(follower.profileImageUrl)}
+                        alt={`${follower.nickname}'s profile`}
+                        className="profile-image"
+                      />
+                      <span>{follower.nickname}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No followers available.</p>
+              )}
+            </div>
 
-          {/* 팔로잉 리스트 */}
-          <div className="post-list-page__sidebar__follow-list">
-            <h3>Following</h3>
-            {isLoadingFollowing ? (
-              <p>Loading following...</p>
-            ) : following.length > 0 ? (
-              <ul>
-                {following.map((follow) => (
-                  <li
-                    key={follow.nickname}
-                    onClick={() => handleNavigateToProfile(follow.nickname)}
-                  >
-                    <img
-                      src={getFullImageUrl(follow.profileImageUrl)}
-                      alt={`${follow.nickname}'s profile`}
-                      className="profile-image"
-                    />
-                    <span>{follow.nickname}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No following available.</p>
-            )}
+            {/* 팔로잉 리스트 */}
+            <div className="post-list-page__sidebar__follow-list">
+              <h3>Following</h3>
+              {isLoadingFollowing ? (
+                <p>Loading following...</p>
+              ) : following.length > 0 ? (
+                <ul>
+                  {following.map((follow) => (
+                    <li
+                      key={follow.nickname}
+                      onClick={() => handleNavigateToProfile(follow.nickname)}
+                    >
+                      <img
+                        src={getFullImageUrl(follow.profileImageUrl)}
+                        alt={`${follow.nickname}'s profile`}
+                        className="profile-image"
+                      />
+                      <span>{follow.nickname}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No following available.</p>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 
