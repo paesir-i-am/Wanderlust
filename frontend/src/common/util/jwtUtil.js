@@ -1,11 +1,9 @@
 import axios from "axios";
 import { getCookie, setCookie } from "./cookieUtil";
-import { API_SERVER_HOST } from "../api/mainApi";
+import axiosInstance from "../api/mainApi";
 
 /* 리프레시 토큰 재발행 */
 export const refreshJWT = async () => {
-  const host = API_SERVER_HOST;
-
   // 쿠키에서 refreshToken 가져오기
   const refreshToken = getCookie("refreshToken");
   if (!refreshToken) {
@@ -14,9 +12,9 @@ export const refreshJWT = async () => {
   }
 
   try {
-    const res = await axios.post(
-      `${host}/member/refresh`,
-      {},
+    const res = await axiosInstance.post(
+      "/member/refresh",
+      { refreshToken },
       {
         headers: { "Refresh-Token": refreshToken },
         withCredentials: true,
