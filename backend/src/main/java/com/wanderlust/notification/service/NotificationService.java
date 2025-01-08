@@ -23,4 +23,6 @@ public interface NotificationService {
     List<Notification> getUnreadNotifications(String recipientNickname);
     void deleteNotificationsByRecipient(String recipientNickname);
     void markNotificationAsRead(Long notificationId);
+
+    Notification createNotification(String recipientNickname, String message, String type, Long recipientId);
 }

@@ -18,6 +18,7 @@ import com.wanderlust.community.entity.Comment;
 import com.wanderlust.community.entity.Post;
 import com.wanderlust.community.repository.CommentRepository;
 import com.wanderlust.community.repository.PostRepository;
+import com.wanderlust.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,18 +34,46 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
+    private final NotificationService notificationService;
 
     @Override
     public CommentDTO createComment(CommentDTO commentDTO) {
         Comment comment = dtoToEntity(commentDTO);
         Comment savedComment = commentRepository.save(comment);
+
+        //게시물 작성자에게 알림 생성
+        String recipientNickname = comment.getPost().getAuthorNickname();
+        if(!comment.getAuthorNickname().equals(recipientNickname)) {
+            String message = comment.getAuthorNickname() + "님이 당신의 게시물에 댓글을 달았습니다.";
+            notificationService.createNotification(recipientNickname, message, "COMMENT", comment.getPost().getId());
+        }
+
         return entityToDTO(savedComment);
     }
 
     @Override
     public CommentDTO createChildComment(Long parentId, CommentDTO childCommentDTO) {
         childCommentDTO.setParentId(parentId);
-        return createComment(childCommentDTO);
+        CommentDTO savedcommentDTO = createComment(childCommentDTO);
+
+        //원댓글 작성자에게 알림 생성
+        Comment parent = commentRepository.findById(parentId)
+            .orElseThrow(()-> new IllegalArgumentException("원 댓글을 찾을 수 없습니다."));
+
+        String parentAuthorNickname = parent.getAuthorNickname();
+        if(!childCommentDTO.getAuthorNickname().equals(parentAuthorNickname)) {
+            String message = childCommentDTO.getAuthorNickname() + "님이 당신의 댓글에 대댓글을 달았습니다.";
+            notificationService.createNotification(parentAuthorNickname, message, "COMMENT", parent.getId());
+        }
+
+        //게시물 작성자에게 알림 생성
+        String postAuthorNickname = parent.getPost().getAuthorNickname();
+        if(!childCommentDTO.getAuthorNickname().equals(postAuthorNickname) && !postAuthorNickname.equals(parentAuthorNickname)) {
+            String message = childCommentDTO.getAuthorNickname() + "님이 당신의 게시물에 대댓글을 달았습니다.";
+            notificationService.createNotification(postAuthorNickname, message, "COMMENT", parent.getPost().getId());
+        }
+
+        return savedcommentDTO;
     }
 
     @Override

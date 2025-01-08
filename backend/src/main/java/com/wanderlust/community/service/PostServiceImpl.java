@@ -16,11 +16,14 @@ package com.wanderlust.community.service;
 
 import com.wanderlust.community.dto.PostRequestDTO;
 import com.wanderlust.community.dto.PostResponseDTO;
+import com.wanderlust.community.dto.ProfileResponseDTO;
 import com.wanderlust.community.entity.Post;
 import com.wanderlust.community.repository.PostRepository;
+import com.wanderlust.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,10 +35,14 @@ import java.time.LocalDateTime;
 public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
   private final FileService fileService;
+  private final FollowService followService;
+  private final NotificationService notificationService;
 
-  public PostServiceImpl(PostRepository postRepository, FileService fileService) {
+  public PostServiceImpl(PostRepository postRepository, FileService fileService, FollowService followService, NotificationService notificationService) {
     this.postRepository = postRepository;
     this.fileService = fileService;
+    this.followService = followService;
+    this.notificationService = notificationService;
   }
 
   @Override
@@ -43,6 +50,15 @@ public class PostServiceImpl implements PostService {
     String imageUrl = fileService.saveFile(image);
     Post post = dtoToEntity(requestDto, imageUrl);
     Post savedPost = postRepository.save(post);
+
+    //팔로워 목록 조회 및 알림 생성
+    Page<ProfileResponseDTO> followers = followService.getFollowers(requestDto.getAuthorNickname(), Pageable.unpaged());
+
+    for(ProfileResponseDTO follower : followers) {
+      String message = requestDto.getAuthorNickname() + "님이 새 글을 작성했습니다.";
+      notificationService.createNotification(follower.getNickname(), message,"POST", post.getId());
+    }
+
     return entityToDto(savedPost);
   }
 

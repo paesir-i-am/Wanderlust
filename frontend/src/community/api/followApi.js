@@ -1,7 +1,15 @@
 import axiosInstance from "../../common/api/mainApi";
+import { getCookie } from "../../common/util/cookieUtil"; // 쿠키 유틸 사용
+
+// 로그인 여부 확인 함수
+const isLoggedIn = () => {
+  const accessToken = getCookie("accessToken");
+  return !!accessToken;
+};
 
 // 팔로우 요청
 export const followUser = async (nickname) => {
+  if (!isLoggedIn()) return Promise.reject(new Error("User not logged in"));
   try {
     const response = await axiosInstance.post(`/community/follow/${nickname}`);
     return response.data;
@@ -13,6 +21,7 @@ export const followUser = async (nickname) => {
 
 // 언팔로우 요청
 export const unfollowUser = async (nickname) => {
+  if (!isLoggedIn()) return Promise.reject(new Error("User not logged in"));
   try {
     const response = await axiosInstance.delete(
       `/community/follow/${nickname}`,
@@ -26,6 +35,7 @@ export const unfollowUser = async (nickname) => {
 
 // 팔로우 상태 확인
 export const checkFollowStatus = async (nickname) => {
+  if (!isLoggedIn()) return false;
   try {
     const response = await axiosInstance.get(
       `/community/follow/status/${nickname}`,
@@ -65,6 +75,7 @@ export const fetchFollowingCount = async (nickname) => {
 
 // 팔로워 목록 가져오기
 export const fetchFollowers = async (nickname, page = 0, size = 10) => {
+  if (!isLoggedIn()) return Promise.resolve([]);
   try {
     const response = await axiosInstance.get(
       `/community/follow/followers/${nickname}`,
@@ -81,6 +92,7 @@ export const fetchFollowers = async (nickname, page = 0, size = 10) => {
 
 // 팔로잉 목록 가져오기
 export const fetchFollowing = async (nickname, page = 0, size = 10) => {
+  if (!isLoggedIn()) return Promise.resolve([]);
   try {
     const response = await axiosInstance.get(
       `/community/follow/following/${nickname}`,

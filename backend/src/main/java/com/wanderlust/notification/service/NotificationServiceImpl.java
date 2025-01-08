@@ -15,10 +15,12 @@ package com.wanderlust.notification.service;
 
 
 import com.wanderlust.notification.entity.Notification;
+import com.wanderlust.notification.entity.NotificationType;
 import com.wanderlust.notification.repository.NotificationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -48,5 +50,18 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public void markNotificationAsRead(Long notificationId) {
     notificationRepository.markAsRead(notificationId);
+  }
+
+  @Override
+  public Notification createNotification(String recipientNickname, String message, String type, Long recipientId) {
+    Notification notification = Notification.builder()
+        .referencedId(recipientId)
+        .recipientNickname(recipientNickname)
+        .type(NotificationType.valueOf(type))
+        .data(message)
+        .createdAt(LocalDateTime.now())
+        .isRead(false)
+        .build();
+    return notificationRepository.save(notification);
   }
 }

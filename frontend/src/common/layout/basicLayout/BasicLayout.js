@@ -3,6 +3,8 @@ import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
 import FlightSearch from "../../../flight/components/FlightSearch";
+import NotificationIcon from "../../../notification/component/NotificationIcon";
+import NotificationDropdown from "../../../notification/component/NotificationDropdown";
 
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복"); // 초기 활성화 상태
@@ -11,6 +13,9 @@ const BasicLayout = ({ children }) => {
 
   const { isLogin, moveToLogin, doLogout, moveToPath, doLoginPopup } =
     useCustomLogin();
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  const handleNotificationClick = () => setShowDropdown((prev) => !prev);
 
   return (
     <div className="basic-layout">
@@ -59,9 +64,14 @@ const BasicLayout = ({ children }) => {
 
             {/* 아이콘 버튼 */}
             <div className="icons desktop-only">
-              <button>
-                <img src="/icons/notification.svg" alt="Notifications" />
-              </button>
+              <div style={{ position: "relative", zIndex: 9999 }}>
+                <NotificationIcon onClick={handleNotificationClick} />
+                {showDropdown && (
+                  <NotificationDropdown
+                    onClose={() => setShowDropdown(false)}
+                  />
+                )}
+              </div>
               <button>
                 <img src="/icons/reservation.svg" alt="Reservations" />
               </button>
