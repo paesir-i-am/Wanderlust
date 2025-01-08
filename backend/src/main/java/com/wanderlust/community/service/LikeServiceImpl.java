@@ -51,7 +51,7 @@ public class LikeServiceImpl implements LikeService {
       likeRepository.delete(existingLike.get());
       post.decreaseLikes();
     } else {
-      // 좋아요 추가
+      // 좋아요 추가1
       Like like = new Like();
       like.setPost(post);
       like.setMember(member);
