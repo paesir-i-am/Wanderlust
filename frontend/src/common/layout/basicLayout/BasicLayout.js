@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
+import FlightSearch from "../../../flight/components/FlightSearch";
 
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복"); // 초기 활성화 상태
@@ -87,7 +88,7 @@ const BasicLayout = ({ children }) => {
         </div>
 
         {/* 검색 섹션 */}
-        <div className="search mobile-only">
+        {/* <div className="search mobile-only">
           <div className="search-container">
             <div className="options mobile-only">
               {["왕복", "편도", "다구간"].map((option) => (
@@ -112,6 +113,13 @@ const BasicLayout = ({ children }) => {
               <button>검색</button>
             </div>
           </div>
+        </div>
+      </header> */}
+        <div className="search mobile-only">
+          <FlightSearch
+            activeOption={activeOption}
+            setActiveOption={setActiveOption}
+          />
         </div>
       </header>
 
