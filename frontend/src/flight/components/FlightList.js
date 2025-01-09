@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FlightFilter from "../components/FlightFilter";
 import "../styles/FlightList.scss";
 import airplaneImg from "../img/airplane.png"; // 경로 수정
@@ -8,6 +8,7 @@ import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 
 const FlightList = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [groupedData, setGroupedData] = useState([]);
@@ -158,6 +159,30 @@ const FlightList = () => {
     }
   }, [location.state]);
 
+
+  const handleSelect = (group) => {
+    const adultFare = parseInt(group.departure.fareDetail.adultFare, 10) || 0;
+    const childFare = parseInt(group.departure.fareDetail.childFare, 10) || 0;
+    const infantFare = parseInt(group.departure.fareDetail.infantFare, 10) || 0;
+
+    const totalPrice =
+      adultFare * searchInfo.adult +
+      childFare * searchInfo.child +
+      infantFare * searchInfo.infant; // 모든 요금을 합산
+
+    navigate("/payment", {
+      state: {
+        totalPrice,
+        passengers: {
+          adults: searchInfo.adult,
+          children: searchInfo.child,
+          infants: searchInfo.infant,
+        },
+      },
+    });
+  };
+
+
   const getFilteredAndSortedData = () => {
     const filteredData = groupedData.filter((group) => {
       if (!group.departure.direct) {
@@ -233,7 +258,8 @@ const FlightList = () => {
             {searchInfo.passengers || "승객 정보 없음"}
           </p>
         </div>
-        <div className="content">
+
+        <div className="list-content">
           <div className="filter-sidebar">
             <FlightFilter
               filters={filters}
@@ -301,7 +327,22 @@ const FlightList = () => {
                       )}{" "}
                       ~
                       <br />
-                      왕복 {formatPrice(group.departure.fareDetail.adultFare)} ~
+                      왕복{" "}
+                      {formatPrice(
+                        (parseInt(group.departure.fareDetail.adultFare, 10) ||
+                          0) *
+                          searchInfo.adult +
+                          (parseInt(group.departure.fareDetail.childFare, 10) ||
+                            0) *
+                            searchInfo.child +
+                          (parseInt(
+                            group.departure.fareDetail.infantFare,
+                            10
+                          ) || 0) *
+                            searchInfo.infant
+                      )}{" "}
+                      ~
+
                     </p>
                   ) : (
                     <p className="price one-way">
@@ -310,13 +351,33 @@ const FlightList = () => {
                         <br />
                       </div>
                       <div className="oneway2">
-                        편도 {formatPrice(group.departure.fareDetail.adultFare)}{" "}
+                        편도{" "}
+                        {formatPrice(
+                          (parseInt(group.departure.fareDetail.adultFare, 10) ||
+                            0) *
+                            searchInfo.adult +
+                            (parseInt(
+                              group.departure.fareDetail.childFare,
+                              10
+                            ) || 0) *
+                              searchInfo.child +
+                            (parseInt(
+                              group.departure.fareDetail.infantFare,
+                              10
+                            ) || 0) *
+                              searchInfo.infant
+                        )}{" "}
                         ~
                       </div>
                     </p>
                   )}
                   {/* 선택하기 버튼 추가 */}
-                  <button className="select-button">선택하기</button>
+                  <button
+                    className="select-button"
+                    onClick={() => handleSelect(group)}
+                  >
+                    선택하기
+                  </button>
                 </div>
               </div>
             ))}

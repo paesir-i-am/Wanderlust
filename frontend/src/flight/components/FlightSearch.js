@@ -104,7 +104,7 @@ const FlightSearch = ({ activeOption, setActiveOption }) => {
       activeOption === "왕복" ? formatDate(arrivalDate) : "";
 
     const convertedTripType = activeOption === "왕복" ? "RT" : "OW";
-
+    const totalPassengers = adult + child + infant;
     const payload = {
       departureAirport,
       arrivalAirport,
@@ -114,8 +114,11 @@ const FlightSearch = ({ activeOption, setActiveOption }) => {
       adult,
       child,
       infant,
+      totalPassengers, // 총 인원 추가
       fareType,
     };
+    console.log("Payload to Backend:", payload);
+
 
     setLoading(true);
 
@@ -142,9 +145,13 @@ const FlightSearch = ({ activeOption, setActiveOption }) => {
                   activeOption === "왕복"
                     ? `${departureDate} ~ ${arrivalDate}`
                     : `${departureDate}`,
-                passengers: `성인 ${adult}명, ${
+                passengers: `성인 ${adult}명, 소아 ${child}명, 유아 ${infant}명, ${
                   fareOptions.find((f) => f.code === fareType)?.label || ""
                 }`,
+                adult, // 성인 인원 추가
+                child, // 소아 인원 추가
+                infant, // 유아 인원 추가
+                totalPassengers,
               },
               results: {
                 schedules: backendResponse.schedules,
@@ -154,6 +161,8 @@ const FlightSearch = ({ activeOption, setActiveOption }) => {
               },
             },
           });
+
+
           setLoading(false);
         } else {
           setTimeout(
