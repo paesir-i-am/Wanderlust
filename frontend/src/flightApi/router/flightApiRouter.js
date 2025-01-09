@@ -4,6 +4,9 @@ const Loading = <div>Loading....</div>;
 const FlightBoard = lazy(() => import("../components/flightBoard/FlightBoard"));
 const ParkingInfo = lazy(() => import("../components/parking/ParkingInfo"));
 const ShuttleBus = lazy(() => import("../components/shuttleBus/ShuttleBus"));
+const FlightInfoPage = lazy(() => import("../page/FlightInfoPage"));
+const ParkingInfoPage = lazy(() => import("../page/ParkingInfoPage"));
+
 
 const flightApiRouter = () => {
   return [
@@ -28,6 +31,22 @@ const flightApiRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <ShuttleBus />
+        </Suspense>
+      ),
+    },
+    {
+      path: "flight-info",
+      element: (
+        <Suspense fallback={Loading}>
+          <div className="flight-and-parking-info">
+            {/* FlightInfoPage와 ParkingInfoPage 두 컴포넌트를 동시에 렌더링 */}
+            <div className="flight-info-container">
+              <FlightInfoPage />
+            </div>
+            <div className="parking-info-container">
+              <ParkingInfoPage />
+            </div>
+          </div>
         </Suspense>
       ),
     },

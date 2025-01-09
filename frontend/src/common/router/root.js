@@ -5,9 +5,10 @@ import memberRouter from "../../member/router/memberRouter";
 import communityRouter from "../../community/router/communityRouter";
 import FlightSearch from "../../flight/components/FlightSearch"; // FlightSearch 컴포넌트
 import FlightList from "../../flight/components/FlightList";
-import flightApiRouter from "../../flightApi/router/flightApiRouter"; // FlightList 컴포넌트
+import flightApiRouter from "../../flightApi/router/flightApiRouter"; // flightApiRouter 가져오기
+import AirInfoPage from "../../flightApi/page/main/AirInfoPage";
 
-const Loading = () => <div>Loading...</div>; // JSX로 수정
+const Loading = () => <div>Loading...</div>;
 
 const root = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const root = createBrowserRouter([
     children: flightApiRouter(),
   },
   {
-    path: "flight", // Flight 관련 경로 추가
+    path: "/flight", // Flight 관련 경로 추가
     children: [
       {
         path: "", // /flight 경로
@@ -50,6 +51,14 @@ const root = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/flight-info", // /flight-info 경로 설정
+    element: (
+      <Suspense fallback={Loading}>
+        <AirInfoPage />
+      </Suspense>
+    ),
   },
 ]);
 

@@ -3,7 +3,7 @@ import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 import { Link } from "react-router-dom";
 import "../../flightApi/components/scss/AirportApi.scss";
 
-const Home = () => {
+const MainPage = () => {
   return (
     <BasicLayout>
       <div>
@@ -35,4 +35,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MainPage;

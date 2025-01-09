@@ -1,16 +1,4 @@
-// 변수 정의
-$primary-color: #2196f3;
-$secondary-color: #1976d2;
-$background-color: #f5f6f7;
-$border-color: #e0e4e8;
-$text-primary: #333;
-$text-secondary: #666;
-$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-$transition-default: all 0.2s ease;
-$success-color: #4caf50;
-$warning-color: #ff9800;
-$danger-color: #f44336;
+@import "../../../core.scss";
 
 // Mixins
 @mixin flex-center {
@@ -20,17 +8,42 @@ $danger-color: #f44336;
 }
 
 @mixin card-style {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 반응형 메인 페이지 배너 스타일 */
+@media (max-width: 1024px) {
+  .flightBoard-banner,
+  .parking-banner,
+  .shuttlebus-banner {
+    width: 130px !important; /* 데스크탑에서 조금 더 작은 크기 */
+    height: 130px !important; /* 높이도 조금 더 줄임 */
+  }
+  .flightBoard-banner p,
+  .parking-banner p,
+  .shuttlebus-banner p {
+    font-size: 0.9rem; /* 모바일에서 폰트 크기 줄이기 */
+  }
+  .flightBoard-banner img,
+  .parking-banner img,
+  .shuttlebus-banner img {
+    width: 35px; /* 모바일에서 아이콘 크기 줄이기 */
+    margin-top: 8px;
+  }
+  .parking-banner p {
+    position: relative;
+    top: -5px;
+  }
 }
 
 .additional-contents {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* 가로로 가운데 정렬 */
   align-items: center;
-  gap: 2rem;  // 배너 사이의 간격
-  padding: 2rem 0;  // 위아래 여백
+  gap: 2rem; /* 배너들 간의 기본 간격 */
+  padding: 2rem 0;
 }
 
 .flightBoard-banner {
@@ -47,6 +60,7 @@ $danger-color: #f44336;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
   position: relative; /* 애니메이션을 위한 상대 위치 */
   overflow: hidden; /* 배경 색이 밖으로 나가지 않도록 처리 */
+  flex-shrink: 0;
 }
 
 .flightBoard-banner::before {
@@ -56,7 +70,7 @@ $danger-color: #f44336;
   left: -100%; /* 시작 위치: 왼쪽 밖 */
   width: 100%;
   height: 100%;
-  background-color: #44ff93; /* 호버 시 배경색 */
+  background-color: $secondary-color; /* 호버 시 배경색 */
   transition: left 0.5s ease; /* 슬라이드 효과 */
 }
 
@@ -66,9 +80,10 @@ $danger-color: #f44336;
 
 .flightBoard-banner p {
   margin: 0;
-  color: #34495e; /* 기본 텍스트 색상 */
-  font-weight: bold;
-  z-index: 1; /* 텍스트가 배경 위에 보이도록 설정 */
+    color: #34495e; // 기본 텍스트 색상
+    font-weight: bold;
+    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+    text-decoration: none;
 }
 
 .flightBoard-banner .english-text {
@@ -89,23 +104,24 @@ $danger-color: #f44336;
 }
 
 
+// 비행기 검색 및 테이블 스타일링
 .flight-board-container {
-    max-width: 1500px;
-    margin: auto;
-    padding: 2rem;
-    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
-    color: #2c3e50;
-    font-weight: bold;
-  
+  max-width: 1500px;
+  margin: auto;
+  padding: 2rem;
+  font-family: $font-primary;
+  color: $primary-color;
+  font-weight: bold;
+
   h2 {
-    color: $text-primary;
+    color: $primary-color;
+    margin-top: -3rem;
     margin-bottom: 1.5rem;
     font-weight: 600;
     display: flex;
     flex-direction: column;
-    align-items: center;  /* 가로 방향 가운데 정렬 */
-    justify-content: center;  /* 세로 방향 가운데 정렬 */
-    font-weight: bold;
+    align-items: center;
+    justify-content: center;
     font-size: 30px;
   }
 
@@ -113,7 +129,7 @@ $danger-color: #f44336;
     @include card-style;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    border: 1px solid $border-color;
+    border: 1px solid rgba($secondary-color, 0.2);
 
     .search-form {
       display: flex;
@@ -127,15 +143,14 @@ $danger-color: #f44336;
         margin-top: 5px;
         height: 48px;
         padding: 0 1rem;
-        border: 1px solid $border-color;
         border-radius: 4px;
         font-size: 1rem;
-        color: $text-primary;
-        
+        color: $primary-color;
+
         &:focus {
-        border-color: $secondary-color;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
+          border-color: $secondary-color;
+          outline: none;
+          box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
         }
 
         &::placeholder {
@@ -167,9 +182,8 @@ $danger-color: #f44336;
         transition: background-color 0.3s ease;
         margin-top: 5px;
 
-
         &:hover {
-            background-color: darken($primary-color, 10%);
+          background-color: darken($primary-color, 10%);
         }
       }
     }
@@ -180,25 +194,25 @@ $danger-color: #f44336;
     overflow: hidden;
 
     .flight-board-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-      
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+
       thead {
         background-color: $primary-color;
-        
+
         th {
-            padding: 1rem;
-            color: white;
-            font-weight: 500;
-            white-space: nowrap;
+          padding: 1rem;
+          color: white;
+          font-weight: 500;
+          white-space: nowrap;
         }
       }
 
       tbody {
         tr {
-          border-bottom: 1px solid $border-color;
-          transition: $transition-default;
+          border-bottom: 1px solid $primary-color;
+          transition: $secondary-color;
 
           &:hover {
             background-color: rgba($primary-color, 0.02);
@@ -209,9 +223,9 @@ $danger-color: #f44336;
           }
 
           td {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
-            color: $text-primary;
+            color: #000000;
             font-size: 0.95rem;
             vertical-align: middle;
 
@@ -227,7 +241,7 @@ $danger-color: #f44336;
   .loading-text {
     @include flex-center;
     padding: 2rem;
-    color: $text-secondary;
+    color: $primary-color;
     font-size: 1rem;
   }
 }
@@ -236,18 +250,18 @@ $danger-color: #f44336;
 @media (max-width: 768px) {
   .flight-board-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 2rem;
     background-color: #f8fafc;
 
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1.5rem;
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
     }
+
     .flight-board-search {
-      padding: 1rem;
+      padding: 2rem;
 
       .search-form {
         .input-field {
@@ -263,23 +277,12 @@ $danger-color: #f44336;
 
     .flight-board-table-container {
       overflow-x: auto;
-      
+      -webkit-overflow-scrolling: touch;
+
       .flight-board-table {
         th, td {
-          padding: 0.75rem;
           font-size: 0.9rem;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .flight-board-container {
-    .flight-board-search {
-      .search-form {
-        .input-field {
-          flex: 1 1 100%;
+          white-space: nowrap;
         }
       }
     }
@@ -310,7 +313,7 @@ $danger-color: #f44336;
   left: -100%; // 시작 위치: 왼쪽 밖
   width: 100%;
   height: 100%;
-  background-color: #44ff93; // 호버 시 배경색
+  background-color: $secondary-color; // 호버 시 배경색
   transition: left 0.5s ease; // 슬라이드 효과
 }
 
@@ -319,97 +322,97 @@ $danger-color: #f44336;
 }
 
 .parking-banner p {
-  margin: 0;
-  color: #34495e; // 기본 텍스트 색상
-  font-weight: bold;
-  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+    margin-top: -0.2rem;
+    color: #34495e; // 기본 텍스트 색상
+    font-weight: bold;
+    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+    position: relative;
+    top: -7px;
 }
 
 .parking-banner .english-text {
   color: #7f8c8d; // 영어 텍스트 색상
+  position: relative;
+  top: -1px;
   font-size: 0.9rem;
   z-index: 1; // 텍스트가 배경 위에 보이도록 설정
 }
 
 .parking-banner img {
   margin-top: 10px;
-  width: 70x; // 아이콘 크기
+  width: 70px; // 아이콘 크기
   height: auto;
   z-index: 1; // 아이콘이 배경 위에 보이도록 설정
 }
 
-
-
 // 주차장 정보 스타일
 .parking-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 3rem;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    font-family: 'Inter', sans-serif;
-    transition: box-shadow 0.3s ease;
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-family: $font-primary;
+  transition: box-shadow 0.3s ease;
 
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-      
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
 
-      .title {
-        font-size: 2rem;
-        color: #2c3e50;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        margin-bottom: 1.2rem;
-      }
-
-      .subtitle {
-        font-size: 1.2rem;
-        color: #7f8c8d;
-      }
+    .title {
+      margin-top: -2.2rem;
+      font-size: 2rem;
+      color: $primary-color;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
     }
 
-/* 버튼들을 하나의 공간으로 묶은 스타일 */
+    .subtitle {
+      font-size: 1.2rem;
+      color: $primary-color;
+    }
+  }
+
+  /* 버튼들을 하나의 공간으로 묶은 스타일 */
 .selection-buttons-container {
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   padding: 2rem;
-  background-color: #f8f8f8;
+  background-color: $gray-light;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 터미널 버튼들 간격 조정 */
-.terminal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* 터미널 버튼들 간의 간격을 2rem로 설정 */
+/* 버튼 그룹의 공통 스타일: terminal-buttons와 parking-type-buttons 동일하게 설정 */
+.terminal-buttons,
+.parking-type-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* 버튼 간의 간격을 1rem로 설정 */
+  flex-wrap: wrap; /* 여러 줄로 버튼이 나올 수 있도록 설정 */
 }
-  
-  /* 주차장 버튼들 간격 조정 */
-  .parking-type-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* 주차장 버튼들 간의 간격을 2rem로 설정 */
-  }
 
 /* 버튼 기본 스타일 */
 .button {
   padding: 1.2rem 2rem;
   background-color: white;
-  color: #0078d7;
+  color: $primary-color;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 8px; /* 둥근 테두리 */
-  border: none; /* 테두리 없앰 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
   border: 2px solid #000000;
+  width: 200px; /* 버튼 너비를 일정하게 설정 */
+  height: 50px; /* 버튼 높이를 일정하게 설정 */
+  display: flex; /* 버튼 내 콘텐츠가 가로/세로로 중앙에 정렬되도록 설정 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
 /* 버튼 호버 효과 */
@@ -419,226 +422,209 @@ $danger-color: #f44336;
 
 /* 활성화된 버튼 스타일 */
 .button.active {
-  background-color: #0078d7;
+  background-color: $primary-color;
   color: white;
 }
 
-.loading,
-.error {
-  text-align: center;
-  padding: 2rem;
-  color: #7f8c8d;
-  font-size: 1.1rem;
-}
 
-.error {
-  color: #e74c3c;
-}
+  .loading,
+  .error {
+    text-align: center;
+    padding: 2rem;
+    color: $primary-color;
+    font-size: 1.1rem;
+  }
 
+  .error {
+    color: $error-color;
+  }
 
-/* .parking-levels 스타일 */
-.parking-levels {
+  /* .parking-levels 스타일 */
+  .parking-levels {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    background-color: #f9f9f9; /* 배경색 추가 */
+    background-color: $background-color; /* 배경색 추가 */
     border-radius: 8px; /* 둥근 테두리 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
     margin-top: 30px;
   }
 
-.parking-level {
-  background-color: white;
-  border: 1px solid #ecf0f1;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  border: 2px solid #000000;
-}
-
-.parking-level:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.parking-lot-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #34495e;
-  margin-bottom: 1.5rem;
-}
-
-.availability {
-  font-size: 1.1rem;
-  color: #7f8c8d;
-}
-
-.occupancy-bar-container {
-  width: 100%;
-  height: 20px;
-  background-color: #ecf0f1;
-  border-radius: 6px;
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.occupancy-bar {
-  height: 100%;
-  transition: width 0.3s ease, background-color 0.3s ease;
-  border-radius: 6px;
-}
-
-.occupancy-bar.danger {
-  background-color: #e74c3c;
-}
-
-.occupancy-bar.warning {
-  background-color: #f39c12;
-}
-
-.occupancy-bar.success {
-  background-color: #2ecc71;
-}
-
-.occupancy-rate {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #2980b9;
-  padding-left: 5px;
-}
-
-.parking-info {
-  margin-top: 1.5rem;
-
-  p {
-    margin: 0.75rem 0;
-    color: #7f8c8d;
-    font-size: 1rem;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
-
-    strong {
-      color: #34495e;
-      font-weight: bold;
-    }
-  }
-
-  .reservation-button {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    background-color: #2980b9;
-    color: white;
+  .parking-level {
+    background-color: white;
+    border: 1px solid #ecf0f1;
     border-radius: 8px;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid #000000;
+  }
 
-    &:hover {
-      background-color: #21618c;
+  .parking-level:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .parking-lot-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  .availability {
+    font-size: 1.1rem;
+    color: $primary-color;
+  }
+
+  .occupancy-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #ecf0f1;
+    border-radius: 6px;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .occupancy-bar {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 6px;
+  }
+
+  .occupancy-bar.danger {
+    background-color: #e74c3c;
+  }
+
+  .occupancy-bar.warning {
+    background-color: #f39c12;
+  }
+
+  .occupancy-bar.success {
+    background-color: #2ecc71;
+  }
+
+  .occupancy-rate {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2980b9;
+    padding-left: 5px;
+  }
+
+  .parking-info {
+    margin-top: 1.5rem;
+
+    p {
+      margin: 0.75rem 0;
+      color: $primary-color;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+
+      strong {
+        color: $primary-color;
+        font-weight: bold;
+      }
+    }
+
+    .reservation-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: #2980b9;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #21618c;
+      }
     }
   }
- }
 }
 
-  // 반응형 디자인
-  @media (max-width: 768px) {
-    .parking-container {
-      padding: 1rem;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .parking-container {
+    padding: 3rem;
 
-      .header .title {
-        font-size: 1.8rem;
+    .header .title {
+      font-size: 1.8rem;
+    }
+
+    /* terminal-buttons와 parking-type-buttons의 레이아웃 수정 */
+    .terminal-buttons,
+    .parking-type-buttons {
+      display: flex; /* flexbox를 사용하여 배치 */
+      justify-content: space-between; /* 버튼들이 가로로 배치되도록 설정 */
+      gap: 1rem; /* 버튼들 간의 간격을 설정 */
+      flex-wrap: wrap; /* 버튼이 화면에 맞게 줄 바꿈되도록 설정 */
+      width: 100%; /* 부모 컨테이너에 맞게 버튼들이 확장 */
+    }
+
+    /* 버튼 스타일 수정 */
+    .button {
+      flex: 1; /* 버튼들이 동일한 크기를 가질 수 있도록 설정 */
+      padding: 0.75rem 0.75rem; /* 버튼의 패딩을 줄여서 적절한 크기로 설정 */
+      box-sizing: border-box; /* 패딩을 포함한 크기 조정 */
+      font-size: 1rem; /* 폰트 크기 동일하게 설정 */
+      border-radius: 8px; /* 둥근 모서리 */
+      border: 2px solid #000; /* 테두리 설정 */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+      cursor: pointer; /* 클릭 가능한 커서 */
+      transition: background-color 0.3s ease; /* 호버 시 배경색 변화 */
+    }
+
+    /* 버튼 호버 효과 */
+    .button:hover {
+      background-color: rgba(41, 128, 185, 0.1); /* 호버 시 배경색 */
+    }
+
+    /* 활성화된 버튼 스타일 */
+    .button.active {
+      background-color: $primary-color; /* 활성화된 버튼 배경색 */
+      color: white; /* 활성화된 버튼 텍스트 색상 */
+    }
+
+    /* 주차장 항목 레이아웃 수정 */
+    .parking-levels {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 두 열로 표시 */
+      gap: 1rem; /* 간격 조정 */
+    }
+
+    /* 주차장 항목 스타일 수정 */
+    .parking-level {
+      padding: 0.3rem;
+      text-align: center; /* 텍스트 중앙 정렬 */
+
+      .parking-lot-name {
+        font-size: 0.9rem;
+        font-weight: bold;
       }
 
-      .terminal-buttons,
-      .parking-type-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-
-        .button {
-          width: 100%;
-          padding: 0.75rem 1rem;
-        }
+      .occupancy-rate {
+        font-size: 1rem;
+        color: #666;
       }
 
-      .parking-levels {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+      .parking-info p {
+        font-size: 0.9rem;
       }
 
-      .parking-level {
+      .reservation-button {
+        width: 100%;
         padding: 1rem;
-
-        .parking-lot-name {
-          font-size: 1.1rem;
-        }
-
-        .occupancy-rate {
-          font-size: 1rem;
-        }
-
-        .parking-info p {
-          font-size: 0.9rem;
-        }
-
-        .reservation-button {
-          width: 100%;
-        }
       }
     }
   }
-
-  @media (max-width: 480px) {
-    .parking-container {
-      padding: 1rem;
-
-      .header .title {
-        font-size: 1.5rem;
-      }
-
-      .terminal-buttons,
-      .parking-type-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-
-        .button {
-          width: 100%;
-          padding: 0.75rem 1rem;
-        }
-      }
-
-      .parking-levels {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .parking-level {
-        padding: 1rem;
-
-        .parking-lot-name {
-          font-size: 1.1rem;
-        }
-
-        .occupancy-rate {
-          font-size: 1rem;
-        }
-
-        .parking-info p {
-          font-size: 0.85rem;
-        }
-
-        .reservation-button {
-          width: 100%;
-        }
-      }
-    }
-  }
-
+}
 
   .shuttlebus-banner {
     display: flex;
@@ -704,7 +690,8 @@ $danger-color: #f44336;
   // 제목 스타일
   h2 {
     text-align: center;
-    color: $text-primary;
+    color: $primary-color;
+    margin-top: -2rem;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2rem;
@@ -724,31 +711,34 @@ $danger-color: #f44336;
     }
   }
 
- // 버스 섹션 스타일
-    .bus {
+  .scrollable {
+    max-height: 400px; /* 적절한 높이 설정 */
+    overflow-y: auto;  /* 스크롤 가능하도록 설정 */
+  }  
+
+  // 버스 섹션 스타일
+  .bus {
     background-color: white;
     border-radius: 1rem;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: $shadow-md;
-    transition: $transition-default;
-  
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
-  
+
     // 서브 제목 스타일
     h3 {
       color: $primary-color;
       font-size: 1.5rem;
-      font-weight: 600;
+      font-weight: 800;
       margin-bottom: 1.5rem;
       padding-bottom: 0.75rem;
       border-bottom: 2px solid rgba($primary-color, 0.2);
       text-align: center;  // 제목 가운데 정렬 추가
     }
-  
+
     // 테이블 스타일
     table {
       width: 100%;
@@ -757,12 +747,11 @@ $danger-color: #f44336;
       background-color: white;
       border-radius: 0.75rem;
       overflow: hidden;
-      box-shadow: $shadow-sm;
-  
+
       // 헤더 스타일
       thead {
         background-color: $primary-color;
-  
+
         th {
           padding: 1rem;
           color: white;
@@ -772,49 +761,107 @@ $danger-color: #f44336;
           letter-spacing: 0.5px;
           border: none;
           white-space: nowrap;
-  
+
           &:first-child {
             padding-left: 1.5rem;
           }
-  
+
           &:last-child {
             padding-right: 1.5rem;
           }
         }
       }
-  
+
       // 본문 스타일
       tbody {
         tr {
           transition: background-color 0.2s ease;
-  
+
           &:hover {
             background-color: rgba($primary-color, 0.05);
           }
-  
+
           &:not(:last-child) {
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $secondary-color;
           }
-  
+
           td {
             padding: 1rem;
             text-align: center;
-            color: $text-secondary;
+            color: $primary-color;
             font-size: 0.95rem;
             border: none;
-  
+
             &:first-child {
               padding-left: 1.5rem;
-              color: $text-primary;
+              color: $primary-color;
               font-weight: 500;
             }
-  
+
             &:last-child {
               padding-right: 1.5rem;
             }
+
           }
         }
       }
     }
   }
-}  
+
+  // 반응형 모바일 스타일
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .bus {
+      padding: 1.5rem;
+    }
+
+    // 테이블 스타일 - 모바일
+    table {
+      width: 100%;
+      border-collapse: collapse; // 셀들이 한 줄로 정렬되도록 collapse 사용
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; // 모바일 스크롤 부드럽게
+
+      thead {
+        th {
+          padding: 0.75rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      tbody {
+        tr {
+          display: table-row;
+          width: 100%;
+        }
+
+        td {
+          display: table-cell;
+          text-align: center; // 텍스트 가운데 정렬
+          padding: 1rem;
+          font-size: 0.95rem;
+          color: $primary-color;
+          min-width: 100px;  // 최소 너비 설정
+
+          &:first-child {
+            padding-left: 1.5rem;
+            font-weight: 500;
+          }
+
+          &:last-child {
+            padding-right: 1.5rem;
+          }
+        }
+
+        &:hover {
+          background-color: rgba($primary-color, 0.05);
+        }
+      }
+    }
+  }
+}

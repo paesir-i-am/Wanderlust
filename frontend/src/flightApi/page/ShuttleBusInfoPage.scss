@@ -1,0 +1,202 @@
+@import "../../core.scss";  // core.scss 가져오기
+
+/* 페이지 전체 스타일 */
+.shuttlebus-info-page {
+  max-width: 1500px;
+  margin: 4.5rem 0 0 9.2rem;  // 위쪽 여백을 1rem으로 설정하여 위로 올림
+  padding: 2rem;
+  font-family: $font-primary;
+  color: $primary-color;
+  display: flex;  // 수평 배치
+  flex-direction: row;  // 가로 배치
+  align-items: flex-start;  // 세로로 정렬
+  gap: 2rem;  // 항목들 간의 간격 설정
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 2rem;  // 아래 여백을 줄여서 더 위로 올라오게 설정
+    font-weight: 600;
+    font-size: 24px;
+    flex: 1;  // h2 텍스트가 왼쪽에 배치되도록 설정
+  }
+
+  /* 선택된 정보 표시 - 오른쪽 영역 */
+  .selected-info {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 3.25rem;
+    border: 1px solid rgba($secondary-color, 0.2);
+    flex: 3;  // 오른쪽 영역에 충분한 공간을 할당
+    gap: 4.5rem;  // 텍스트와 버튼 간격 추가
+    white-space: nowrap;
+
+    /* 버튼 영역 */
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;  // 글씨 크기 줄이기
+    margin: 0.5rem 0;
+    color: black;
+    line-height: 1.5;
+  }
+
+  /* 버튼 스타일 */
+  .button {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    background-color: #f4f4f4;
+    color: $primary-color;
+    border: 1px solid rgba($secondary-color, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.1);
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: white;
+      border-color: $primary-color;
+    }
+  }
+
+  /* 조회하기 버튼 스타일 */
+  .search-button-container {
+    width: 100%;
+    margin-top: 0rem;
+  }
+
+  .search-button {
+    padding: 0.75rem 2rem;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+/* 주차장 정보 조회 배너 스타일링 */
+.shuttlebus-info-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4; /* 기본 배경색 */
+  width: 200px; /* 배너 크기 */
+  height: 150px; /* 배너 크기 */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  position: relative; /* 애니메이션을 위한 상대 위치 */
+  overflow: hidden; /* 배경 색이 밖으로 나가지 않도록 처리 */
+  flex-shrink: 0;
+  transition: transform 0.3s ease; /* 배너 크기 조절 시 효과 */
+  margin-right: -1.5rem;
+}
+
+/* 주차장 정보 조회 텍스트 스타일 */
+.shuttlebus-info-banner p {
+  margin: 0;
+  color: $primary-color; /* 기본 텍스트 색상 */
+  font-weight: bold;
+  z-index: 1; /* 텍스트가 배경 위에 보이도록 설정 */
+  text-decoration: none;
+  font-size: 1.5rem; /* 텍스트 크기 설정 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  margin: 1rem;
+  padding: 1rem;
+
+  flex-direction: column;  /* 모바일에서는 세로 배치로 변경 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+
+  h2 {
+    margin-bottom: 1rem;  /* 제목 아래 여백 줄이기 */
+  }
+
+  .selected-info {
+    display: flex;
+    flex-direction: column;  /* 세로 배치로 변경 */
+    gap: 2rem;  /* 간격 조정 */
+  }
+
+  .button {
+    width: 50%;  /* 버튼을 100%로 꽉 차게 만들기 */
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .search-button {
+    width: 100%;  /* 조회 버튼도 100%로 변경 */
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+
+  .shuttlebus-info-banner {
+    width: 100%;
+    height: 100px;  /* 배너 크기 조정 */
+    margin-right: 0;
+    margin-bottom: 1rem;  /* 배너와 다른 항목 간의 여백 설정 */
+  }
+}
+
+@media (max-width: 576px) {
+  margin: 1rem;
+  padding: 1rem;
+  width: 100%; // 화면에 꽉 차게 수정
+    max-width: 100%; // 최대 너비 100%로 설정
+
+  .selected-info {
+    display: flex;
+    flex-direction: column; /* 세로 배치로 변경 */
+    gap: 1rem;
+    margin-top: -2rem;
+    width: 100%; // 화면에 꽉 차게 수정
+    max-width: 100%; // 최대 너비 100%로 설정
+  }
+
+  h2 {
+    font-size: 20px;  /* 화면 크기가 작을 경우 제목 폰트 크기 줄이기 */
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;  /* 버튼 크기 더 작게 조정 */
+  }
+
+  .search-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8rem;  /* 검색 버튼 크기 줄이기 */
+  }
+
+  .shuttlebus-info-banner {
+    width: 98%;
+    height: 80px;  /* 배너 크기 더 작게 설정 */
+    margin-right: 0;
+    margin-bottom: 1rem;  /* 배너 아래 여백 조정 */
+  }
+}
+}

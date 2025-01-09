@@ -1,12 +1,14 @@
+@import "../../../core.css";
+
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    gap: 5px;
+    gap: 6px;
     
     .pagination-button {
-      padding: 8px 12px;
+      padding: 8px 8px;
       border: 1px solid #ddd;
       background-color: white;
       cursor: pointer;

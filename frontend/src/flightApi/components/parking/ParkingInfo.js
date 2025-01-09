@@ -1,7 +1,9 @@
+// ParkingInfo.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';  // URLSearchParams 사용을 위한 useLocation
 import '../scss/AirportApi.scss'; // SCSS 스타일 파일
-import BasicLayout from '../../../common/layout/basicLayout/BasicLayout';
+import BasicLayout from "../../../common/layout/basicLayout/BasicLayout";  // 상대경로 확인
 
 const ParkingInfo = () => {
     const [parkingData, setParkingData] = useState([]); // 주차 데이터 상태
@@ -13,6 +15,18 @@ const ParkingInfo = () => {
 
     const API_KEY = process.env.REACT_APP_API_KEY;
     const ENDPOINT = 'http://apis.data.go.kr/B551177/StatusOfParking/getTrackingParking';
+
+    // URL 파라미터에서 터미널과 주차장 유형을 추출 (초기 값으로만 사용)
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const initialTerminal = queryParams.get('terminal') || 'T1';
+    const initialParkingType = queryParams.get('parkingType') || 'short';
+
+    // URL로 받은 초기값을 상태로 설정
+    useEffect(() => {
+        setSelectedTerminal(initialTerminal);
+        setSelectedParkingType(initialParkingType);
+    }, [initialTerminal, initialParkingType]);
 
     // API 호출 함수 (페이지 번호를 인자로 받아서 데이터를 가져옴)
     const fetchParkingData = async (pageNo) => {
@@ -117,14 +131,14 @@ const ParkingInfo = () => {
 
     return (
         <BasicLayout>
-        <div className="parking-container">
-            {/* 헤더 */}
-            <header className="header">
-                <h1 className="title">공항 주차장 조회</h1>
-            </header>
-                {/* 터미널 선택 및 주차장 유형 선택 */}
+            <div className="parking-container">
+                {/* 헤더 */}
+                <header className="header">
+                    <h1 className="title">공항 주차장 조회</h1>
+                </header>
+
+                {/* 터미널 선택 및 주차장 유형 선택 버튼 */}
                 <div className="selection-buttons-container">
-                    {/* 터미널 선택 */}
                     <div className="terminal-buttons">
                         {['T1', 'T2'].map((terminal) => (
                             <button
@@ -137,7 +151,6 @@ const ParkingInfo = () => {
                         ))}
                     </div>
 
-                    {/* 주차장 유형 선택 */}
                     <div className="parking-type-buttons">
                         {['short', 'long'].map((type) => (
                             <button
@@ -151,49 +164,48 @@ const ParkingInfo = () => {
                     </div>
                 </div>
 
+                {/* 로딩 */}
+                {loading && <div className="loading">데이터를 불러오는 중...</div>}
 
-            {/* 로딩 */}
-            {loading && <div className="loading">데이터를 불러오는 중...</div>}
+                {/* 에러 */}
+                {error && <div className="error">{error}</div>}
 
-            {/* 에러 */}
-            {error && <div className="error">{error}</div>}
-
-            {/* 주차 데이터 */}
-            <div className="parking-levels">
-                {filteredParkingData.length === 0 ? (
-                    <p>선택한 조건에 맞는 주차장이 없습니다.</p>
-                ) : (
-                    filteredParkingData.map((item, index) => (
-                        <div key={index} className="parking-level">
-                            <span className="parking-lot-name">
-                                {item.floor || '알 수 없음'} {/* 주차장 층 */}
-                            </span>
-                            <div className="availability">
-                            <div className="occupancy-bar-container">
-                                <div
-                                className={`occupancy-bar ${getStatusColor(item.parking, item.parkingarea)}`}
-                                style={{
-                                    width: `${(parseInt(item.parking) / parseInt(item.parkingarea)) * 100}%`,
-                                }}
-                                ></div>
-                                <span className="occupancy-rate">
-                                {item.parkingarea
-                                    ? `${((parseInt(item.parking) / parseInt(item.parkingarea)) * 100).toFixed(0)}%`
-                                    : '0%'}
+                {/* 주차 데이터 */}
+                <div className="parking-levels">
+                    {filteredParkingData.length === 0 ? (
+                        <p>선택한 조건에 맞는 주차장이 없습니다.</p>
+                    ) : (
+                        filteredParkingData.map((item, index) => (
+                            <div key={index} className="parking-level">
+                                <span className="parking-lot-name">
+                                    {item.floor || '알 수 없음'}
                                 </span>
+                                <div className="availability">
+                                    <div className="occupancy-bar-container">
+                                        <div
+                                            className={`occupancy-bar ${getStatusColor(item.parking, item.parkingarea)}`}
+                                            style={{
+                                                width: `${(parseInt(item.parking) / parseInt(item.parkingarea)) * 100}%`,
+                                            }}
+                                        ></div>
+                                        <span className="occupancy-rate">
+                                            {item.parkingarea
+                                                ? `${((parseInt(item.parking) / parseInt(item.parkingarea)) * 100).toFixed(0)}%`
+                                                : '0%'}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="parking-info">
+                                    <p><strong>총 주차면적:</strong> {item.parkingarea || '0'}</p>
+                                    <p><strong>주차된 차량 수:</strong> {item.parking || '0'}</p>
+                                    <p><strong>남은 주차 공간:</strong> {calculateAvailableSpaces(item.parking, item.parkingarea)}</p>
+                                    <p><strong>실시간 주차 현황:</strong> {formatDate(item.datetm) || '알 수 없음'}</p>
+                                </div>
                             </div>
-                            </div>
-                            <div className="parking-info">
-                            <p><strong>총 주차면적:</strong> {item.parkingarea || '0'}</p>
-                            <p><strong>주차된 차량 수:</strong> {item.parking || '0'}</p>
-                                <p><strong>남은 주차 공간:</strong> {calculateAvailableSpaces(item.parking, item.parkingarea)}</p>
-                                <p><strong>실시간 주차 현황:</strong> {formatDate(item.datetm) || '알 수 없음'}</p>
-                            </div>
-                        </div>
-                    ))
-                )}
+                        ))
+                    )}
+                </div>
             </div>
-        </div>
         </BasicLayout>
     );
 };
