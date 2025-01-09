@@ -1,0 +1,114 @@
+@import "../../core";
+
+.notification-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    background: #fff;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    overflow-y: auto;
+    max-height: 80%;
+
+    h2 {
+      font-size: 1.5rem;
+      margin: -5px 0 20px 0;
+      color: #333;
+    }
+
+    .notification-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eaeaea;
+
+      &.read {
+        background-color: #f8f9fa;
+      }
+
+      &.unread {
+        background-color: #ffffff;
+      }
+
+      p {
+        flex: 1;
+        margin: 0;
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .notification-item__actions {
+        display: flex;
+        gap: 10px;
+
+        button {
+          padding: 5px 10px;
+          font-size: 0.9rem;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &.mark-as-read-button {
+            background-color: $secondary-color !important;
+            color: #fff;
+
+            &:hover {
+              background-color: darken($secondary-color, 10%) !important;
+            }
+          }
+
+          &.delete-button {
+            background-color: #dc3545 !important;
+            color: #fff;
+
+            &:hover {
+              background-color: #a71d2a !important;
+            }
+          }
+        }
+      }
+    }
+
+    .notification-modal__close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: $primary-color !important;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background: darken($primary-color, 10%) !important;
+      }
+    }
+  }
+}
