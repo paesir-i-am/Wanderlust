@@ -132,7 +132,7 @@ const BasicLayout = ({ children }) => {
             <div className="basic-layout__icons icons desktop-only">
               <div
                 className="basic-layout__notification-wrapper"
-                style={{ position: "relative", zIndex: 9999 }}
+                style={{ position: "relative" }}
               >
                 <NotificationIcon
                   unreadCount={unreadCount}
