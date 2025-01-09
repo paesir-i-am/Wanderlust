@@ -35,14 +35,16 @@
     }
   }
 
-  .use-email{
+  .use-email {
     margin-bottom: 1rem;
   }
 
-  .email-check {
+  .email-check,
+  .nickname-check {
     display: flex;
     align-items: baseline;
     gap: 10px;
+    margin-bottom: 0.1rem;
 
     input {
       flex: 1;
@@ -52,6 +54,11 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       box-sizing: border-box;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
     }
 
     button {
@@ -63,10 +70,15 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
 
       &:disabled {
         background-color: #d3d3d3;
         cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: darken($primary-color, 10%);
       }
     }
   }
@@ -81,10 +93,11 @@
 
     &:focus {
       border-color: $primary-color;
+      outline: none;
     }
   }
 
-  .warning{
+  .warning {
     color: red;
     font-size: 0.8rem;
     text-align: right;

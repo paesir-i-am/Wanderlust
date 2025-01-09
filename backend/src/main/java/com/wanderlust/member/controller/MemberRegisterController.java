@@ -13,6 +13,7 @@ package com.wanderlust.member.controller;
  * 24. 12. 20.오후 5:27  paesir      최초 생성
  * 24. 12. 20.오후 5:58  paesir      회원가입 메서드 생성
  */
+import com.wanderlust.community.service.ProfileService;
 import com.wanderlust.member.dto.MemberModifyDTO;
 import com.wanderlust.member.dto.MemberRegisterDTO;
 import com.wanderlust.member.entity.Member;
@@ -34,6 +35,7 @@ import java.util.Map;
 public class MemberRegisterController {
   private final MemberService memberService;
   private final MemberRepository memberRepository;
+  private final ProfileService profileService;
 
   @PostMapping("/register")
   public ResponseEntity<String> register(@RequestBody @Valid MemberRegisterDTO member) {
@@ -56,6 +58,12 @@ public class MemberRegisterController {
   public ResponseEntity<Boolean> checkEmailDuplicate(@RequestParam("email") String email) {
     boolean isDuplicate = memberService.isEmailDuplicate(email);
       return ResponseEntity.ok(isDuplicate);
+  }
+
+  @GetMapping("/checkNickname")
+  public ResponseEntity<Boolean> checkNicknameDuplicate(@RequestParam("nickname") String nickname) {
+    boolean isNicknameDuplicate = memberService.isNicknameDuplicate(nickname);
+    return ResponseEntity.ok(isNicknameDuplicate);
   }
 
   @PutMapping("/modify")

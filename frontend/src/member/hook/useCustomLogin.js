@@ -1,6 +1,6 @@
 import { useNavigate, Navigate, createSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
+import loginSlice, {
   loginPostAsync,
   logout,
   loginSuccess,
@@ -23,7 +23,7 @@ export const useCustomLogin = () => {
   }, [dispatch]);
 
   const isLogin = Boolean(
-    loginState.accessToken || getCookie("member")?.accessToken,
+    loginSlice.accessToken || getCookie("member")?.accessToken,
   );
 
   // 팝업 창 관리

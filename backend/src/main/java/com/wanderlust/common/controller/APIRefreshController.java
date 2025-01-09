@@ -72,10 +72,10 @@ public class APIRefreshController {
         // Refresh Token 검증
         Map<String, Object> claims = JWTUtil.validateToken(refreshToken);
 
-        String newAccessToken = JWTUtil.generateToken(claims, 60 * 24);
+        String newAccessToken = JWTUtil.generateToken(claims, 1440);
 
         String newRefreshToken = checkTime((Integer) claims.get("exp"))
-            ? JWTUtil.generateToken(claims, 60 * 24 * 30)
+            ? JWTUtil.generateToken(claims, 43200)
             : refreshToken;
 
         return Map.of("accessToken", newAccessToken, "refreshToken", newRefreshToken);

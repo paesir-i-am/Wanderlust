@@ -29,10 +29,12 @@
       color: #333;
       font-weight: bold;
     }
+    
     span {
       font-size: 16px;
       color: #0056b3;
     }
+
     p {
       font-size: 14px;
       color: #555;
@@ -130,14 +132,12 @@
           margin-bottom: 16px;
           gap: 12px;
         }
-
         .airline-info {
           text-align: left;
           font-size: 18px;
           font-weight: bold;
           color: #0056b3;
           min-width: 150px;
-
           @media (max-width: 768px) {
             font-size: 16px;
             min-width: auto;
@@ -162,7 +162,6 @@
               gap: 8px;
               margin-bottom: 8px;
             }
-
             .time,
             .time2 {
               font-size: 14px;
@@ -194,7 +193,6 @@
               width: 20px;
               height: 20px;
               margin: 0 5px;
-
               @media (max-width: 768px) {
                 width: 16px;
                 height: 16px;
@@ -248,7 +246,6 @@
               width: auto;
               padding: 8px 16px;
             }
-
             &:hover {
               background-color: #003d80;
             }

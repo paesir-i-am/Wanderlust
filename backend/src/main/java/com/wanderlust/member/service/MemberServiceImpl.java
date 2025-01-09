@@ -15,6 +15,8 @@ package com.wanderlust.member.service;
  */
 
 
+import com.wanderlust.community.entity.Profile;
+import com.wanderlust.community.service.ProfileService;
 import com.wanderlust.member.dto.MemberModifyDTO;
 import com.wanderlust.member.dto.MemberRegisterDTO;
 import com.wanderlust.member.entity.Member;
@@ -32,6 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ProfileService profileService;
 
 
     @Override
@@ -40,12 +43,22 @@ public class MemberServiceImpl implements MemberService {
         if (memberRepository.existsByEmail(memberRegisterDTO.getEmail())) {
             throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
         }
+        if(memberRepository.existsByNickname(memberRegisterDTO.getNickname())) {
+            throw new IllegalArgumentException("이미 사용 중인 닉네임입니다.");
+        }
 
         String encodePw = passwordEncoder.encode(memberRegisterDTO.getPw());
 
         Member member = dtoToEntity(memberRegisterDTO, encodePw);
 
+        Profile profile = Profile.builder()
+                .email(memberRegisterDTO.getEmail())
+                    .nickname(memberRegisterDTO.getNickname())
+                        .build();
+
+        member.setProfile(profile);
         memberRepository.save(member);
+
     }
 
 
@@ -76,4 +89,8 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.existsByEmail(email);
     }
 
+    @Override
+    public boolean isNicknameDuplicate(String nickname) {
+        return memberRepository.existsByNickname(nickname);
+    }
 }

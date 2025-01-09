@@ -7,6 +7,7 @@ import FlightSearch from "../../flight/components/FlightSearch"; // FlightSearch
 import FlightList from "../../flight/components/FlightList"; // FlightList 컴포넌트
 import PaymentPage from "../../payment/components/PaymentPage"; // PaymentPage 컴포넌트
 
+
 const Loading = () => <div>Loading...</div>; // JSX로 수정
 
 const root = createBrowserRouter([

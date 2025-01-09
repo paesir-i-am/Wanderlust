@@ -131,12 +131,15 @@ img {
 .register-form .use-email {
   margin-bottom: 1rem;
 }
-.register-form .email-check {
+.register-form .email-check,
+.register-form .nickname-check {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  margin-bottom: 0.1rem;
 }
-.register-form .email-check input {
+.register-form .email-check input,
+.register-form .nickname-check input {
   flex: 1;
   height: 45px;
   padding: 0.5rem;
@@ -145,7 +148,13 @@ img {
   border-radius: 5px;
   box-sizing: border-box;
 }
-.register-form .email-check button {
+.register-form .email-check input:focus,
+.register-form .nickname-check input:focus {
+  border-color: #228B22;
+  outline: none;
+}
+.register-form .email-check button,
+.register-form .nickname-check button {
   height: 45px;
   padding: 0 1rem;
   font-size: 1rem;
@@ -154,10 +163,16 @@ img {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.register-form .email-check button:disabled {
+.register-form .email-check button:disabled,
+.register-form .nickname-check button:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
+}
+.register-form .email-check button:hover:not(:disabled),
+.register-form .nickname-check button:hover:not(:disabled) {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
 .register-form input {
   width: 100%;
@@ -169,6 +184,7 @@ img {
 }
 .register-form input:focus {
   border-color: #228B22;
+  outline: none;
 }
 .register-form .warning {
   color: red;

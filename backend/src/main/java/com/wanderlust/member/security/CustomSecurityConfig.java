@@ -61,7 +61,7 @@ public class CustomSecurityConfig {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .authorizeRequests(auth -> auth
-                .requestMatchers("/community/posts", "/member").permitAll() // 공개 경로
+                .requestMatchers("/community", "/member","/notification").permitAll() // 공개 경로
                 .requestMatchers("/member/profile", "/admin/**").authenticated() // 보호 경로
                 .anyRequest().permitAll() // 기타 요청은 허용
             );

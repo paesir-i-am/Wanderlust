@@ -9,6 +9,7 @@ import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 const FlightList = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const [data, setData] = useState([]);
   const [groupedData, setGroupedData] = useState([]);
   const [airlines, setAirlines] = useState([]);
@@ -158,6 +159,7 @@ const FlightList = () => {
     }
   }, [location.state]);
 
+
   const handleSelect = (group) => {
     const adultFare = parseInt(group.departure.fareDetail.adultFare, 10) || 0;
     const childFare = parseInt(group.departure.fareDetail.childFare, 10) || 0;
@@ -179,6 +181,7 @@ const FlightList = () => {
       },
     });
   };
+
 
   const getFilteredAndSortedData = () => {
     const filteredData = groupedData.filter((group) => {
@@ -255,6 +258,7 @@ const FlightList = () => {
             {searchInfo.passengers || "승객 정보 없음"}
           </p>
         </div>
+
         <div className="list-content">
           <div className="filter-sidebar">
             <FlightFilter
@@ -338,6 +342,7 @@ const FlightList = () => {
                             searchInfo.infant
                       )}{" "}
                       ~
+
                     </p>
                   ) : (
                     <p className="price one-way">

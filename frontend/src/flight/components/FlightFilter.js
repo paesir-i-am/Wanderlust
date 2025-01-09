@@ -62,6 +62,7 @@ const FlightFilter = ({ filters, onFilterChange, airlines = [] }) => {
         )}
       </div>
 
+
      {/* 최적가 필터 */}
 <div className="filter-section lowest-fare">
   <h3

@@ -1,0 +1,87 @@
+@import "../../../../core";
+
+.post-form {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &__nickname {
+    font-weight: bold;
+    font-size: 1rem;
+    color: $primary-color;
+  }
+
+  &__container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  &__textarea {
+    flex: 2; /* 텍스트 영역 너비 비율 */
+    height: 150px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid $gray-light;
+    font-family: $font-primary;
+    resize: none;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  &__image-upload {
+    flex: 1;
+    height: 150px;
+    border: 2px dashed $gray-light;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: $gray-light;
+
+    &:hover {
+      background-color: lighten($gray-light, 20%);
+    }
+
+    &__image-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .post-form__placeholder {
+      color: $gray-dark;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+
+  &__submit {
+    padding: 0.8rem 1.5rem;
+    width: 200px;
+    margin: 0 0 0 auto;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}

@@ -111,7 +111,7 @@ img {
   position: fixed;
   width: 100%;
   top: 0;
-  height: 350px;
+  height: 280px;
   background: url("/public/header-backgroung.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
@@ -122,7 +122,7 @@ img {
   display: none;
 }
 .basic-layout .header-fixed .header-overlay {
-  height: 350px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   padding: 1rem 4rem;
@@ -184,14 +184,48 @@ img {
   .basic-layout .header-fixed .header-overlay .header-top {
     flex-direction: column;
   }
-  .basic-layout .header-fixed .header-overlay .header-top .searchbar {
+  .basic-layout .header-fixed .header-overlay .header-top .logo img {
+    height: 100px;
+  }
+  .basic-layout .header-fixed .header-overlay .header-top .searchbar.desktop-only {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    background-color: #e9ecef;
+    width: 100%;
+    height: 37px !important;
+    padding: 0 1rem;
+    margin-top: 1.6rem;
+  }
+  .basic-layout .header-fixed .header-overlay .header-top .icons.desktop-only {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    padding: 0.5rem;
+  }
+  .basic-layout .header-fixed .header-overlay .header-top .searchbar.mobile-only {
+    display: flex;
     width: 100%;
     margin-top: 1rem;
+  }
+  .basic-layout .header-fixed .header-overlay .header-top .search-buttons.mobile-only {
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+  }
+  .basic-layout .header-fixed .header-overlay .header-top .search-buttons.mobile-only img {
+    padding: 0.1rem;
+    display: block;
+    width: 30px;
+    height: 30px;
   }
 }
 @media (max-width: 576px) {
   .basic-layout .header-fixed .header-overlay .header-top {
     flex-direction: column;
+    height: 180px;
   }
   .basic-layout .header-fixed .header-overlay .header-top .searchbar.desktop-only {
     display: none;
@@ -219,10 +253,14 @@ img {
   }
 }
 .basic-layout .header-fixed .header-overlay .nav {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  margin: 5rem 0 0 18rem;
+  gap: 1.2rem;
 }
 .basic-layout .header-fixed .header-overlay .nav a {
   color: #fff;
@@ -233,6 +271,15 @@ img {
 }
 .basic-layout .header-fixed .header-overlay .nav a:hover {
   text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .basic-layout .header-fixed .header-overlay .nav {
+    gap: 0.5rem;
+    margin: 2rem 0 0 0;
+  }
+  .basic-layout .header-fixed .header-overlay .nav a {
+    font-size: 1.4rem;
+  }
 }
 @media (max-width: 576px) {
   .basic-layout .header-fixed .header-overlay .nav {
@@ -306,6 +353,19 @@ img {
 .basic-layout .header-fixed .search .search-container .fields button:hover {
   background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
+@media (max-width: 768px) {
+  .basic-layout .header-fixed .search {
+    max-width: 750px !important;
+    margin-top: -0.5rem;
+    padding: 0.5rem;
+  }
+  .basic-layout .header-fixed .search .search-container {
+    max-width: 750px !important;
+  }
+  .basic-layout .header-fixed .search .search-container .flight-fields {
+    max-width: 600px !important;
+  }
+}
 @media (max-width: 576px) {
   .basic-layout .header-fixed .search {
     margin-top: -9rem;
@@ -318,14 +378,14 @@ img {
   }
 }
 .basic-layout .content {
-  margin-top: 470px;
+  margin-top: 350px;
   flex: 1;
   overflow-y: auto;
   padding: 2rem;
 }
 @media (max-width: 576px) {
   .basic-layout .content {
-    margin-top: 25rem;
+    margin-top: 9rem;
     padding: 1rem;
   }
 }
@@ -365,6 +425,11 @@ img {
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1100;
 }
+@media (min-width: 768px) {
+  .basic-layout .bottom-nav .menu-modal {
+    display: none;
+  }
+}
 .basic-layout .bottom-nav .menu-modal a {
   display: block;
   margin: 0.5rem 0;
@@ -374,6 +439,14 @@ img {
 }
 .basic-layout .bottom-nav .menu-modal a:hover {
   color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .basic-layout .header-fixed {
+    height: 150px;
+  }
+  .basic-layout .header-fixed .header-overlay {
+    height: 150px;
+  }
 }
 
 /*# sourceMappingURL=basicLayout.css.map */

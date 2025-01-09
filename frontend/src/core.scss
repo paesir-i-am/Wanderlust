@@ -2,11 +2,12 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 // 1. SCSS 변수 설정
-$primary-color: #228b22; // 메인 색상
-$secondary-color: #44ff93; // 보조 색상
-$background-color: #f8f9fa; // 기본 배경
-$gray-light: #e9ecef; // 라이트 그레이
-$gray-dark: #adb5bd; // 다크 그레이
+$primary-color: #228B22;     // 메인 색상
+$secondary-color: #44FF93;   // 보조 색상
+$background-color: #f8f9fa;  // 기본 배경
+$gray-light: #e9ecef;        // 라이트 그레이
+$gray-dark: #adb5bd;         // 다크 그레이
+$error-color:red;
 
 // 폰트 설정
 $font-primary: "Apple SD Gothic Neo", sans-serif;

@@ -20,7 +20,6 @@ import com.wanderlust.community.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
 
@@ -29,9 +28,11 @@ public interface PostService {
 
   Page<PostResponseDTO> getPosts(PageRequest pageRequest);
 
-  PostResponseDTO updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException;
+  void updatePost(Long id, PostRequestDTO requestDto, MultipartFile image) throws IOException;
 
   void deletePost(Long id);
+
+  Page<PostResponseDTO> getPostsByAuthor(String authorNickname, PageRequest pageRequest);
 
   Post dtoToEntity(PostRequestDTO requestDto, String imageUrl);
 
