@@ -1,140 +1,218 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
 import FlightSearch from "../../../flight/components/FlightSearch";
 import NotificationIcon from "../../../notification/component/NotificationIcon";
 import NotificationDropdown from "../../../notification/component/NotificationDropdown";
+import {
+  fetchUnreadNotifications,
+  markAsRead,
+} from "../../../notification/api/notificationApi";
+import { useSelector } from "react-redux";
 
 const BasicLayout = ({ children }) => {
-  const [activeOption, setActiveOption] = useState("왕복"); // 초기 활성화 상태
-  const [menuActive, setMenuActive] = useState(false); // 모바일 메뉴 상태
-  const [showSearch, setShowSearch] = useState(false); // 모바일 검색창 상태
+  const [activeOption, setActiveOption] = useState("왕복");
+  const [menuActive, setMenuActive] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [showFlightSearch, setShowFlightSearch] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [notifications, setNotifications] = useState([]);
 
   const { isLogin, moveToLogin, doLogout, moveToPath, doLoginPopup } =
     useCustomLogin();
+  const recipientNickname = useSelector((state) => state.loginSlice.nickname);
 
-  const [showDropdown, setShowDropdown] = useState(false);
-  const handleNotificationClick = () => setShowDropdown((prev) => !prev);
+  const toggleFlightSearch = () => {
+    setShowFlightSearch((prev) => !prev);
+  };
+
+  const handleMarkAsRead = async (id) => {
+    try {
+      await markAsRead(id);
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, isRead: true } : n)),
+      );
+      setUnreadCount((prev) => prev - 1);
+    } catch (error) {
+      console.error("Failed to mark notification as read:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isLogin) return;
+
+    const fetchNotifications = async () => {
+      try {
+        const unread = await fetchUnreadNotifications(recipientNickname);
+        setUnreadCount(unread.length);
+        setNotifications(unread);
+      } catch (error) {
+        console.error("Failed to fetch notifications:", error);
+      }
+    };
+
+    fetchNotifications();
+  }, [recipientNickname]);
+
+  const handleShowDropdown = async () => {
+    try {
+      const unread = await fetchUnreadNotifications(recipientNickname);
+      setNotifications(unread);
+      setUnreadCount(unread.length);
+      setShowDropdown((prev) => !prev);
+    } catch (error) {
+      console.error("Failed to fetch unread notifications:", error);
+    }
+  };
 
   return (
     <div className="basic-layout">
-      {/* 상단 헤더 */}
-      <header className="header-fixed">
-        <div className="header-overlay">
-          <div className="header-top">
-            <div className="logo">
+      {/*상단 헤더*/}
+      <header className="basic-layout__header header-fixed">
+        <div className="basic-layout__header-overlay header-overlay">
+          <div className="basic-layout__header-top header-top">
+            <div className="basic-layout__logo logo">
               <Link to="/">
-                <img src="/wanderlustHeadLogo.svg" alt="Wanderlust Logo" />
+                <img
+                  src="/wanderlustHeadLogo.svg"
+                  alt="Wanderlust Logo"
+                  className="basic-layout__logo-img"
+                />
               </Link>
             </div>
 
-            {/* 데스크탑 검색창 */}
-            <div className="searchbar desktop-only">
+            {/*데스크탑 검색창*/}
+            <div className="basic-layout__searchbar searchbar desktop-only">
               <input
                 type="text"
                 placeholder="Search your Memory, will craft moments of now Ones.."
-                className="search-input"
+                className="basic-layout__search-input search-input"
               />
-              <div className="search-buttons">
-                <button>
-                  <img src="/icons/picturSearchIcon.svg" alt="PictureSearch" />
+              <div className="basic-layout__search-buttons search-buttons">
+                <button className="basic-layout__search-button">
+                  <img
+                    src="/icons/picturSearchIcon.svg"
+                    alt="PictureSearch"
+                    className="basic-layout__search-icon"
+                  />
                 </button>
-                <button>
-                  <img src="/icons/searchIcon.svg" alt="Search" />
+                <button className="basic-layout__search-button">
+                  <img
+                    src="/icons/searchIcon.svg"
+                    alt="Search"
+                    className="basic-layout__search-icon"
+                  />
                 </button>
               </div>
             </div>
 
-            {/* 모바일/태블릿 검색창 */}
+            {/*모바일 검색창*/}
             {showSearch && (
-              <div className="searchbar mobile-only">
+              <div className="basic-layout__searchbar-mobile searchbar mobile-only">
                 <input
                   type="text"
-                  className="search-input"
+                  className="basic-layout__search-input-mobile search-input"
                   placeholder="Search your Memory, will craft moments of now Ones.."
                 />
-                <div className="search-buttons mobile-only">
-                  <button>
-                    <img src="/icons/searchIcon.svg" alt="검색" />
+                <div className="basic-layout__search-buttons-mobile search-buttons mobile-only">
+                  <button className="basic-layout__search-button">
+                    <img
+                      src="/icons/searchIcon.svg"
+                      alt="검색"
+                      className="basic-layout__search-icon"
+                    />
                   </button>
                 </div>
               </div>
             )}
 
-            {/* 아이콘 버튼 */}
-            <div className="icons desktop-only">
-              <div style={{ position: "relative", zIndex: 9999 }}>
-                <NotificationIcon onClick={handleNotificationClick} />
+            {/*아이콘*/}
+            <div className="basic-layout__icons icons desktop-only">
+              <div
+                className="basic-layout__notification-wrapper"
+                style={{ position: "relative", zIndex: 9999 }}
+              >
+                <NotificationIcon
+                  unreadCount={unreadCount}
+                  onClick={handleShowDropdown}
+                />
                 {showDropdown && (
                   <NotificationDropdown
-                    onClose={() => setShowDropdown(false)}
+                    notifications={notifications}
+                    onMarkAsRead={handleMarkAsRead}
                   />
                 )}
               </div>
-              <button>
-                <img src="/icons/reservation.svg" alt="Reservations" />
+              <button className="basic-layout__icon-button">
+                <img
+                  src="/icons/reservation.svg"
+                  alt="Reservations"
+                  className="basic-layout__icon-img"
+                />
               </button>
               {isLogin ? (
-                <button onClick={doLogout}>
-                  <img src="/icons/logout.svg" alt="Logout" />
+                <button
+                  className="basic-layout__icon-button"
+                  onClick={doLogout}
+                >
+                  <img
+                    src="/icons/logout.svg"
+                    alt="Logout"
+                    className="basic-layout__icon-img"
+                  />
                 </button>
               ) : (
-                <button onClick={doLoginPopup}>
-                  <img src="/icons/login.svg" alt="Login" />
+                <button
+                  className="basic-layout__icon-button"
+                  onClick={doLoginPopup}
+                >
+                  <img
+                    src="/icons/login.svg"
+                    alt="Login"
+                    className="basic-layout__icon-img"
+                  />
                 </button>
               )}
             </div>
           </div>
 
-          {/* 데스크탑 메뉴 */}
-          <nav className="nav desktop-only">
-            <Link to="/">전체메뉴</Link>
-            <Link to="/flight">항공권</Link>
-            <Link to="/photo-search">사진검색</Link>
-            <Link to="/community">커뮤니티</Link>
-            <Link to="/flight-info">항공정보</Link>
+          {/*데스크탑 메뉴*/}
+          <nav className="basic-layout__nav nav desktop-only">
+            <Link to="/" className="basic-layout__nav-link">
+              전체메뉴
+            </Link>
+            <Link
+              to="#"
+              onClick={toggleFlightSearch}
+              className="basic-layout__nav-link"
+            >
+              항공권
+            </Link>
+            <Link to="/photo-search" className="basic-layout__nav-link">
+              사진검색
+            </Link>
+            <Link to="/community" className="basic-layout__nav-link">
+              커뮤니티
+            </Link>
+            <Link to="/flight-info" className="basic-layout__nav-link">
+              항공정보
+            </Link>
           </nav>
         </div>
-
-        {/* 검색 섹션 */}
-        {/* <div className="search mobile-only">
-          <div className="search-container">
-            <div className="options mobile-only">
-              {["왕복", "편도", "다구간"].map((option) => (
-                <button
-                  key={option}
-                  className={activeOption === option ? "active" : ""}
-                  onClick={() => setActiveOption(option)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            <div className="fields">
-              <input type="text" placeholder="출발지 선택" />
-              <span>⇌</span>
-              <input type="text" placeholder="도착지 선택" />
-              <input type="date" />
-              <input type="date" />
-              <select>
-                <option>승객1, 일반석</option>
-              </select>
-              <button>검색</button>
-            </div>
+        {showFlightSearch && (
+          <div className="basic-layout__search-section search mobile-only">
+            <FlightSearch
+              activeOption={activeOption}
+              setActiveOption={setActiveOption}
+            />
           </div>
-        </div>
-      </header> */}
-        <div className="search mobile-only">
-          <FlightSearch
-            activeOption={activeOption}
-            setActiveOption={setActiveOption}
-          />
-        </div>
+        )}
       </header>
 
-      {/* 본문 콘텐츠 */}
-      <main className="content">{children}</main>
+      {/*본문 컨텐츠*/}
+      <main className="basic-layout__content content">{children}</main>
 
       {/* 하단 네비게이션 */}
       <nav className="bottom-nav mobile-only">

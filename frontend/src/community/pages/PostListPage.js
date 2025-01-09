@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 import PostForm from "../component/post/PostForm";
 import PostList from "../component/post/PostList";
 import { deletePost, fetchPosts, updatePost } from "../api/postApi";

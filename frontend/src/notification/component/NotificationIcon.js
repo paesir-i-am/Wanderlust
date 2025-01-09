@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { fetchUnreadNotifications } from "../api/notificationApi";
+import React from "react";
 import { useSelector } from "react-redux";
 
-const NotificationIcon = ({ onClick }) => {
-  const [unreadCount, setUnreadCount] = useState(0);
+const NotificationIcon = ({ unreadCount, onClick }) => {
   const recipientNickname = useSelector((state) => state.loginSlice.nickname);
-
-  useEffect(() => {
-    if (!recipientNickname) return;
-
-    const fetchUnreadCount = async () => {
-      try {
-        const notifications = await fetchUnreadNotifications(recipientNickname);
-        setUnreadCount(notifications.length); // 읽지 않은 알림 개수
-      } catch (error) {
-        console.error("Failed to fetch unread notifications:", error);
-      }
-    };
-
-    fetchUnreadCount();
-  }, [recipientNickname]);
 
   const handleClick = () => {
     if (!recipientNickname) {
-      console.warn("로그인 상태에서만 드롭다운을 사용할 수 있습니다.");
+      alert("로그인 상태에서만 이용 가능합니다.");
       return;
     }
     onClick(); // 로그인 상태일 때만 실행
@@ -38,7 +21,6 @@ const NotificationIcon = ({ onClick }) => {
         display: "inline-block",
       }}
     >
-      {/* 항상 표시되는 알림 아이콘 */}
       <img
         src="/icons/notification.svg"
         alt="notification"

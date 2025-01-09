@@ -1,32 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { fetchUnreadNotifications, markAsRead } from "../api/notificationApi";
-import { useSelector } from "react-redux";
-import "./NotificationDropdown.scss";
+import React, { useState } from "react";
+import "./notificationDropdown.css";
+import NotificationModal from "./NotificationModal";
 
-const NotificationDropdown = ({ onClose }) => {
-  const [notifications, setNotifications] = useState([]);
-  const recipientNickname = useSelector((state) => state.loginSlice.nickname);
+const NotificationDropdown = ({ notifications = [], onMarkAsRead }) => {
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const data = await fetchUnreadNotifications(recipientNickname);
-        setNotifications(data);
-      } catch (error) {
-        console.error("Failed to fetch notifications:", error);
-      }
-    };
-
-    fetchNotifications();
-  }, [recipientNickname]);
-
-  const handleMarkAsRead = async (id) => {
-    try {
-      await markAsRead(id);
-      setNotifications((prev) => prev.filter((n) => n.id !== id)); // 읽은 알림 제거
-    } catch (error) {
-      console.error("Failed to mark notification as read:", error);
-    }
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -40,7 +23,7 @@ const NotificationDropdown = ({ onClose }) => {
               <p className="notification-text">{notification.data}</p>
               <button
                 className="notification-read-button"
-                onClick={() => handleMarkAsRead(notification.id)}
+                onClick={() => onMarkAsRead(notification.id)}
               >
                 읽음
               </button>
@@ -48,11 +31,12 @@ const NotificationDropdown = ({ onClose }) => {
           ))
         )}
         <li className="notification-footer">
-          <button className="notification-view-all" onClick={onClose}>
+          <button className="notification-view-all" onClick={handleOpenModal}>
             모든 알림 보기
           </button>
         </li>
       </ul>
+      {showModal && <NotificationModal onClose={handleCloseModal} />}
     </div>
   );
 };

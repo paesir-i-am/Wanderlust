@@ -6,6 +6,10 @@
   height: auto;
   background-color: $background-color;
 
+  &::-webkit-scrollbar {
+    display: none; // 스크롤바 숨김
+  }
+
   // 왼쪽 80% 영역
   &__main {
     overflow-y: auto;
@@ -41,7 +45,7 @@
     top: 1rem;
     align-self: flex-start;
 
-    .profile-link{
+    .profile-link {
       cursor: pointer;
       color: $primary-color;
     }
@@ -69,8 +73,8 @@
           }
 
           .profile-image {
-            width: 35px;
-            height: 35px;
+            width: 2.2rem; /* 35px → rem 변환 */
+            height: 2.2rem;
             border-radius: 50%;
             margin-right: 0.75rem;
           }
@@ -99,6 +103,40 @@
       margin-bottom: 1rem;
       border-bottom: 2px solid $primary-color;
       padding-bottom: 0.5rem;
+    }
+  }
+
+  // 반응형 스타일
+  @media (max-width: 768px) {
+    flex-direction: column; // 모바일에서는 열 방향
+    gap: 0.5rem;
+    padding: 0.5rem;
+
+    &__main {
+      max-height: calc(100vh - 100px);
+      overflow-y: scroll;
+      margin: 0; // 좌우 여백 제거
+      padding: 1rem;
+
+      &::-webkit-scrollbar {
+        display: none; // 스크롤바 숨김
+      }
+    }
+
+    &__sidebar {
+      display: none; // 사이드바 숨김
+    }
+
+    .profile-link {
+      font-size: 0.9rem; // 폰트 크기 조정
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.25rem;
+
+    &__main {
+      padding: 0.75rem;
     }
   }
 }
