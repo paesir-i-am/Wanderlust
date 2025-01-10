@@ -1,0 +1,168 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.notification-dropdown {
+  position: absolute;
+  margin-left: -70px;
+  background: white;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-empty {
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.notification-item {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notification-item .notification-text {
+  margin-top: 0;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.notification-item .notification-read-button {
+  background-color: #228B22 !important;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  width: 50px;
+  cursor: pointer;
+}
+.notification-item .notification-read-button:hover {
+  background: rgb(28.9884393064, 118.5115606936, 28.9884393064);
+}
+
+.notification-footer {
+  padding: 10px;
+  text-align: center;
+}
+.notification-footer .notification-view-all {
+  color: rgb(0, 68, 28.7272727273);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.notification-footer .notification-view-all:hover {
+  color: #44FF93;
+}
+
+/*# sourceMappingURL=notificationDropdown.css.map */

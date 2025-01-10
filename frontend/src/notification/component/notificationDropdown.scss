@@ -1,0 +1,74 @@
+@import "../../core";
+
+.notification-dropdown {
+  position: absolute;
+  margin-left: -70px;
+  background: white;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-empty {
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.notification-item {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .notification-text {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .notification-read-button {
+    background-color: $primary-color !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    width: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($primary-color, 5%);
+    }
+  }
+}
+
+.notification-footer {
+  padding: 10px;
+  text-align: center;
+
+  .notification-view-all {
+    color: darken($secondary-color, 50%);
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

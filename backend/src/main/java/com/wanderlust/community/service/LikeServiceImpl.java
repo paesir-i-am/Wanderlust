@@ -19,6 +19,7 @@ import com.wanderlust.community.repository.LikeRepository;
 import com.wanderlust.community.repository.PostRepository;
 import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.repository.MemberRepository;
+import com.wanderlust.notification.service.NotificationService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,11 +30,13 @@ public class LikeServiceImpl implements LikeService {
   private final LikeRepository likeRepository;
   private final PostRepository postRepository;
   private final MemberRepository memberRepository;
+  private final NotificationService notificationService;
 
-  public LikeServiceImpl(LikeRepository likeRepository, PostRepository postRepository, MemberRepository memberRepository) {
+  public LikeServiceImpl(LikeRepository likeRepository, PostRepository postRepository, MemberRepository memberRepository, NotificationService notificationService) {
     this.likeRepository = likeRepository;
     this.postRepository = postRepository;
     this.memberRepository = memberRepository;
+    this.notificationService = notificationService;
   }
 
   @Override
@@ -58,6 +61,13 @@ public class LikeServiceImpl implements LikeService {
       like.setLiked(true);
       post.increaseLikes();
       likeRepository.save(like);
+
+      //알림 생성
+      String recipientNickname = post.getAuthorNickname();
+      if(!member.getNickname().equals(recipientNickname)) {
+        String message = member.getNickname() + "님이 당신의 게시글을 좋아합니다.";
+        notificationService.createNotification(recipientNickname, message, "LIKE", post.getId());
+      }
     }
 
     postRepository.save(post);
