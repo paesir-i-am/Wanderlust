@@ -74,8 +74,8 @@
               cursor: pointer;
 
               img {
-                height: 30px;
-                width: 30px;
+                height: 30px !important;
+                width: 30px!important;
               }
             }
           }
@@ -144,7 +144,7 @@
 
         @include respond-to("mobile") {
           flex-direction: column;
-            height: 180px;
+          height: 180px;
 
           .searchbar.desktop-only {
             display: none;
@@ -185,7 +185,7 @@
         justify-content: flex-start;
         gap: 1.2rem;
 
-        .desktop-only{
+        .desktop-only {
 
         }
 
@@ -200,11 +200,12 @@
             text-decoration: underline;
           }
         }
+
         @include respond-to("tablet") {
           gap: 0.5rem;
           margin: 2rem 0 0 0;
 
-          a{
+          a {
             font-size: 1.4rem;
           }
         }
@@ -213,6 +214,7 @@
         }
       }
     }
+
     .search {
       position: relative;
       z-index: 10;
@@ -295,7 +297,7 @@
         .search-container {
           max-width: 750px !important;
 
-          .flight-fields{
+          .flight-fields {
             max-width: 600px !important;
           }
         }
@@ -475,13 +477,16 @@
       p {
         color: white;
       }
-      
-  @include respond-to("mobile") {
-    .header-fixed{
-      height:150px;
-      .header-overlay{
-      height: 150px;
-    }
+
+      @include respond-to("mobile") {
+        .header-fixed {
+          height: 150px;
+
+          .header-overlay {
+            height: 150px;
+          }
+        }
+      }
     }
   }
 }
