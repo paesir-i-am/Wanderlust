@@ -5,6 +5,7 @@ import memberRouter from "../../member/router/memberRouter";
 import communityRouter from "../../community/router/communityRouter";
 import FlightSearch from "../../flight/components/FlightSearch"; // FlightSearch 컴포넌트
 import FlightList from "../../flight/components/FlightList";
+import tourListRouter from "../../tour/router/tourListRouter";
 import flightApiRouter from "../../flightApi/router/flightApiRouter"; // flightApiRouter 가져오기
 import AirInfoPage from "../../flightApi/page/main/AirInfoPage";
 import PaymentPage from "../../payment/components/PaymentPage"; // PaymentPage 컴포넌트
@@ -53,6 +54,10 @@ const root = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "tour",
+    children: tourListRouter(),
   },
   {
     path: "/flight-info", // /flight-info 경로 설정

@@ -1,0 +1,263 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container, .list-page .content-container .list-container .filter-box,
+.list-page .content-container .list-container .list-box,
+.list-page .content-container .list-container .pagination-box {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container, .list-page .content-container .list-container .filter-box,
+  .list-page .content-container .list-container .list-box,
+  .list-page .content-container .list-container .pagination-box {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container, .list-page .content-container .list-container .filter-box,
+  .list-page .content-container .list-container .list-box,
+  .list-page .content-container .list-container .pagination-box {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.list-page {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 170px;
+  min-height: 200vh;
+}
+.list-page * {
+  box-sizing: border-box;
+}
+.list-page .top-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0 10px;
+}
+.list-page .top-container .country-box {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 37px;
+  font-weight: bold;
+  color: #adb5bd;
+  background-color: transparent;
+  cursor: pointer;
+}
+.list-page .top-container .country-box .dropdown-icon {
+  font-size: 25px;
+  margin-left: 3px;
+}
+.list-page .top-container .country-box .continent-box {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+.list-page .content-container {
+  display: flex;
+  gap: 10px;
+  min-height: 400px;
+}
+.list-page .content-container .category-box {
+  width: 20%;
+  min-width: 200px;
+}
+.list-page .content-container .list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.list-page .content-container .list-container .filter-box,
+.list-page .content-container .list-container .list-box,
+.list-page .content-container .list-container .pagination-box {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.list-page .content-container .list-container .list-box .list-item {
+  border-bottom: 1px solid #e9ecef;
+  padding: 5px;
+}
+@media (max-width: 768px) {
+  .list-page {
+    margin: 10px 50px;
+  }
+  .list-page .content-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .list-page .content-container .category-box {
+    width: 100%;
+  }
+  .list-page .content-container .list-container .filter-box,
+  .list-page .content-container .list-container .list-box,
+  .list-page .content-container .list-container .pagination-box {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .list-page {
+    margin: 10px;
+  }
+  .list-page .top-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .list-page .top-container .country-box {
+    font-size: 20px;
+  }
+  .list-page .top-container .country-box .continent-box {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+  }
+  .list-page .top-container .likes-box {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  .list-page .content-container .category-box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .continent-component .continent-box {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+  }
+  .continent-component .continent-box .dropdown-icon {
+    font-size: 16px;
+  }
+  .continent-component .dropdown-menu {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 576px) {
+  .country-category-container {
+    margin: 10px 0;
+  }
+  .country-category-container .country-filter-title {
+    font-size: 16px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+  }
+  .country-category-container .country-category-list {
+    display: none;
+  }
+  .country-category-container .country-category-list.open {
+    display: flex;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 8px 0;
+    background-color: #f8f9fa;
+  }
+  .country-category-container .country-category-list.open .country-category-item {
+    padding: 8px 12px;
+  }
+  .country-category-container .country-category-list.open .country-category-item:hover {
+    background-color: white;
+  }
+}
+
+/*# sourceMappingURL=TourListPage.css.map */
