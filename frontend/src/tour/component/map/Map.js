@@ -4,19 +4,13 @@ import {
   GoogleMap,
   Marker,
   InfoWindow,
+  Library,
 } from "@react-google-maps/api";
 import "../scss/map/Map.scss";
 
-const Map = ({
-  center,
-  places,
-  currentLocation,
-  distanceValues,
-  setActiveMarker,
-  travelMode,
-  calculateAndShowRoute,
-  setMap,
-}) => {
+const LIBRARIES = ["places", "geometry"];
+
+const Map = ({ center, places, currentLocation, setActiveMarker, setMap }) => {
   const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 상태
   const [selectedPlaceAddress, setSelectedPlaceAddress] = useState(""); // 선택된 장소의 주소
   const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false); // 구글 맵 로딩 상태
@@ -90,8 +84,8 @@ const Map = ({
       {/* Google Maps API 로드 */}
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-        libraries={["places", "geometry"]}
-        onLoad={() => setGoogleMapsLoaded(true)} // 로드 완료 시 상태 업데이트
+        libraries={LIBRARIES} // 정적 배열 사용
+        onLoad={() => setGoogleMapsLoaded(true)}
       >
         <GoogleMap
           mapContainerStyle={{ width: "100%", height: "100%" }} // 지도 크기 설정

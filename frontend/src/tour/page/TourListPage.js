@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect } from "react";
-import { Link } from "react-router-dom"; // Link를 import
+import React, { useCallback, useEffect, useMemo } from "react";
 import "../page/scss/TourListPage.scss";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
 import { tourListApi } from "../api/tourListApi";
@@ -11,12 +10,12 @@ import {
   setTourList,
   setTotalItems,
 } from "../slice/tourListSlice"; // Redux Slice
-import { FiStar } from "react-icons/fi";
 import Continent from "../component/t_list/Continent";
 import Country from "../component/t_list/Country";
 import City from "../component/t_list/City";
 import TourList from "../component/t_list/TourList";
 import PageComponent from "../component/common/PageComponent";
+import ModelLoader_origin from "../component/common/ModelLoader_origin";
 
 const TourListPage = () => {
   const dispatch = useDispatch();
@@ -30,11 +29,13 @@ const TourListPage = () => {
     selectedCities = [],
     tourList = [],
     totalItems = 0,
-    likedTours = [],
   } = tourListState;
 
-  console.log("TourListPage selectedCities:", tourListState.selectedCities);
-  console.log("TourListPage likedTours:", tourListState.likedTours);
+  // selectedCities를 메모이제이션
+  const memoizedSelectedCities = useMemo(
+    () => selectedCities,
+    [selectedCities],
+  );
 
   const fetchTourList = useCallback(
     async (countryName, cities) => {
@@ -60,13 +61,33 @@ const TourListPage = () => {
     [dispatch],
   );
 
+  // 기본값 설정: "국내" 데이터를 로드
   useEffect(() => {
-    if (selectedCountry) {
-      fetchTourList(selectedCountry?.countryName || null, selectedCities || []);
+    const initializeDefaultData = async () => {
+      try {
+        // "국내" 기본값 설정
+        const defaultContinent = "국내";
+        const defaultCountry = { countryName: "한국", countryCodeName: "KR" };
+
+        // 대륙, 국가 설정
+        dispatch(setSelectedContinent(defaultContinent));
+        dispatch(setSelectedCountry(defaultCountry));
+
+        // 여행지 목록 로드
+        await fetchTourList(defaultCountry.countryName, []);
+      } catch (error) {
+        console.error("Failed to initialize default data:", error);
+      }
+    };
+
+    // 처음 렌더링될 때만 실행되도록 빈 배열([])로 설정
+    if (!selectedContinent && !selectedCountry) {
+      initializeDefaultData();
     }
-  }, [selectedCountry, selectedCities, fetchTourList]);
+  }, [dispatch, fetchTourList, selectedContinent, selectedCountry]);
 
   const handleContinentSelect = (continent) => {
+    // 다른 대륙 선택 시 "국내" 기본값 충돌 방지
     dispatch(setSelectedContinent(continent));
     dispatch(setSelectedCountry(null));
     dispatch(setSelectedCities([]));
@@ -83,9 +104,6 @@ const TourListPage = () => {
               onContinentSelect={handleContinentSelect}
             />
           </div>
-          <Link to="/tour/like" className="likes-box">
-            <FiStar className="like-icon" /> 좋아요 페이지
-          </Link>
         </div>
 
         <div className="content-container">
@@ -102,7 +120,7 @@ const TourListPage = () => {
 
           <div className="list-container">
             <City
-              selectedCities={selectedCities || []} // 기본값 추가
+              selectedCities={memoizedSelectedCities || []} // 기본값 추가
               selectedCountry={selectedCountry || null}
               selectedContinent={selectedContinent || null}
               onCitySelect={(cities) => {
@@ -112,22 +130,25 @@ const TourListPage = () => {
 
             <TourList
               tourList={tourList || []} // 기본값 추가
-              likedTours={likedTours || []} // 기본값 추가
               selectedCountry={selectedCountry || null}
-              selectedCities={selectedCities || []} // 기본값 추가
+              selectedCities={memoizedSelectedCities || []} // 기본값 추가
             />
 
             <PageComponent
               pageRequest={{
                 continentName: selectedContinent,
                 countryCodeName: selectedCountry?.countryCode,
-                cityCodeNames: selectedCities.map((city) => city.cityCodeName), // 배열로 변경
+                cityCodeNames: memoizedSelectedCities.map(
+                  (city) => city.cityCodeName,
+                ), // 배열로 변경
               }}
               totalItems={totalItems}
               onPageChange={(newPage) => {
                 console.log(`Page changed to: ${newPage}`); // 백틱으로 수정
               }}
             />
+
+            <ModelLoader_origin />
           </div>
         </div>
       </div>

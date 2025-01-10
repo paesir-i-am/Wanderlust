@@ -20,31 +20,31 @@ const Continent = ({ onContinentSelect, selectedContinent }) => {
   }, []);
 
   return (
-    <div className="continent-component">
-      <div
-        className="continent-box"
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-      >
-        {selectedContinent || "카테고리"}
-        <FiChevronDown className="dropdown-icon" />
-      </div>
-      {isDropdownOpen && (
-        <div className="dropdown-menu">
-          {Object.keys(continentsData).map((continent) => (
-            <div
-              className="dropdown-item"
-              key={continent}
-              onClick={() => {
-                onContinentSelect(continent);
-                setIsDropdownOpen(false);
-              }}
-            >
-              {continent}
-            </div>
-          ))}
+      <div className="continent-component">
+        <div
+            className="continent-box"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          {selectedContinent || "카테고리"}
+          <FiChevronDown className="dropdown-icon" />
         </div>
-      )}
-    </div>
+        {isDropdownOpen && (
+            <div className="dropdown-menu">
+              {Object.keys(continentsData).map((continent) => (
+                  <div
+                      className="dropdown-item"
+                      key={continent}
+                      onClick={() => {
+                        onContinentSelect(continent);
+                        setIsDropdownOpen(false);
+                      }}
+                  >
+                    {continent}
+                  </div>
+              ))}
+            </div>
+        )}
+      </div>
   );
 };
 

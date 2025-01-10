@@ -43,7 +43,7 @@ body {
   }
 }
 
-.button, .list-page .top-container .likes-box {
+.button {
   display: inline-block;
   padding: 0.8rem 1.5rem;
   background-color: #228B22;
@@ -56,11 +56,11 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.button:hover, .list-page .top-container .likes-box:hover {
+.button:hover {
   background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
 @media (max-width: 576px) {
-  .button, .list-page .top-container .likes-box {
+  .button {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
@@ -138,23 +138,6 @@ img {
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-}
-.list-page .top-container .likes-box {
-  gap: 5px;
-  background-color: #44FF93;
-  color: #adb5bd;
-  font-size: 15px;
-  min-width: 150px;
-  text-align: center;
-  white-space: nowrap;
-}
-.list-page .top-container .likes-box .like-icon {
-  font-size: 15px;
-  color: inherit;
-}
-.list-page .top-container .likes-box:hover {
-  background-color: rgb(119, 255, 176.4545454545);
-  color: rgb(144.7432432432, 155.5, 166.2567567568);
 }
 .list-page .content-container {
   display: flex;

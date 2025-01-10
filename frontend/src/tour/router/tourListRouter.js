@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div>Loading....</div>;
 const TourList = lazy(() => import("../page/TourListPage"));
-const TourLike = lazy(() => import("../page/TourLikePage"));
 const TourRead = lazy(() => import("../page/TourReadPage"));
 
 const tourListRouter = () => {
@@ -17,15 +16,15 @@ const tourListRouter = () => {
       ),
     },
     {
-      path: "like",
+      path: "read/:tourId", // 경로 파라미터 포함
       element: (
         <Suspense fallback={Loading}>
-          <TourLike />
+          <TourRead />
         </Suspense>
       ),
     },
     {
-      path: "read/:tourId", // 경로 파라미터 포함
+      path: "read/city/:cityName", // 새로운 경로
       element: (
         <Suspense fallback={Loading}>
           <TourRead />

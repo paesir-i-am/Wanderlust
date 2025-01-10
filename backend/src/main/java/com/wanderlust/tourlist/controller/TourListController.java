@@ -1,8 +1,8 @@
 package com.wanderlust.tourlist.controller;
 
 import com.wanderlust.tourlist.dto.TourListDTO;
-import com.wanderlust.tourlist.service.TourListLikeService;
 import com.wanderlust.tourlist.service.TourListService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,6 @@ import java.util.Map;
 public class TourListController {
 
     private final TourListService tourListService;
-    private final TourListLikeService tourListLikeService;
 
     /**
      * 여행지 리스트 조회 API (대륙 > 국가 > 도시 필터링 적용)
@@ -59,48 +58,19 @@ public class TourListController {
         return ResponseEntity.ok(result);
     }
 
-    /**
-     * 좋아요된 여행지 리스트 조회 API
-     */
-    @GetMapping("/like")
-    public ResponseEntity<?> getLikedTours(@RequestParam String userId) {
-        log.info("Fetching liked tours for user ID: {}", userId);
-        List<TourListDTO> likedTours = tourListLikeService.getLikedToursByUser(userId);
-
-        if (likedTours.isEmpty()) {
-            log.warn("No liked tours found for user ID: {}", userId);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(likedTours);
+    // 도시 이름으로 검색
+    @GetMapping("/read/city/{cityName}")
+    public ResponseEntity<List<Long>> getTourIdsByCityName(@PathVariable String cityName) {
+        List<Long> tourIds = tourListService.getTourIdsByCityName(cityName);
+        return ResponseEntity.ok(tourIds);
     }
 
-    /**
-     * 여행지 좋아요 추가 API
-     */
-    @PostMapping("/like")
-    public ResponseEntity<?> likeTour(@RequestParam String userId, @RequestParam Long tourId) {
-        log.info("Liking tour with ID: {} for user ID: {}", tourId, userId);
-        String responseMessage = tourListLikeService.addLike(userId, tourId);
-
-        if ("이미 좋아요에 추가한 여행지입니다.".equals(responseMessage)) {
-            return ResponseEntity.badRequest().body(responseMessage);
-        }
-        return ResponseEntity.ok(responseMessage);
-    }
-
-    /**
-     * 여행지 좋아요 삭제 API
-     */
-    @DeleteMapping("/like")
-    public ResponseEntity<?> unlikeTour(@RequestParam String userId, @RequestParam Long tourId) {
-        log.info("Unliking tour with ID: {} for user ID: {}", tourId, userId);
-        try {
-            tourListLikeService.removeLike(userId, tourId);
-            return ResponseEntity.ok("좋아요가 삭제되었습니다.");
-        } catch (Exception e) {
-            log.error("Error while unliking tour ID: {} for user ID: {}: {}", tourId, userId, e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("좋아요 삭제 중 오류가 발생했습니다.");
-        }
+    @GetMapping("/read/{tourId}")
+    public ResponseEntity<TourListDTO> getTourById(@PathVariable Long tourId) {
+        System.out.println("Received tourId: " + tourId); // 디버깅 출력
+        TourListDTO tour = tourListService.getTourById(tourId);
+        System.out.println("Returned tour details: " + tour); // 반환 데이터 출력
+        return ResponseEntity.ok(tour);
     }
 
     /**
@@ -108,6 +78,7 @@ public class TourListController {
      * @param count 랜덤으로 가져올 여행지 개수
      * @return 랜덤으로 선택된 여행지 리스트
      */
+
     @GetMapping("/random")
     public ResponseEntity<List<TourListDTO>> getRandomTourList(@RequestParam(defaultValue = "3") int count) {
         log.info("Fetching {} random tours", count);

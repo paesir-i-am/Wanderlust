@@ -7,9 +7,10 @@ import Random from "../component/t_list/Random";
 import Category from "../component/map/Category";
 import PlaceList from "../component/map/PlaceList";
 import Map from "../component/map/Map";
+import { tourListApi } from "../api/tourListApi";
 
 const TourReadPage = () => {
-  const { tourId } = useParams(); // URL에서 tourId 가져오기
+  const { tourId } = useParams();
   const { state } = useLocation();
   const { selectedTour, lat, lng } = state || {}; // selectedTour와 lat, lng 받아오기
   const navigate = useNavigate();
@@ -25,20 +26,36 @@ const TourReadPage = () => {
   const [travelMode, setTravelMode] = useState("TRANSIT");
   const [directionsRenderer, setDirectionsRenderer] = useState(null);
   const [initialized, setInitialized] = useState(false);
-  const [tourDetails, setTourDetails] = useState(selectedTour || {});
+  const [tourDetails, setTourDetails] = useState(selectedTour || null); // 중복 state 제거
 
-  // 특정 tourId에 맞는 장소 데이터를 가져오는 함수
-  const fetchTourDetails = (tourId) => {
-    axios
-      .get(`http://localhost:8080/api/tours/${tourId}`)
-      .then((response) => {
-        console.log("Fetched tour details:", response.data);
-        setTourDetails(response.data); // tourId에 맞는 세부 정보를 설정
-      })
-      .catch((error) => {
-        console.error("여행지 세부 정보를 불러오는 데 실패했습니다:", error);
-      });
-  };
+  // tourid값으로 상세 정보 검색
+  useEffect(() => {
+    const fetchTourDetails = async () => {
+      try {
+        console.log("Fetching details for tourId:", tourId);
+
+        // 1. Tour 상세 정보 가져오기
+        if (!tourDetails && tourId) {
+          const details = await tourListApi.getTourById(tourId);
+          console.log("Tour details fetched:", details);
+          setTourDetails(details);
+
+          // 2. Google Map 데이터 가져오기
+          const mapData = await tourListApi.getGoogleMap(tourId);
+          console.log("Google map data fetched:", mapData);
+
+          setCenter({
+            lat: mapData.latitude || 37.5665,
+            lng: mapData.longitude || 126.9783,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching tour details:", error);
+      }
+    };
+
+    fetchTourDetails();
+  }, [tourId, tourDetails]);
 
   // 구글 맵에 표시할 장소들 가져오기
   const fetchPlaces = (tourId) => {
@@ -51,7 +68,7 @@ const TourReadPage = () => {
         );
 
         if (tourPlace) {
-          const { latitude, longitude, tourList } = tourPlace;
+          const { latitude, longitude } = tourPlace;
           const location = { lat: latitude, lng: longitude };
 
           // 현재 위치가 이미 설정되었으면 변경하지 않도록 처리
@@ -233,28 +250,12 @@ const TourReadPage = () => {
     calculateAndShowRoute(place);
   };
 
-  const initializeLocationAndPlaces = useCallback(
-    (tourId) => {
-      if (!googleMapsLoaded) {
-        console.error("Google Maps is not loaded.");
-        return;
-      }
-
-      // 여행지 세부 정보와 장소를 가져오는 함수 호출
-      fetchTourDetails(tourId);
-      fetchPlaces(tourId);
-    },
-    [googleMapsLoaded],
-  );
-
   // `tourId`에 맞는 장소 정보 초기화
   useEffect(() => {
     if (tourId && googleMapsLoaded) {
-      initializeLocationAndPlaces(tourId);
-    } else if (!tourId) {
-      setCenter({ lat: 37.5665, lng: 126.9783 });
+      fetchPlaces(tourId); // 장소 가져오기
     }
-  }, [tourId, googleMapsLoaded, initializeLocationAndPlaces]);
+  }, [tourId, googleMapsLoaded]);
 
   // Google Maps API 로드 확인 및 초기화
   useEffect(() => {
@@ -275,17 +276,6 @@ const TourReadPage = () => {
     findPlaces,
   ]);
 
-  useEffect(() => {
-    if (tourId) {
-      // selectedTour가 없을 때만 API 호출
-      if (!selectedTour) {
-        fetchTourDetails(tourId);
-      } else {
-        // state로 전달받은 selectedTour가 있으면 바로 사용
-        setTourDetails(selectedTour);
-      }
-    }
-  }, [tourId, selectedTour]);
   return (
     <BasicLayout>
       <div className="page-container">
@@ -294,16 +284,16 @@ const TourReadPage = () => {
             <div className="left-content">
               <div className="city-img-container">
                 <img
-                  src={selectedTour.cityImg}
-                  alt={selectedTour.tourTitle}
+                  src={tourDetails.cityImg}
+                  alt={tourDetails.tourTitle}
                   className="city-img"
                 />
               </div>
               <div className="title-section">
-                <h2 className="tour-title">{selectedTour.tourTitle}</h2>
+                <h2 className="tour-title">{tourDetails.tourTitle}</h2>
                 <div className="tour-description">
-                  <p className="city-name">{selectedTour.cityName}</p>
-                  <p>{selectedTour.tourContext}</p>
+                  <p className="city-name">{tourDetails.cityName}</p>
+                  <p>{tourDetails.tourContext}</p>
                 </div>
               </div>
             </div>

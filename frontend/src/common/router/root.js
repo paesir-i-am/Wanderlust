@@ -5,7 +5,7 @@ import memberRouter from "../../member/router/memberRouter";
 import communityRouter from "../../community/router/communityRouter";
 import FlightSearch from "../../flight/components/FlightSearch"; // FlightSearch 컴포넌트
 import FlightList from "../../flight/components/FlightList";
-import tourListRouter from "../../tour/router/tourListRouter"; // FlightList 컴포넌트
+import tourListRouter from "../../tour/router/tourListRouter";
 
 const Loading = () => <div>Loading...</div>; // JSX로 수정
 

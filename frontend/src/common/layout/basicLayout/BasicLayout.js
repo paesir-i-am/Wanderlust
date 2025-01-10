@@ -3,6 +3,8 @@ import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
 import FlightSearch from "../../../flight/components/FlightSearch";
+import ImageSearchButton from "../../../image/ImageSearchButton";
+import CitySearchBar from "../../component/CitySearchBar";
 
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복"); // 초기 활성화 상태
@@ -26,15 +28,9 @@ const BasicLayout = ({ children }) => {
 
             {/* 데스크탑 검색창 */}
             <div className="searchbar desktop-only">
-              <input
-                type="text"
-                placeholder="Search your Memory, will craft moments of now Ones.."
-                className="search-input"
-              />
+              <CitySearchBar />
               <div className="search-buttons">
-                <button>
-                  <img src="/icons/picturSearchIcon.svg" alt="PictureSearch" />
-                </button>
+                <ImageSearchButton />
                 <button>
                   <img src="/icons/searchIcon.svg" alt="Search" />
                 </button>

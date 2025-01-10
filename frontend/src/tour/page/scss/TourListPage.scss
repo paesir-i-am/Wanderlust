@@ -39,27 +39,6 @@
         color: inherit;
       }
     }
-
-    .likes-box {
-      @extend .button;
-      gap: 5px;
-      background-color: $secondary-color;
-      color: $gray-dark;
-      font-size: 15px;
-      min-width: 150px;
-      text-align: center;
-      white-space: nowrap;
-
-      .like-icon {
-        font-size: 15px;
-        color: inherit;
-      }
-
-      &:hover {
-        background-color: lighten($secondary-color, 10%);
-        color: darken($gray-dark, 10%);
-      }
-    }
   }
 
   .content-container {

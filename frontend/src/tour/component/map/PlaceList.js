@@ -117,41 +117,45 @@ const PlaceList = ({ places, currentLocation, onPlaceClick }) => {
           <p className="no-places-message">검색된 장소가 없습니다.</p>
         ) : (
           <ul style={{ listStyleType: "none", padding: 0 }}>
-            {filteredPlaces.map((place) => (
-              <li key={place.place_id} className="place-item">
-                <div className="place-item-info">
-                  <h4 className="place-item-name">{place.name}</h4>
-                  <p className="place-item-address">
-                    {place.vicinity ||
-                      place.formatted_address ||
-                      "주소 정보 없음"}
-                  </p>
-                  <div className="place-item-details">
-                    <span>
-                      평점:{" "}
-                      {place.rating
-                        ? `${place.rating.toFixed(1)}점`
-                        : "정보 없음"}
-                    </span>
-                    <span>
-                      거리:{" "}
-                      {place.distance
-                        ? `${place.distance.toFixed(2)} km`
-                        : "정보 없음"}
-                    </span>
+            {filteredPlaces.map((place, index) => {
+              // place_id 또는 index를 사용하여 고유한 key 설정
+              const key = place.place_id || `place-${index}`;
+              return (
+                <li key={key} className="place-item">
+                  <div className="place-item-info">
+                    <h4 className="place-item-name">{place.name}</h4>
+                    <p className="place-item-address">
+                      {place.vicinity ||
+                        place.formatted_address ||
+                        "주소 정보 없음"}
+                    </p>
+                    <div className="place-item-details">
+                      <span>
+                        평점:{" "}
+                        {place.rating
+                          ? `${place.rating.toFixed(1)}점`
+                          : "정보 없음"}
+                      </span>
+                      <span>
+                        거리:{" "}
+                        {place.distance
+                          ? `${place.distance.toFixed(2)} km`
+                          : "정보 없음"}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onPlaceClick(place);
-                  }}
-                  className="place-item-button"
-                >
-                  경로 안내
-                </button>
-              </li>
-            ))}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onPlaceClick(place);
+                    }}
+                    className="place-item-button"
+                  >
+                    경로 안내
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

@@ -20,6 +20,7 @@ public class TourList {
     @Column(name = "tour_title", nullable = false)
     private String tourTitle; // 여행지 제목
 
+
     @Column(name = "tour_context", nullable = false)
     private String tourContext;
 

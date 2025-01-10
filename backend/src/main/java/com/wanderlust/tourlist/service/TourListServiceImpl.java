@@ -7,6 +7,7 @@ import com.wanderlust.tourlist.entity.Country;
 import com.wanderlust.tourlist.entity.TourList;
 import com.wanderlust.tourlist.repository.CountryRepository;
 import com.wanderlust.tourlist.repository.TourListRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -81,6 +82,30 @@ public class TourListServiceImpl implements TourListService {
                             .build();
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Long> getTourIdsByCityName(String cityName) {
+        return tourListRepository.findTourIdsByCityName(cityName);
+    }
+
+    @Override
+    public TourListDTO getTourById(Long tourId) {
+        return tourListRepository.findTourWithCityById(tourId)
+                .map(tour -> {
+                    // cityImg 경로를 URL로 변환
+                    String originalCityImg = "path/to/city/image"; // 기본값 설정
+                    String processedCityImg = IMAGE_BASE_URL + extractFileName(originalCityImg);
+
+                    return TourListDTO.builder()
+                            .tourId(tour.getTourId())
+                            .tourTitle(tour.getTourTitle())
+                            .tourContext(tour.getTourContext())
+                            .cityName("City name placeholder") // 필요 시 cityName은 추가 로직으로 처리
+                            .cityImg(processedCityImg) // 변환된 이미지 경로 사용
+                            .build();
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Tour not found with ID: " + tourId));
     }
 
     // 랜덤 여행지 리스트

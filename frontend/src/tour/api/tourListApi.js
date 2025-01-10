@@ -73,11 +73,19 @@ export const tourListApi = {
       const response = await axiosInstance.get("/api/googlemap/all");
       console.log("Received all google map data:", response.data);
 
+      // 데이터 구조 디버깅
+      response.data.forEach((item, index) => {
+        console.log(`Item ${index}:`, item);
+      });
+
+      // tourId로 데이터 매칭
       const mapData = response.data.find(
-        (item) => item.tourList.tourId === tourId,
+        (item) =>
+          item.tourList && String(item.tourList.tourId) === String(tourId), // 타입 맞추기
       );
 
       if (!mapData) {
+        console.error("No matching map data found for tourId:", tourId);
         throw new Error("No data found for the given tourId");
       }
 
@@ -93,14 +101,29 @@ export const tourListApi = {
     }
   },
 
-  // 특정 tourId에 대한 상세 정보 조회
-  getTourDetails: async (tourId) => {
+  // cityName으로 tourId 반환
+  getTourIdsByCityName: async (cityName) => {
     try {
-      const response = await axiosInstance.get(`${BASE_URL}/detail/${tourId}`);
-      console.log("Fetched tour details:", response.data);
+      console.log("Sending request to:", `${BASE_URL}/read/city/${cityName}`); // 디버깅
+      console.log("Request parameter cityName:", cityName); // 디버깅
+      const response = await axiosInstance.get(
+        `${BASE_URL}/read/city/${cityName}`,
+      );
+      console.log("Response data:", response.data); // 응답 데이터 확인
       return response.data;
     } catch (error) {
-      console.error("Error fetching tour details:", error);
+      console.error("Error fetching tour IDs by city name:", error);
+      throw error;
+    }
+  },
+
+  getTourById: async (tourId) => {
+    try {
+      const response = await axiosInstance.get(`${BASE_URL}/read/${tourId}`);
+      console.log("Axios response:", response.data); // 응답 데이터 출력
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching tour by ID:", error);
       throw error;
     }
   },
