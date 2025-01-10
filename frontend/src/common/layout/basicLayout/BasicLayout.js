@@ -3,6 +3,8 @@ import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
 import FlightSearch from "../../../flight/components/FlightSearch";
+import ImageSearchButton from "../../../image/ImageSearchButton";
+import CitySearchBar from "../../component/CitySearchBar";
 import NotificationIcon from "../../../notification/component/NotificationIcon";
 import NotificationDropdown from "../../../notification/component/NotificationDropdown";
 import {
@@ -10,6 +12,7 @@ import {
   markAsRead,
 } from "../../../notification/api/notificationApi";
 import { useSelector } from "react-redux";
+
 
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복");
@@ -83,6 +86,14 @@ const BasicLayout = ({ children }) => {
               </Link>
             </div>
 
+
+            {/* 데스크탑 검색창 */}
+            <div className="basic-layout__searchbar searchbar desktop-only">
+              <CitySearchBar />
+              <div className="basic-layout__search-button">
+                <ImageSearchButton />
+                <button>
+                  <img src="/icons/searchIcon.svg" alt="Search" />
             {/*데스크탑 검색창*/}
             <div className="basic-layout__searchbar searchbar desktop-only">
               <input
