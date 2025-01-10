@@ -20,7 +20,7 @@ const FollowListModal = ({ type, list = [], onClose }) => {
             {list.map((profile) => (
               <li key={profile.nickname}>
                 <img
-                  src={getFullImageUrl(profile.profileImageUrl)}
+                  src={getFullImageUrl(profile.ImageUrl)}
                   alt={`${profile.nickname}'s profile`}
                   className="profile-image"
                 />

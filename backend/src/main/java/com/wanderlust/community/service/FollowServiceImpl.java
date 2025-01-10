@@ -20,6 +20,7 @@ import com.wanderlust.community.repository.FollowRepository;
 import com.wanderlust.community.repository.ProfileRepository;
 import com.wanderlust.member.entity.Member;
 import com.wanderlust.member.repository.MemberRepository;
+import com.wanderlust.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,7 @@ public class FollowServiceImpl implements FollowService {
   private final FollowRepository followRepository;
   private final MemberRepository memberRepository;
   private final ProfileRepository profileRepository;
+  private final NotificationService notificationService;
 
   // 팔로우 하기
   public void follow(String followerNickname, String followingNickname) {
@@ -56,6 +58,9 @@ public class FollowServiceImpl implements FollowService {
     followingProfile.increaseFollowers();
     profileRepository.save(followerProfile);
     profileRepository.save(followingProfile);
+
+    String message = followerNickname + "님이 당신을 팔로우했습니다.";
+    notificationService.createNotification(followingNickname, message, "FOLLOW", follow.getId());
   }
 
   // 언팔로우 하기
@@ -95,8 +100,8 @@ public class FollowServiceImpl implements FollowService {
     return followRepository.findFollowersByNickname(nickname, pageable)
         .map(profile -> new ProfileResponseDTO(
             profile.getNickname(),
-            profile.getProfileImageUrl(),
             profile.getBio(),
+            profile.getProfileImageUrl(),
             profile.getFollowerCount(),
             profile.getFollowingCount()
         ));
@@ -107,8 +112,8 @@ public class FollowServiceImpl implements FollowService {
     return followRepository.findFollowingByNickname(nickname, pageable)
         .map(profile -> new ProfileResponseDTO(
             profile.getNickname(),
-            profile.getProfileImageUrl(),
             profile.getBio(),
+            profile.getProfileImageUrl(),
             profile.getFollowerCount(),
             profile.getFollowingCount()
         ));

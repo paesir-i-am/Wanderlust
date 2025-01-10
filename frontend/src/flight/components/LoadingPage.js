@@ -6,7 +6,7 @@ const LoadingPage = () => {
   return (
     <div className="loading-container">
       <div className="spinner"></div>
-      <p>항공권을 검색 중입니다...</p>
+      <p className="loading-text">항공권을 검색 중입니다...</p>
     </div>
   );
 };

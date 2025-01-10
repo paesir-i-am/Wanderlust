@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.filters {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px; /* 필터의 최대 너비 설정 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; /* 부모 컨테이너 기준으로 위치 고정 */
+}
+.filters .filter-section {
+  margin-bottom: 20px;
+}
+.filters .filter-section h3 {
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+}
+.filters .filter-section h3.collapsed::after {
+  content: "▼";
+}
+.filters .filter-section h3::after {
+  content: "▲";
+  font-size: 12px;
+  color: #0078d7;
+  margin-left: 10px;
+}
+.filters .filter-section select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.filters .filter-section select:focus {
+  outline: none;
+  border-color: #0078d7;
+}
+.filters .filter-section label {
+  display: flex;
+  align-items: center;
+}
+.filters .filter-section label input {
+  margin-right: 8px;
+}
+
+/*# sourceMappingURL=FlightFilter.css.map */
