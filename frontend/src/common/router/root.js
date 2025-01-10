@@ -10,7 +10,6 @@ import flightApiRouter from "../../flightApi/router/flightApiRouter"; // flightA
 import AirInfoPage from "../../flightApi/page/main/AirInfoPage";
 import PaymentPage from "../../payment/components/PaymentPage"; // PaymentPage 컴포넌트
 
-
 const Loading = () => <div>Loading...</div>;
 
 const root = createBrowserRouter([
@@ -22,18 +21,22 @@ const root = createBrowserRouter([
       </Suspense>
     ),
   },
+
   {
     path: "member",
     children: memberRouter(),
   },
+
   {
     path: "community",
     children: communityRouter(),
   },
+
   {
     path: "flightApi",
     children: flightApiRouter(),
   },
+
   {
     path: "/flight", // Flight 관련 경로 추가
     children: [
@@ -55,17 +58,20 @@ const root = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "tour",
     children: tourListRouter(),
   },
+
   {
     path: "/flight-info", // /flight-info 경로 설정
     element: (
       <Suspense fallback={Loading}>
         <AirInfoPage />
-      ),
-},
+      </Suspense>
+    ),
+  },
 
   {
     path: "payment", // /payment 경로

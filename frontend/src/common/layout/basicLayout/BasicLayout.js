@@ -13,7 +13,6 @@ import {
 } from "../../../notification/api/notificationApi";
 import { useSelector } from "react-redux";
 
-
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복");
   const [menuActive, setMenuActive] = useState(false);
@@ -86,35 +85,13 @@ const BasicLayout = ({ children }) => {
               </Link>
             </div>
 
-
             {/* 데스크탑 검색창 */}
             <div className="basic-layout__searchbar searchbar desktop-only">
               <CitySearchBar />
-              <div className="basic-layout__search-button">
+              <div className="basic-layout__search-button search-buttons">
                 <ImageSearchButton />
                 <button>
                   <img src="/icons/searchIcon.svg" alt="Search" />
-            {/*데스크탑 검색창*/}
-            <div className="basic-layout__searchbar searchbar desktop-only">
-              <input
-                type="text"
-                placeholder="Search your Memory, will craft moments of now Ones.."
-                className="basic-layout__search-input search-input"
-              />
-              <div className="basic-layout__search-buttons search-buttons">
-                <button className="basic-layout__search-button">
-                  <img
-                    src="/icons/picturSearchIcon.svg"
-                    alt="PictureSearch"
-                    className="basic-layout__search-icon"
-                  />
-                </button>
-                <button className="basic-layout__search-button">
-                  <img
-                    src="/icons/searchIcon.svg"
-                    alt="Search"
-                    className="basic-layout__search-icon"
-                  />
                 </button>
               </div>
             </div>
@@ -143,7 +120,7 @@ const BasicLayout = ({ children }) => {
             <div className="basic-layout__icons icons desktop-only">
               <div
                 className="basic-layout__notification-wrapper"
-                style={{ position: "relative", zIndex: 9999 }}
+                style={{ position: "relative" }}
               >
                 <NotificationIcon
                   unreadCount={unreadCount}

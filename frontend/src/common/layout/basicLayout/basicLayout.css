@@ -164,8 +164,8 @@ img {
   cursor: pointer;
 }
 .basic-layout .header-fixed .header-overlay .header-top .searchbar.desktop-only .search-buttons button img {
-  height: 30px;
-  width: 30px;
+  height: 30px !important;
+  width: 30px !important;
 }
 .basic-layout .header-fixed .header-overlay .header-top .icons.desktop-only {
   display: flex;
@@ -518,11 +518,12 @@ img {
 }
 .basic-layout .search-container .prediction p {
   color: white;
+}
 @media (max-width: 576px) {
-  .basic-layout .header-fixed {
+  .basic-layout .search-container .prediction .header-fixed {
     height: 150px;
   }
-  .basic-layout .header-fixed .header-overlay {
+  .basic-layout .search-container .prediction .header-fixed .header-overlay {
     height: 150px;
   }
 }
