@@ -3,6 +3,7 @@ import * as tf from "@tensorflow/tfjs";
 import "./ImageSearch.scss";
 import { useNavigate } from "react-router-dom";
 import { tourListApi } from "../tour/api/tourListApi";
+import axiosInstance from "../common/api/mainApi";
 
 const ModelLoader = ({ onClose }) => {
   const [model, setModel] = useState(null);
@@ -130,9 +131,11 @@ const ModelLoader = ({ onClose }) => {
 
   const handleCityClick = async (cityName) => {
     try {
-      const tourIds = await tourListApi.getTourIdsByCityName(cityName);
-      if (tourIds.length > 0) {
-        navigate(`/tour/read/city/${cityName}`);
+      const response = await axiosInstance.get(`tour/read/by-city/${cityName}`);
+
+      const tourId = response.data; // 백엔드에서 반환한 tourId
+      if (tourId) {
+        navigate(`/tour/read/${tourId}`); // tourId로 리다이렉트
       } else {
         alert("해당 도시의 여행지를 찾을 수 없습니다.");
       }

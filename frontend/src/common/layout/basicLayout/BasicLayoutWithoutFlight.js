@@ -3,6 +3,8 @@ import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
 import FlightSearch from "../../../flight/components/FlightSearch";
+import ImageSearchButton from "../../../image/ImageSearchButton";
+import CitySearchBar from "../../component/CitySearchBar";
 import NotificationIcon from "../../../notification/component/NotificationIcon";
 import NotificationDropdown from "../../../notification/component/NotificationDropdown";
 import {
@@ -83,27 +85,13 @@ const BasicLayout = ({ children }) => {
               </Link>
             </div>
 
-            {/*데스크탑 검색창*/}
+            {/* 데스크탑 검색창 */}
             <div className="basic-layout__searchbar searchbar desktop-only">
-              <input
-                type="text"
-                placeholder="Search your Memory, will craft moments of now Ones.."
-                className="basic-layout__search-input search-input"
-              />
-              <div className="basic-layout__search-buttons search-buttons">
-                <button className="basic-layout__search-button">
-                  <img
-                    src="/icons/picturSearchIcon.svg"
-                    alt="PictureSearch"
-                    className="basic-layout__search-icon"
-                  />
-                </button>
-                <button className="basic-layout__search-button">
-                  <img
-                    src="/icons/searchIcon.svg"
-                    alt="Search"
-                    className="basic-layout__search-icon"
-                  />
+              <CitySearchBar />
+              <div className="basic-layout__search-button search-buttons">
+                <ImageSearchButton />
+                <button>
+                  <img src="/icons/searchIcon.svg" alt="Search" />
                 </button>
               </div>
             </div>
@@ -132,7 +120,7 @@ const BasicLayout = ({ children }) => {
             <div className="basic-layout__icons icons desktop-only">
               <div
                 className="basic-layout__notification-wrapper"
-                style={{ position: "relative", zIndex: 9999 }}
+                style={{ position: "relative" }}
               >
                 <NotificationIcon
                   unreadCount={unreadCount}
@@ -190,8 +178,8 @@ const BasicLayout = ({ children }) => {
             >
               항공권
             </Link>
-            <Link to="/photo-search" className="basic-layout__nav-link">
-              사진검색
+            <Link to="/tour/list" className="basic-layout__nav-link">
+              여행지
             </Link>
             <Link to="/community" className="basic-layout__nav-link">
               커뮤니티

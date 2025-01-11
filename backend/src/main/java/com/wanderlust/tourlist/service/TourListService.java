@@ -19,10 +19,12 @@ public interface TourListService {
     // 특정 국가와 도시의 여행지 리스트 반환
     List<TourListDTO> getTourListByCountryAndCity(String countryCodeName, String cityCodeName);
 
-    List<Long> getTourIdsByCityName(String cityName);
+    Long getTourIdsByCityName(String cityName);
 
     TourListDTO getTourById(Long tourId);
 
     // 랜덤으로 여행지 리스트 반환
     List<TourListDTO> getRandomTourList(int count);
+
+
 }
