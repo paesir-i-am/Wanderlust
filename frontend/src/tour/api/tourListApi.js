@@ -101,22 +101,6 @@ export const tourListApi = {
     }
   },
 
-  // cityName으로 tourId 반환
-  getTourIdsByCityName: async (cityName) => {
-    try {
-      console.log("Sending request to:", `${BASE_URL}/read/city/${cityName}`); // 디버깅
-      console.log("Request parameter cityName:", cityName); // 디버깅
-      const response = await axiosInstance.get(
-        `${BASE_URL}/read/city/${cityName}`,
-      );
-      console.log("Response data:", response.data); // 응답 데이터 확인
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching tour IDs by city name:", error);
-      throw error;
-    }
-  },
-
   getTourById: async (tourId) => {
     try {
       const response = await axiosInstance.get(`${BASE_URL}/read/${tourId}`);

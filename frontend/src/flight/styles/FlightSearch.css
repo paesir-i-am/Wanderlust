@@ -103,8 +103,6 @@ img {
   z-index: 10;
   width: 100%;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
   margin: 0 auto;
   padding: 0; /* 패딩 제거로 높이 줄이기 */
 }
@@ -139,7 +137,7 @@ img {
   line-height: 1.5;
 }
 .flight-search .flight-search-container .flight-options button.active {
-  background: #2563eb;
+  background: #228B22;
   color: white;
 }
 .flight-search .flight-search-container .flight-fields {
@@ -233,8 +231,8 @@ img {
 }
 .flight-search .flight-search-container .flight-fields .flight-dropdown1 .flight-dropdown-menu button:hover,
 .flight-search .flight-search-container .flight-fields .flight-dropdown2 .flight-dropdown-menu button:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #228B22;
+  color: #228B22;
 }
 .flight-search .flight-search-container .flight-fields span {
   font-size: 24px;
@@ -305,8 +303,8 @@ img {
   cursor: pointer;
 }
 .flight-search .flight-search-container .flight-fields .flight-dropdown .flight-dropdown-menu .passenger-section .row .controls button:hover:not(:disabled) {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #228B22;
+  color: #228B22;
 }
 .flight-search .flight-search-container .flight-fields .flight-dropdown .flight-dropdown-menu .passenger-section .row .controls button:disabled {
   color: #d1d5db;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
@@ -8,6 +8,7 @@ import Category from "../component/map/Category";
 import PlaceList from "../component/map/PlaceList";
 import Map from "../component/map/Map";
 import { tourListApi } from "../api/tourListApi";
+import BasicLayoutWithoutFlight from "../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const TourReadPage = () => {
   const { tourId } = useParams();
@@ -26,13 +27,16 @@ const TourReadPage = () => {
   const [travelMode, setTravelMode] = useState("TRANSIT");
   const [directionsRenderer, setDirectionsRenderer] = useState(null);
   const [initialized, setInitialized] = useState(false);
-  const [tourDetails, setTourDetails] = useState(selectedTour || null); // 중복 state 제거
+  const [tourDetails, setTourDetails] = useState(selectedTour || null);
+  const hasReloaded = useRef(false);
 
   // tourid값으로 상세 정보 검색
   useEffect(() => {
     const fetchTourDetails = async () => {
       try {
         console.log("Fetching details for tourId:", tourId);
+
+        setTourDetails(null);
 
         // 1. Tour 상세 정보 가져오기
         if (!tourDetails && tourId) {
@@ -48,14 +52,20 @@ const TourReadPage = () => {
             lat: mapData.latitude || 37.5665,
             lng: mapData.longitude || 126.9783,
           });
+
+          // 새로고침 여부 확인 및 실행
+          const reloadKey = `reloaded_${tourId}`;
+          if (!sessionStorage.getItem(reloadKey)) {
+            sessionStorage.setItem(reloadKey, "true"); // 새로고침 여부 저장
+            window.location.reload(); // 새로고침 실행
+          }
         }
       } catch (error) {
         console.error("Error fetching tour details:", error);
       }
     };
-
     fetchTourDetails();
-  }, [tourId, tourDetails]);
+  }, [tourId]);
 
   // 구글 맵에 표시할 장소들 가져오기
   const fetchPlaces = (tourId) => {
@@ -279,21 +289,37 @@ const TourReadPage = () => {
   return (
     <BasicLayout>
       <div className="page-container">
-        {selectedTour ? (
+        {tourDetails || selectedTour ? (
           <div className="content-grid">
             <div className="left-content">
               <div className="city-img-container">
                 <img
-                  src={tourDetails.cityImg}
-                  alt={tourDetails.tourTitle}
+                  src={`http://localhost:8080${tourDetails?.cityImg || selectedTour?.cityImg}`}
+                  alt={
+                    tourDetails?.tourTitle ||
+                    selectedTour?.tourTitle ||
+                    "No image available"
+                  }
                   className="city-img"
                 />
               </div>
               <div className="title-section">
-                <h2 className="tour-title">{tourDetails.tourTitle}</h2>
+                <h2 className="tour-title">
+                  {tourDetails?.tourTitle ||
+                    selectedTour?.tourTitle ||
+                    "No title available"}
+                </h2>
                 <div className="tour-description">
-                  <p className="city-name">{tourDetails.cityName}</p>
-                  <p>{tourDetails.tourContext}</p>
+                  <p className="city-name">
+                    {tourDetails?.cityName ||
+                      selectedTour?.cityName ||
+                      "No city name"}
+                  </p>
+                  <p>
+                    {tourDetails?.tourContext ||
+                      selectedTour?.tourContext ||
+                      "No context available"}
+                  </p>
                 </div>
               </div>
             </div>

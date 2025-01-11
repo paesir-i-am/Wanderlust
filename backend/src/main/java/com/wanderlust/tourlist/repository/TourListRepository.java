@@ -1,10 +1,10 @@
 package com.wanderlust.tourlist.repository;
 
+import com.wanderlust.tourlist.dto.TourListDTO;
 import com.wanderlust.tourlist.entity.TourList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +23,12 @@ public interface TourListRepository extends JpaRepository<TourList, Long> {
     @Query("SELECT t.tourId FROM TourList t JOIN City c ON t.cityCodeName = c.cityCodeName WHERE c.cityName = :cityName")
     List<Long> findTourIdsByCityName(@Param("cityName") String cityName);
 
-    @Query("SELECT t FROM TourList t WHERE t.tourId = :tourId")
-    Optional<TourList> findTourWithCityById(@Param("tourId") Long tourId);
+    @Query("SELECT new com.wanderlust.tourlist.dto.TourListDTO(" +
+        "t.tourId, t.tourTitle, c.cityName, c.cityImg, t.tourContext) " +
+        "FROM TourList t " +
+        "JOIN City c ON t.tourId = c.cityId " +
+        "WHERE t.tourId = :tourId")
+    Optional<TourListDTO> findTourWithCityById(@Param("tourId") Long tourId);
 
     // 랜덤으로 여행지 리스트를 가져오기
     @Query(value = "SELECT t.tour_id, t.tour_title, t.tour_context, c.city_name, c.city_img " +

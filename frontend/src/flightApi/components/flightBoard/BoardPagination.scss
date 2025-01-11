@@ -1,4 +1,4 @@
-@import "../../../core.css";
+@import '../../../core';
 
 .pagination {
     display: flex;
@@ -25,9 +25,9 @@
       }
       
       &.active {
-        background-color: #007bff;
+        background-color: $primary-color;
         color: white;
-        border-color: #007bff;
+        border-color: $primary-color;
       }
     }
   }

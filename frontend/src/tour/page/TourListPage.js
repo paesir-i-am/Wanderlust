@@ -9,7 +9,7 @@ import {
   setSelectedCities,
   setTourList,
   setTotalItems,
-} from "../slice/tourListSlice"; // Redux Slice
+} from "../slice/tourListSlice";
 import Continent from "../component/t_list/Continent";
 import Country from "../component/t_list/Country";
 import City from "../component/t_list/City";
@@ -147,8 +147,6 @@ const TourListPage = () => {
                 console.log(`Page changed to: ${newPage}`); // 백틱으로 수정
               }}
             />
-
-            <ModelLoader_origin />
           </div>
         </div>
       </div>

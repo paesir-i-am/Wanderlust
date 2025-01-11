@@ -46,10 +46,9 @@ const TourList = ({ selectedCountry = null, selectedCities = [] }) => {
           >
             <div className="image-box">
               <img
-                src={item.cityImg}
+                src={`http://localhost:8080${item.cityImg}`}
                 alt={item.cityName}
                 onError={(e) => {
-                  console.error("Image loading failed:", item.cityImg);
                   e.target.src = "/fallback-image.jpg"; // 대체 이미지 설정
                 }}
               />

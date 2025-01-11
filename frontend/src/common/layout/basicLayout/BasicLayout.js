@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCustomLogin } from "../../../member/hook/useCustomLogin";
 import { Link } from "react-router-dom";
 import "./basicLayout.css";
@@ -68,6 +68,7 @@ const BasicLayout = ({ children }) => {
       console.error("Failed to fetch unread notifications:", error);
     }
   };
+  const citySearchBarRef = useRef(null);
 
   return (
     <div className="basic-layout">
@@ -87,10 +88,14 @@ const BasicLayout = ({ children }) => {
 
             {/* 데스크탑 검색창 */}
             <div className="basic-layout__searchbar searchbar desktop-only">
-              <CitySearchBar />
+              <CitySearchBar ref={citySearchBarRef} />
               <div className="basic-layout__search-button search-buttons">
                 <ImageSearchButton />
-                <button>
+                <button
+                  onClick={() => {
+                    citySearchBarRef.current.handleSearch(); // CitySearchBar의 검색 함수 호출
+                  }}
+                >
                   <img src="/icons/searchIcon.svg" alt="Search" />
                 </button>
               </div>
@@ -178,8 +183,8 @@ const BasicLayout = ({ children }) => {
             >
               항공권
             </Link>
-            <Link to="/photo-search" className="basic-layout__nav-link">
-              사진검색
+            <Link to="/tour/list" className="basic-layout__nav-link">
+              여행지
             </Link>
             <Link to="/community" className="basic-layout__nav-link">
               커뮤니티

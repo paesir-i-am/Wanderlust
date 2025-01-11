@@ -24,14 +24,6 @@ const tourListRouter = () => {
       ),
     },
     {
-      path: "read/city/:cityName", // 새로운 경로
-      element: (
-        <Suspense fallback={Loading}>
-          <TourRead />
-        </Suspense>
-      ),
-    },
-    {
       path: "*",
       element: <Navigate replace to="/tour/list" />, // 잘못된 경로 처리
     },

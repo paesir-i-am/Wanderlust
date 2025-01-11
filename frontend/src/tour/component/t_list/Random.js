@@ -24,7 +24,10 @@ const Random = ({ count = 3 }) => {
       <div className="random-tours-grid">
         {randomTours.map((tour) => (
           <div key={tour.tourId} className="random-tour-item">
-            <img src={tour.cityImg} alt={tour.cityName} />
+            <img
+              src={`http://localhost:8080${tour.cityImg}`}
+              alt={tour.cityName}
+            />
             <h3>{tour.tourTitle}</h3>
             <p>{tour.cityName}</p>
             <p>{tour.tourContext}</p>

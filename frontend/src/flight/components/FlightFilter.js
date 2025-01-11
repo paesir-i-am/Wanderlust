@@ -62,26 +62,25 @@ const FlightFilter = ({ filters, onFilterChange, airlines = [] }) => {
         )}
       </div>
 
-
-     {/* 최적가 필터 */}
-<div className="filter-section lowest-fare">
-  <h3
-    onClick={() => toggleSection("lowestFare")}
-    className={expandedSections.lowestFare ? "" : "collapsed"}
-  >
-    최적가
-  </h3>
-  {expandedSections.lowestFare && (
-    <label className="checkbox-label">
-      <input
-        type="checkbox"
-        checked={filters.lowestFare}
-        onChange={(e) => onFilterChange("lowestFare", e.target.checked)}
-      />
-      최적가
-    </label>
-  )}
-</div>
+      {/* 최적가 필터 */}
+      <div className="filter-section lowest-fare">
+        <h3
+          onClick={() => toggleSection("lowestFare")}
+          className={expandedSections.lowestFare ? "" : "collapsed"}
+        >
+          최저가
+        </h3>
+        {expandedSections.lowestFare && (
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={filters.lowestFare}
+              onC저hange={(e) => onFilterChange("lowestFare", e.target.checked)}
+            />
+            최저가
+          </label>
+        )}
+      </div>
     </div>
   );
 };

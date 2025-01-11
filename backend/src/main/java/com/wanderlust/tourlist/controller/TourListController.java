@@ -2,10 +2,8 @@ package com.wanderlust.tourlist.controller;
 
 import com.wanderlust.tourlist.dto.TourListDTO;
 import com.wanderlust.tourlist.service.TourListService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,10 +57,10 @@ public class TourListController {
     }
 
     // 도시 이름으로 검색
-    @GetMapping("/read/city/{cityName}")
-    public ResponseEntity<List<Long>> getTourIdsByCityName(@PathVariable String cityName) {
-        List<Long> tourIds = tourListService.getTourIdsByCityName(cityName);
-        return ResponseEntity.ok(tourIds);
+    @GetMapping("/read/by-city/{cityName}")
+    public ResponseEntity<Long> getTourIdsByCityName(@PathVariable String cityName) {
+        Long tourId = tourListService.getTourIdsByCityName(cityName);
+        return ResponseEntity.ok(tourId);
     }
 
     @GetMapping("/read/{tourId}")

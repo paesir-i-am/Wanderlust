@@ -1,0 +1,163 @@
+@import "../../core";
+
+.main-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem
+  }
+
+
+  /* 더보기 버튼 */
+  .more-btn {
+    position: absolute; /* 리스트 마지막 항목 오른쪽에 위치 */
+    transform: translate(50%, -50%);
+    right: 0; /* 오른쪽 끝 */
+    top: 50%; /* 리스트 높이 중간 */
+    background-color: rgba($secondary-color, 0.7);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 1;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.9);
+    }
+  }
+
+  .random-tour-section {
+    position: relative;
+    width: 1200px !important;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 0;
+
+        h3 {
+          padding: 0.2rem;
+          font-size: 1.2rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: #666;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .latest-post-section {
+    margin-top: 2rem;
+    position: relative;
+    width: 1200px !important;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .post {
+      margin-right: 1rem;
+      position: relative; // 배경과 콘텐츠 박스를 겹치게 설정
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 카드 그림자 효과
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 100%;
+        height: 300px; // 일정한 높이 유지
+        object-fit: cover;
+      }
+
+      .post__content {
+        position: absolute;
+        bottom: -10%; // 이미지 외부로 내려오도록 설정
+        left: 30%; // 왼쪽으로 살짝 치우침
+        width: 80%; // 콘텐츠 박스 너비
+        background: white; // 흰색 배경
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 8px; // 콘텐츠 박스 모서리 둥글게
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); // 콘텐츠 박스 그림자 효과
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 2;
+
+        .post__nameanddate {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+
+          h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+            color: #333;
+          }
+
+          .post__date {
+            font-size: 0.9rem;
+            color: #777;
+          }
+        }
+
+        .post__text {
+          font-size: 0.95rem;
+          color: #555;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; // 한 줄로 제한
+        }
+      }
+    }
+  }
+}

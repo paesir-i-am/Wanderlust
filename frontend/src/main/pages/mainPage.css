@@ -1,0 +1,240 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.main-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* 더보기 버튼 */
+}
+.main-page h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+.main-page .more-btn {
+  position: absolute; /* 리스트 마지막 항목 오른쪽에 위치 */
+  transform: translate(50%, -50%);
+  right: 0; /* 오른쪽 끝 */
+  top: 50%; /* 리스트 높이 중간 */
+  background-color: rgba(68, 255, 147, 0.7);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+.main-page .more-btn:hover {
+  background-color: rgba(68, 255, 147, 0.9);
+}
+.main-page .random-tour-section {
+  position: relative;
+  width: 1200px !important;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.main-page .random-tour-section .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.main-page .random-tour-section .card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.main-page .random-tour-section .card:hover {
+  transform: translateY(-5px);
+}
+.main-page .random-tour-section .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.main-page .random-tour-section .card .card-content {
+  padding: 0;
+}
+.main-page .random-tour-section .card .card-content h3 {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-page .random-tour-section .card .card-content p {
+  font-size: 0.9rem;
+  color: #666;
+  padding: 0.5rem;
+}
+.main-page .latest-post-section {
+  margin-top: 2rem;
+  position: relative;
+  width: 1200px !important;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.main-page .latest-post-section .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.main-page .latest-post-section .post {
+  margin-right: 1rem;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.main-page .latest-post-section .post:hover {
+  transform: translateY(-5px);
+}
+.main-page .latest-post-section .post img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.main-page .latest-post-section .post .post__content {
+  position: absolute;
+  bottom: -10%;
+  left: 30%;
+  width: 80%;
+  background: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+}
+.main-page .latest-post-section .post .post__content .post__nameanddate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-page .latest-post-section .post .post__content .post__nameanddate h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+.main-page .latest-post-section .post .post__content .post__nameanddate .post__date {
+  font-size: 0.9rem;
+  color: #777;
+}
+.main-page .latest-post-section .post .post__content .post__text {
+  font-size: 0.95rem;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=mainPage.css.map */

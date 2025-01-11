@@ -5,6 +5,7 @@ import com.wanderlust.tourlist.dto.TourListDTO;
 import com.wanderlust.tourlist.entity.City;
 import com.wanderlust.tourlist.entity.Country;
 import com.wanderlust.tourlist.entity.TourList;
+import com.wanderlust.tourlist.repository.CityRepository;
 import com.wanderlust.tourlist.repository.CountryRepository;
 import com.wanderlust.tourlist.repository.TourListRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -27,7 +28,7 @@ public class TourListServiceImpl implements TourListService {
     private final CountryRepository countryRepository;
     private final TourListRepository tourListRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String IMAGE_BASE_URL = "http://localhost:8080/images/";
+    private final CityRepository cityRepository;
 
     @Override
     public Map<String, List<String>> getContinentsCountriesCities() {
@@ -63,21 +64,13 @@ public class TourListServiceImpl implements TourListService {
         return tourListRepository.getByCountryAndCityWithImage(countryName, cityName)
                 .stream()
                 .map(record -> {
-                    // 원래 cityImg 경로
-                    String originalCityImg = (String) record[2];
-
-                    // cityImg 경로를 URL로 변환
-                    String processedCityImg = null;
-                    if (originalCityImg != null) {
-                        processedCityImg = IMAGE_BASE_URL + extractFileName(originalCityImg);
-                    }
 
                     // DTO 생성
                     return TourListDTO.builder()
                             .tourId(((TourList) record[0]).getTourId())
                             .tourTitle(((TourList) record[0]).getTourTitle())
                             .cityName((String) record[1])
-                            .cityImg(processedCityImg) // 변환된 경로 사용
+                            .cityImg((String) record[2])
                             .tourContext((String) record[3]) // 추가된 tour_context 매핑
                             .build();
                 })
@@ -85,28 +78,17 @@ public class TourListServiceImpl implements TourListService {
     }
 
     @Override
-    public List<Long> getTourIdsByCityName(String cityName) {
-        return tourListRepository.findTourIdsByCityName(cityName);
+    public Long getTourIdsByCityName(String cityName) {
+        return cityRepository.findByCityName(cityName)
+            .map(City::getCityId)
+            .orElseThrow(() -> new EntityNotFoundException("City not found"));
     }
 
-    @Override
-    public TourListDTO getTourById(Long tourId) {
-        return tourListRepository.findTourWithCityById(tourId)
-                .map(tour -> {
-                    // cityImg 경로를 URL로 변환
-                    String originalCityImg = "path/to/city/image"; // 기본값 설정
-                    String processedCityImg = IMAGE_BASE_URL + extractFileName(originalCityImg);
-
-                    return TourListDTO.builder()
-                            .tourId(tour.getTourId())
-                            .tourTitle(tour.getTourTitle())
-                            .tourContext(tour.getTourContext())
-                            .cityName("City name placeholder") // 필요 시 cityName은 추가 로직으로 처리
-                            .cityImg(processedCityImg) // 변환된 이미지 경로 사용
-                            .build();
-                })
-                .orElseThrow(() -> new EntityNotFoundException("Tour not found with ID: " + tourId));
-    }
+  @Override
+  public TourListDTO getTourById(Long tourId) {
+    return tourListRepository.findTourWithCityById(tourId)
+        .orElseThrow(() -> new EntityNotFoundException("Tour not found with ID: " + tourId));
+  }
 
     // 랜덤 여행지 리스트
     @Override
@@ -121,15 +103,8 @@ public class TourListServiceImpl implements TourListService {
                         .tourTitle((String) record[1])
                         .tourContext((String) record[2])
                         .cityName((String) record[3])
-                        .cityImg(IMAGE_BASE_URL + extractFileName((String) record[4]))
+                        .cityImg(((String) record[4]))
                         .build())
                 .collect(Collectors.toList());
-    }
-
-    // 새로 추가하는 메서드: 파일 이름만 추출
-    private String extractFileName(String fullPath) {
-        // Windows 경로 (\)와 Unix 경로 (/) 모두 지원
-        int lastSeparatorIndex = Math.max(fullPath.lastIndexOf('/'), fullPath.lastIndexOf('\\'));
-        return fullPath.substring(lastSeparatorIndex + 1); // 파일 이름 반환
     }
 }
