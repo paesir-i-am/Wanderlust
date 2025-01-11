@@ -1,11 +1,13 @@
+@import "../../core";
+
 .flight-list-container {
+
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 20px;
-  margin-top: -60px;
-  
+
   @media (max-width: 768px) {
     .flight-list-container {
       flex-direction: column; /* 모바일에서 세로 정렬 */
@@ -32,7 +34,7 @@
     
     span {
       font-size: 16px;
-      color: #0056b3;
+      color: $primary-color;
     }
 
     p {
@@ -136,7 +138,7 @@
           text-align: left;
           font-size: 18px;
           font-weight: bold;
-          color: #0056b3;
+          color: $primary-color;
           min-width: 150px;
           @media (max-width: 768px) {
             font-size: 16px;
@@ -179,7 +181,7 @@
             .airport-code2 {
               font-size: 16px;
               font-weight: bold;
-              color: #0056b3;
+              color: $primary-color;
               width: 70px;
               text-align: center;
 
@@ -231,7 +233,7 @@
           }
 
           .select-button {
-            background-color: #0056b3;
+            background-color: $primary-color;
             color: #fff;
             padding: 10px 20px;
             border: none;

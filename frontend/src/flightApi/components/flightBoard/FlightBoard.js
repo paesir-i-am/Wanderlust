@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../scss/AirportApi.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
-import BoardPagination from './BoardPagination';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../scss/AirportApi.scss";
+import { useLocation, useNavigate } from "react-router-dom";
+import BoardPagination from "./BoardPagination";
 import BasicLayout from "../../../common/layout/basicLayout/BasicLayout";
+import BasicLayoutWithoutFlight from "../../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const FlightBoard = () => {
   const [flights, setFlights] = useState([]);
@@ -12,12 +13,12 @@ const FlightBoard = () => {
   const [airlines, setAirlines] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useState({
-    airport: '전체공항',
-    date: '',
-    startTime: '00:00',
-    endTime: '23:59',
-    flightNumber: '',
-    airline: '',
+    airport: "전체공항",
+    date: "",
+    startTime: "00:00",
+    endTime: "23:59",
+    flightNumber: "",
+    airline: "",
   });
 
   const { search } = useLocation();
@@ -26,23 +27,24 @@ const FlightBoard = () => {
   // Update searchParams state when query params change
   useEffect(() => {
     const query = {
-      airport: queryParams.get('airport') || '전체공항',
-      date: queryParams.get('date') || '',
-      startTime: queryParams.get('startTime') || '00:00',
-      endTime: queryParams.get('endTime') || '23:59',
-      flightNumber: queryParams.get('flightNumber') || '',
-      airline: queryParams.get('airline') || '',
+      airport: queryParams.get("airport") || "전체공항",
+      date: queryParams.get("date") || "",
+      startTime: queryParams.get("startTime") || "00:00",
+      endTime: queryParams.get("endTime") || "23:59",
+      flightNumber: queryParams.get("flightNumber") || "",
+      airline: queryParams.get("airline") || "",
     };
     setSearchParams(query);
   }, [search]);
 
-  const API_KEY = 'avIxlq6XN/0crEeax8d+HGElMGY8J1E6a/EY358qYCM76vlbrSc7kYq3k8b0176nerPo5F5gctlWCqKm/pOYrg==';
+  const API_KEY =
+    "avIxlq6XN/0crEeax8d+HGElMGY8J1E6a/EY358qYCM76vlbrSc7kYq3k8b0176nerPo5F5gctlWCqKm/pOYrg==";
   const API_URL =
-    'https://api.odcloud.kr/api/FlightStatusListDTL/v1/getFlightStatusListDetail?page=10&perPage=1000';
+    "https://api.odcloud.kr/api/FlightStatusListDTL/v1/getFlightStatusListDetail?page=10&perPage=1000";
 
   const formatTime = (time) => {
-    if (!time || time === '') return '-';
-    const timeString = time.toString().padStart(4, '0');
+    if (!time || time === "") return "-";
+    const timeString = time.toString().padStart(4, "0");
     const hours = timeString.slice(0, 2);
     const minutes = timeString.slice(2);
     return `${hours}:${minutes}`;
@@ -51,7 +53,7 @@ const FlightBoard = () => {
   const fetchFlightData = async () => {
     if (!searchParams) return; // searchParams가 없으면 함수 종료
     setLoading(true);
-  
+
     try {
       const response = await axios.get(API_URL, {
         params: {
@@ -70,18 +72,22 @@ const FlightBoard = () => {
 
       const filtered = (response.data.data || []).filter((flight) => {
         const flightNumberMatch =
-          !searchParams.flightNumber || flight.AIR_FLN.includes(searchParams.flightNumber);
+          !searchParams.flightNumber ||
+          flight.AIR_FLN.includes(searchParams.flightNumber);
         const airlineMatch =
-          !searchParams.airline || flight.AIRLINE_KOREAN.includes(searchParams.airline);
+          !searchParams.airline ||
+          flight.AIRLINE_KOREAN.includes(searchParams.airline);
 
         const flightTime = parseInt(flight.STD);
-        const startTimeInt = parseInt(searchParams.startTime.replace(':', ''));
-        const endTimeInt = parseInt(searchParams.endTime.replace(':', ''));
+        const startTimeInt = parseInt(searchParams.startTime.replace(":", ""));
+        const endTimeInt = parseInt(searchParams.endTime.replace(":", ""));
 
-        const timeMatch = flightTime >= startTimeInt && flightTime <= endTimeInt;
+        const timeMatch =
+          flightTime >= startTimeInt && flightTime <= endTimeInt;
 
         return (
-          (searchParams.airport === '전체공항' || flight.AIRPORT === searchParams.airport) &&
+          (searchParams.airport === "전체공항" ||
+            flight.AIRPORT === searchParams.airport) &&
           flightNumberMatch &&
           airlineMatch &&
           timeMatch
@@ -97,7 +103,7 @@ const FlightBoard = () => {
       setFilteredFlights(filtered);
       setFlights(sorted);
     } catch (error) {
-      console.error('항공편 데이터 조회 실패:', error);
+      console.error("항공편 데이터 조회 실패:", error);
     } finally {
       setLoading(false);
     }
@@ -135,16 +141,16 @@ const FlightBoard = () => {
     setSearchParams((prev) => ({
       ...prev,
       airline: e.target.value,
-      flightNumber: '', // Reset flight number when airline changes
+      flightNumber: "", // Reset flight number when airline changes
     }));
   };
 
   useEffect(() => {
     fetchFlightData(); // searchParams 값이 변경되었을 때마다 데이터를 가져옴
-  }, [searchParams]);  
+  }, [searchParams]);
 
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="flight-board-container">
         <h2>실시간 항공편 상세 조회</h2>
         <div className="flight-board-search">
@@ -240,8 +246,8 @@ const FlightBoard = () => {
                       <td>{flight.ARRIVED_KOR}</td>
                       <td>{flight.AIRLINE_KOREAN}</td>
                       <td>{flight.AIR_FLN}</td>
-                      <td>{flight.GATE || '-'}</td>
-                      <td>{flight.RMK_KOR || '-'}</td>
+                      <td>{flight.GATE || "-"}</td>
+                      <td>{flight.RMK_KOR || "-"}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -256,7 +262,7 @@ const FlightBoard = () => {
           </>
         )}
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 

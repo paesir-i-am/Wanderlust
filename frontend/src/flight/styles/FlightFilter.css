@@ -6,7 +6,7 @@
   width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
-  /* 최적가 필터를 다른 필터와 동일한 크기로 조정 */
+  /* 최저가 필터를 다른 필터와 동일한 크기로 조정 */
 }
 .filters .filter-section {
   display: flex;

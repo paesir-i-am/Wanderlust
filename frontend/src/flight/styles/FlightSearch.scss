@@ -5,8 +5,6 @@
   z-index: 10;
   width: 100%;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
   margin: 0 auto;
   padding: 0; /* 패딩 제거로 높이 줄이기 */
 
@@ -42,7 +40,7 @@
         line-height: 1.5; // 줄 높이 추가
 
         &.active {
-          background: #2563eb;
+          background: $primary-color;
           color: white;
         }
       }
@@ -138,8 +136,8 @@
             transition: all 0.2s;
 
             &:hover {
-              border-color: #2563eb;
-              color: #2563eb;
+              border-color: $primary-color;
+              color: $primary-color;
             }
           }
         }
@@ -218,8 +216,8 @@
                   cursor: pointer;
 
                   &:hover:not(:disabled) {
-                    border-color: #2563eb;
-                    color: #2563eb;
+                    border-color: $primary-color;
+                    color: $primary-color;
                   }
 
                   &:disabled {

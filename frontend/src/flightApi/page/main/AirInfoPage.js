@@ -3,12 +3,12 @@ import React from "react";
 import FlightInfoPage from "../FlightInfoPage";
 import ParkingInfoPage from "../ParkingInfoPage";
 import ShuttleBusInfoPage from "../ShuttleBusInfoPage";
-import BasicLayout from "../../../common/layout/basicLayout/BasicLayout";
 import "../scss/AirInfoPage.css";
+import BasicLayoutWithoutFlight from "../../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const AirInfoPage = () => {
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="air-info-page">
         <section className="flights-info-section air-info-section">
           <FlightInfoPage />
@@ -20,7 +20,7 @@ const AirInfoPage = () => {
           <ShuttleBusInfoPage />
         </section>
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 

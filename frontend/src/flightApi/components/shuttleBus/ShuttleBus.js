@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import '../scss/AirportApi.scss';
-import BasicLayout from '../../../common/layout/basicLayout/BasicLayout';
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import "../scss/AirportApi.scss";
+import BasicLayout from "../../../common/layout/basicLayout/BasicLayout";
+import BasicLayoutWithoutFlight from "../../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const ShuttleBus = () => {
   const [routeData, setRouteData] = useState({ terminal1: [], terminal2: [] });
@@ -12,15 +13,15 @@ const ShuttleBus = () => {
   const terminal2Ref = useRef(null);
 
   const terminalMapping = {
-    "10000140": "제1 여객터미널 - 단기주차장 1",
-    "10000160": "제1 여객터미널 - 단기주차장 2",
-    "10000280": "제1 여객터미널 - 장기주차장 1",
-    "10000040": "제1 여객터미널 - 장기주차장 3",
-    "10000020": "제1 여객터미널 - 장기주차장 4",
-    "10000170": "제2 여객터미널 - 장기주차장 1",
-    "10000030": "제2 여객터미널 - 장기주차장 2",
-    "10000190": "제2 여객터미널 - 단기주차장 2",
-    "10000270": "제2 여객터미널 - 단기주차장 3",
+    10000140: "제1 여객터미널 - 단기주차장 1",
+    10000160: "제1 여객터미널 - 단기주차장 2",
+    10000280: "제1 여객터미널 - 장기주차장 1",
+    10000040: "제1 여객터미널 - 장기주차장 3",
+    10000020: "제1 여객터미널 - 장기주차장 4",
+    10000170: "제2 여객터미널 - 장기주차장 1",
+    10000030: "제2 여객터미널 - 장기주차장 2",
+    10000190: "제2 여객터미널 - 단기주차장 2",
+    10000270: "제2 여객터미널 - 단기주차장 3",
   };
 
   const formatDate = (dateString) => {
@@ -31,13 +32,15 @@ const ShuttleBus = () => {
     const minutes = dateString.substring(10, 12);
     const seconds = dateString.substring(12, 14);
 
-    const formattedDate = new Date(`${year}-${month}-${day}T${hours}:${minutes}:${seconds}`);
+    const formattedDate = new Date(
+      `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`,
+    );
     if (isNaN(formattedDate)) {
       return "정보 없음";
     }
 
     const datePart = `${year}-${month}-${day}`;
-    const timePart = `${formattedDate.getHours().toString().padStart(2, '0')}:${formattedDate.getMinutes().toString().padStart(2, '0')}:${formattedDate.getSeconds().toString().padStart(2, '0')}`;
+    const timePart = `${formattedDate.getHours().toString().padStart(2, "0")}:${formattedDate.getMinutes().toString().padStart(2, "0")}:${formattedDate.getSeconds().toString().padStart(2, "0")}`;
     return `${datePart}, ${timePart}`;
   };
 
@@ -54,11 +57,19 @@ const ShuttleBus = () => {
         const terminal2Data = [];
 
         data.forEach((item) => {
-          const terminalInfo = terminalMapping[item.stopId] || '정보 없음';
-          const predictedTime = item.predTimes !== "0" ? item.predTimes : "정보 없음";
-          const offerTime = item.ofrTime ? formatDate(item.ofrTime) : "정보 없음";
+          const terminalInfo = terminalMapping[item.stopId] || "정보 없음";
+          const predictedTime =
+            item.predTimes !== "0" ? item.predTimes : "정보 없음";
+          const offerTime = item.ofrTime
+            ? formatDate(item.ofrTime)
+            : "정보 없음";
 
-          const mappedItem = { stopId: item.stopId, terminalInfo, predictedTime, offerTime };
+          const mappedItem = {
+            stopId: item.stopId,
+            terminalInfo,
+            predictedTime,
+            offerTime,
+          };
 
           if (terminalInfo.includes("제1 여객터미널")) {
             terminal1Data.push(mappedItem);
@@ -82,20 +93,26 @@ const ShuttleBus = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(search);
-    const selectedTerminal = queryParams.get('terminal') || 'T1';
+    const selectedTerminal = queryParams.get("terminal") || "T1";
 
-    if (selectedTerminal === 'T1' && terminal1Ref.current) {
-      terminal1Ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (selectedTerminal === 'T2' && terminal2Ref.current) {
+    if (selectedTerminal === "T1" && terminal1Ref.current) {
+      terminal1Ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else if (selectedTerminal === "T2" && terminal2Ref.current) {
       // 강제로 스크롤을 맨 아래로 이동
       setTimeout(() => {
-        terminal2Ref.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        terminal2Ref.current.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
       }, 100); // 약간의 딜레이를 추가
     }
   }, [search]);
 
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="airport-bus">
         <h2>공항 셔틀버스 시간표</h2>
         <div ref={terminal1Ref} className="bus scrollable">
@@ -112,8 +129,16 @@ const ShuttleBus = () => {
               {routeData.terminal1.map((route) => (
                 <tr key={route.stopId}>
                   <td>{route.terminalInfo}</td>
-                  <td>{route.predictedTime !== "정보 없음" ? `${route.predictedTime}분` : "정보 없음"}</td>
-                  <td>{route.offerTime !== "정보 없음" ? route.offerTime : "정보 없음"}</td>
+                  <td>
+                    {route.predictedTime !== "정보 없음"
+                      ? `${route.predictedTime}분`
+                      : "정보 없음"}
+                  </td>
+                  <td>
+                    {route.offerTime !== "정보 없음"
+                      ? route.offerTime
+                      : "정보 없음"}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -133,15 +158,23 @@ const ShuttleBus = () => {
               {routeData.terminal2.map((route) => (
                 <tr key={route.stopId}>
                   <td>{route.terminalInfo}</td>
-                  <td>{route.predictedTime !== "정보 없음" ? `${route.predictedTime}분` : "정보 없음"}</td>
-                  <td>{route.offerTime !== "정보 없음" ? route.offerTime : "정보 없음"}</td>
+                  <td>
+                    {route.predictedTime !== "정보 없음"
+                      ? `${route.predictedTime}분`
+                      : "정보 없음"}
+                  </td>
+                  <td>
+                    {route.offerTime !== "정보 없음"
+                      ? route.offerTime
+                      : "정보 없음"}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 
