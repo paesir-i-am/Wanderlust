@@ -114,10 +114,12 @@ const MainPage = () => {
                     alt="Post Background"
                   />
                   <div className="post__content">
-                    <h3 className="post__nickname">{post.authorNickname}</h3>
-                    <span className="post__date">
-                      {formatDate(post.createdAt)}
-                    </span>
+                    <div className="post__nameanddate">
+                      <h3 className="post__nickname">{post.authorNickname}</h3>
+                      <span className="post__date">
+                        {formatDate(post.createdAt)}
+                      </span>
+                    </div>
                     <p className="post__text">
                       {post.content.length > 10
                         ? `${post.content.slice(0, 10)}...`

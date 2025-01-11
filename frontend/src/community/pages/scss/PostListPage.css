@@ -101,7 +101,6 @@ img {
 .post-list-page {
   display: flex;
   gap: 1rem;
-  height: auto;
   background-color: #f8f9fa;
 }
 .post-list-page::-webkit-scrollbar {
@@ -115,6 +114,7 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   margin: 0 5rem 0 5rem;
+  height: 1000px;
 }
 .post-list-page__main__post-form {
   margin-bottom: 1rem; /* 폼과 리스트 간격 */

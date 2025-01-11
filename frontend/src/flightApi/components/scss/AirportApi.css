@@ -499,6 +499,7 @@ img {
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   border: 2px solid #000000;
+  text-align: center;
 }
 .parking-container .parking-level:hover {
   transform: translateY(-4px);
@@ -507,8 +508,9 @@ img {
 .parking-container .parking-lot-name {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #228B22;
+  color: #000000;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .parking-container .availability {
   font-size: 1.1rem;
@@ -548,14 +550,14 @@ img {
 }
 .parking-container .parking-info p {
   margin: 0.75rem 0;
-  color: #228B22;
+  color: #000000;
   font-size: 1rem;
   display: flex;
   justify-content: space-between;
   font-weight: 500;
 }
 .parking-container .parking-info p strong {
-  color: #228B22;
+  color: #000000;
   font-weight: bold;
 }
 .parking-container .parking-info .reservation-button {
@@ -720,10 +722,6 @@ img {
   background: linear-gradient(to right, #228B22, rgb(66.1849710983, 208.8150289017, 66.1849710983));
   border-radius: 2px;
 }
-.airport-bus .scrollable {
-  max-height: 400px; /* 적절한 높이 설정 */
-  overflow-y: auto; /* 스크롤 가능하도록 설정 */
-}
 .airport-bus .bus {
   background-color: white;
   border-radius: 1rem;
@@ -782,13 +780,13 @@ img {
 .airport-bus .bus table tbody tr td {
   padding: 1rem;
   text-align: center;
-  color: #228B22;
+  color: #000000;
   font-size: 0.95rem;
   border: none;
 }
 .airport-bus .bus table tbody tr td:first-child {
   padding-left: 1.5rem;
-  color: #228B22;
+  color: #000000;
   font-weight: 500;
 }
 .airport-bus .bus table tbody tr td:last-child {

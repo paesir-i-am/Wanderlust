@@ -80,10 +80,10 @@
 
 .flightBoard-banner p {
   margin: 0;
-    color: #34495e; // 기본 텍스트 색상
-    font-weight: bold;
-    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
-    text-decoration: none;
+  color: #34495e; // 기본 텍스트 색상
+  font-weight: bold;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+  text-decoration: none;
 }
 
 .flightBoard-banner .english-text {
@@ -322,12 +322,12 @@
 }
 
 .parking-banner p {
-    margin-top: -0.2rem;
-    color: #34495e; // 기본 텍스트 색상
-    font-weight: bold;
-    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
-    position: relative;
-    top: -7px;
+  margin-top: -0.2rem;
+  color: #34495e; // 기본 텍스트 색상
+  font-weight: bold;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+  position: relative;
+  top: -7px;
 }
 
 .parking-banner .english-text {
@@ -376,55 +376,55 @@
   }
 
   /* 버튼들을 하나의 공간으로 묶은 스타일 */
-.selection-buttons-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: $gray-light;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+  .selection-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: $gray-light;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
 
-/* 버튼 그룹의 공통 스타일: terminal-buttons와 parking-type-buttons 동일하게 설정 */
-.terminal-buttons,
-.parking-type-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem; /* 버튼 간의 간격을 1rem로 설정 */
-  flex-wrap: wrap; /* 여러 줄로 버튼이 나올 수 있도록 설정 */
-}
+  /* 버튼 그룹의 공통 스타일: terminal-buttons와 parking-type-buttons 동일하게 설정 */
+  .terminal-buttons,
+  .parking-type-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* 버튼 간의 간격을 1rem로 설정 */
+    flex-wrap: wrap; /* 여러 줄로 버튼이 나올 수 있도록 설정 */
+  }
 
-/* 버튼 기본 스타일 */
-.button {
-  padding: 1.2rem 2rem;
-  background-color: white;
-  color: $primary-color;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 8px; /* 둥근 테두리 */
-  border: 2px solid #000000;
-  width: 200px; /* 버튼 너비를 일정하게 설정 */
-  height: 50px; /* 버튼 높이를 일정하게 설정 */
-  display: flex; /* 버튼 내 콘텐츠가 가로/세로로 중앙에 정렬되도록 설정 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-}
+  /* 버튼 기본 스타일 */
+  .button {
+    padding: 1.2rem 2rem;
+    background-color: white;
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 8px; /* 둥근 테두리 */
+    border: 2px solid #000000;
+    width: 200px; /* 버튼 너비를 일정하게 설정 */
+    height: 50px; /* 버튼 높이를 일정하게 설정 */
+    display: flex; /* 버튼 내 콘텐츠가 가로/세로로 중앙에 정렬되도록 설정 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+  }
 
-/* 버튼 호버 효과 */
-.button:hover {
-  background-color: rgba(41, 128, 185, 0.1);
-}
+  /* 버튼 호버 효과 */
+  .button:hover {
+    background-color: rgba(41, 128, 185, 0.1);
+  }
 
-/* 활성화된 버튼 스타일 */
-.button.active {
-  background-color: $primary-color;
-  color: white;
-}
+  /* 활성화된 버튼 스타일 */
+  .button.active {
+    background-color: $primary-color;
+    color: white;
+  }
 
 
   .loading,
@@ -458,6 +458,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 2px solid #000000;
+    text-align: center;
   }
 
   .parking-level:hover {
@@ -468,8 +469,9 @@
   .parking-lot-name {
     font-size: 1.3rem;
     font-weight: 600;
-    color: $primary-color;
+    color: #000000;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   .availability {
@@ -517,14 +519,14 @@
 
     p {
       margin: 0.75rem 0;
-      color: $primary-color;
+      color: #000000;
       font-size: 1rem;
       display: flex;
       justify-content: space-between;
       font-weight: 500;
 
       strong {
-        color: $primary-color;
+        color: #000000;
         font-weight: bold;
       }
     }
@@ -626,58 +628,58 @@
   }
 }
 
-  .shuttlebus-banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f4f4; // 기본 배경색
-    width: 200px; // 배너 크기
-    height: 150px; // 배너 크기
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer; // 마우스 커서 포인터 표시
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과
-    position: relative; // 애니메이션을 위한 상대 위치
-    overflow: hidden; // 배경 색이 밖으로 나가지 않도록 처리
-  }
-  
-  .shuttlebus-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%; // 시작 위치: 왼쪽 밖
-    width: 100%;
-    height: 100%;
-    background-color: #44ff93; // 호버 시 배경색
-    transition: left 0.5s ease; // 슬라이드 효과
-  }
-  
-  .shuttlebus-banner:hover::before {
-    left: 0; // 호버 시 왼쪽으로 슬라이드
-  }
-  
-  .shuttlebus-banner p {
-    margin: 0;
-    color: #34495e; // 기본 텍스트 색상
-    font-weight: bold;
-    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
-    text-decoration: none;
-  }
-  
-  .shuttlebus-banner .english-text {
-    color: #7f8c8d; // 영어 텍스트 색상
-    font-size: 0.9rem;
-    z-index: 1; // 텍스트가 배경 위에 보이도록 설정
-  }
-  
-  .shuttlebus-banner img {
-    margin-top: 10px;
-    width: 70px; // 아이콘 크기
-    height: auto;
-    z-index: 1; // 아이콘이 배경 위에 보이도록 설정
-  }
-  
+.shuttlebus-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4; // 기본 배경색
+  width: 200px; // 배너 크기
+  height: 150px; // 배너 크기
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer; // 마우스 커서 포인터 표시
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과
+  position: relative; // 애니메이션을 위한 상대 위치
+  overflow: hidden; // 배경 색이 밖으로 나가지 않도록 처리
+}
+
+.shuttlebus-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; // 시작 위치: 왼쪽 밖
+  width: 100%;
+  height: 100%;
+  background-color: #44ff93; // 호버 시 배경색
+  transition: left 0.5s ease; // 슬라이드 효과
+}
+
+.shuttlebus-banner:hover::before {
+  left: 0; // 호버 시 왼쪽으로 슬라이드
+}
+
+.shuttlebus-banner p {
+  margin: 0;
+  color: #34495e; // 기본 텍스트 색상
+  font-weight: bold;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+  text-decoration: none;
+}
+
+.shuttlebus-banner .english-text {
+  color: #7f8c8d; // 영어 텍스트 색상
+  font-size: 0.9rem;
+  z-index: 1; // 텍스트가 배경 위에 보이도록 설정
+}
+
+.shuttlebus-banner img {
+  margin-top: 10px;
+  width: 70px; // 아이콘 크기
+  height: auto;
+  z-index: 1; // 아이콘이 배경 위에 보이도록 설정
+}
+
 
 // 공항 셔틀버스 스타일
 .airport-bus {
@@ -710,11 +712,6 @@
       border-radius: 2px;
     }
   }
-
-  .scrollable {
-    max-height: 400px; /* 적절한 높이 설정 */
-    overflow-y: auto;  /* 스크롤 가능하도록 설정 */
-  }  
 
   // 버스 섹션 스타일
   .bus {
@@ -788,13 +785,13 @@
           td {
             padding: 1rem;
             text-align: center;
-            color: $primary-color;
+            color: #000000;
             font-size: 0.95rem;
             border: none;
 
             &:first-child {
               padding-left: 1.5rem;
-              color: $primary-color;
+              color: #000000;
               font-weight: 500;
             }
 

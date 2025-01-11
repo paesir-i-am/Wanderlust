@@ -147,8 +147,6 @@ const TourListPage = () => {
                 console.log(`Page changed to: ${newPage}`); // 백틱으로 수정
               }}
             />
-
-            <ModelLoader_origin />
           </div>
         </div>
       </div>

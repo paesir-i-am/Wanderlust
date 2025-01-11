@@ -48,7 +48,7 @@ const PaymentPage = () => {
           passportNumber: "",
           passportExpiryDate: "",
           nationality: "",
-        })
+        }),
       );
       setCompanions(initialCompanions);
     }
@@ -126,7 +126,7 @@ const PaymentPage = () => {
           console.error("결제 실패:", response.error_msg);
           alert(`결제가 실패했습니다: ${response.error_msg}`);
         }
-      }
+      },
     );
   };
 
@@ -136,7 +136,7 @@ const PaymentPage = () => {
         <h1>항공권 결제</h1>
         <p>총 결제 금액: {totalPrice.toLocaleString()}원</p>
       </header>
-      <section className="reservator-info">
+      <section className="reservator-info section-info">
         <h2>예약자 정보</h2>
         <div className="form-group">
           <label>예약자 이름:</label>
@@ -163,7 +163,7 @@ const PaymentPage = () => {
           />
         </div>
       </section>
-      <section className="passenger-info">
+      <section className="passenger-info section-info">
         <h2>탑승자 정보</h2>
         <div className="form-group">
           <label>탑승자 영문 이름:</label>
@@ -217,7 +217,7 @@ const PaymentPage = () => {
         </div>
       </section>
       {companions.length > 0 && (
-        <section className="companions-info">
+        <section className="companions-info section-info">
           <h2>동승자 정보</h2>
           {companions.map((companion, index) => (
             <div key={index} className="companion-card">
