@@ -9,7 +9,7 @@ import tourListRouter from "../../tour/router/tourListRouter";
 import flightApiRouter from "../../flightApi/router/flightApiRouter"; // flightApiRouter 가져오기
 import AirInfoPage from "../../flightApi/page/main/AirInfoPage";
 import PaymentPage from "../../payment/components/PaymentPage"; // PaymentPage 컴포넌트
-
+import PaymentHistory from "../../payment/components/PaymentHistory"; // PaymentHistory 컴포넌트
 const Loading = () => <div>Loading...</div>;
 
 const root = createBrowserRouter([
@@ -78,6 +78,14 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <PaymentPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "mypage/payment/history",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <PaymentHistory />
       </Suspense>
     ),
   },

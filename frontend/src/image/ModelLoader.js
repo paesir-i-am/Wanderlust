@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import * as tf from "@tensorflow/tfjs";
 import "./ImageSearch.scss";
 import { useNavigate } from "react-router-dom";
-import { tourListApi } from "../tour/api/tourListApi";
 import axiosInstance from "../common/api/mainApi";
 
 const ModelLoader = ({ onClose }) => {
@@ -190,6 +189,12 @@ const ModelLoader = ({ onClose }) => {
                       <button
                         onClick={() => handleCityClick(prediction.label)}
                         className="city-link"
+                        style={{
+                          color: "white",
+                          fontSize: "1.5rem",
+                          marginLeft: "1rem",
+                          background: "none",
+                        }}
                       >
                         {prediction.label}
                       </button>

@@ -14,6 +14,9 @@ public class PaymentRequestDTO {
     public String reservatorEmail;
     private String reservatorPhone;        // 예약자 휴대폰 번호
 
+    private String memberEmail; // 멤버의 이메일 정보
+
+
     // 탑승자 정보
     private String passengerNameEnglish;   // 탑승자 영문 이름
     private LocalDate passengerBirthDate;  // 탑승자 생년월일

@@ -1,5 +1,7 @@
 package com.wanderlust.payment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wanderlust.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -7,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -22,6 +23,7 @@ public class Payment {
     private String reservatorName;         // 예약자 이름
     private String reservatorEmail;        // 예약자 이메일 주소
     private String reservatorPhone;        // 예약자 휴대폰 번호
+
 
     // 탑승자 정보
     private String passengerNameEnglish;   // 탑승자 영문 이름
@@ -42,6 +44,13 @@ public class Payment {
     private PaymentStatus paymentStatus;   // 결제 상태 (열거형)
 
     private LocalDate paymentDate;         // 결제 발생 시간
+
+
+    // Member와의 연관 관계
+    @ManyToOne
+    @JoinColumn(name = "member_email", referencedColumnName = "email")
+    @JsonIgnore
+    private Member member; // Member와 매핑
 
     // 동승자 정보 (JSON 타입으로 저장)
     @Lob

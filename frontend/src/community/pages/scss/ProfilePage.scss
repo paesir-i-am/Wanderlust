@@ -108,7 +108,8 @@
 
     .close-btn {
       display: block;
-      margin: 20px auto 0;
+      margin: 20px 0;
+      margin-left: auto;
       padding: 10px 20px;
       background-color: $secondary-color; // 서브 색상
       color: white;

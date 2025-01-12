@@ -287,7 +287,7 @@ const TourReadPage = () => {
   ]);
 
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="page-container">
         {tourDetails || selectedTour ? (
           <div className="content-grid">
@@ -354,7 +354,7 @@ const TourReadPage = () => {
           <p>No tour details available for the selected tour</p>
         )}
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 
