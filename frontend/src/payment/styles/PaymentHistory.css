@@ -1,0 +1,240 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.payment-history-container {
+  padding: 20px 30px;
+  margin-top: -2rem;
+  height: 750px;
+  width: 100%;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+.payment-history-container .user-info {
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.payment-history-container .user-info h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+}
+.payment-history-container .content-wrapper {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 180px);
+}
+.payment-history-container .payment-list {
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.payment-history-container .payment-list header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+.payment-history-container .payment-list header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+.payment-history-container .payment-list ul {
+  height: calc(100% - 70px);
+  overflow-y: auto;
+}
+.payment-history-container .payment-list ul li {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.payment-history-container .payment-list ul li:hover {
+  background-color: #f8f9fa;
+}
+.payment-history-container .payment-list ul li.active {
+  background-color: #e3f2fd;
+  border-left: 4px solid #228B22;
+}
+.payment-history-container .payment-list ul li span {
+  display: block;
+  margin-bottom: 5px;
+}
+.payment-history-container .payment-list ul li span:nth-child(1) {
+  font-weight: 500;
+  color: #333;
+}
+.payment-history-container .payment-list ul li span:nth-child(2) {
+  color: #666;
+  font-size: 0.9rem;
+}
+.payment-history-container .payment-list ul li span:nth-child(3) {
+  font-weight: 600;
+  color: #228B22;
+}
+.payment-history-container .payment-list ul li span:nth-child(4) {
+  color: #757575;
+  font-size: 0.9rem;
+}
+.payment-history-container .payment-details {
+  flex: 8;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+.payment-history-container .payment-details header {
+  margin-bottom: -10px;
+  padding-bottom: 10px;
+}
+.payment-history-container .payment-details header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+.payment-history-container .payment-details .details-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.payment-history-container .payment-details .detail-item {
+  display: flex;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+.payment-history-container .payment-details .detail-item label {
+  width: 120px;
+  color: #666;
+  font-weight: 500;
+}
+.payment-history-container .payment-details .detail-item span {
+  flex: 1;
+  color: #333;
+  font-weight: 400;
+}
+.payment-history-container .payment-details .refund-button {
+  width: 20%;
+  padding: 15px;
+  margin-top: auto;
+  margin-left: auto;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.payment-history-container .payment-details .refund-button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+.payment-history-container .payment-details .refund-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/*# sourceMappingURL=PaymentHistory.css.map */
