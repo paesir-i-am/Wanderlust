@@ -193,6 +193,9 @@ const BasicLayout = ({ children }) => {
             >
               사진검색
             </Link>
+            <Link to="/tour/list" className="basic-layout__nav-link">
+              여행지
+            </Link>
             <Link to="/community" className="basic-layout__nav-link">
               커뮤니티
             </Link>

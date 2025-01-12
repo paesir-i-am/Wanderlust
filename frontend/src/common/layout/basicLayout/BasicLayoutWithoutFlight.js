@@ -12,6 +12,7 @@ import {
   markAsRead,
 } from "../../../notification/api/notificationApi";
 import { useSelector } from "react-redux";
+import ModelLoader from "../../../image/ModelLoader";
 
 const BasicLayout = ({ children }) => {
   const [activeOption, setActiveOption] = useState("왕복");
@@ -21,6 +22,7 @@ const BasicLayout = ({ children }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
+  const [showModelLoader, setShowModelLoader] = useState(false);
 
   const { isLogin, moveToLogin, doLogout, moveToPath, doLoginPopup } =
     useCustomLogin();
@@ -40,6 +42,10 @@ const BasicLayout = ({ children }) => {
     } catch (error) {
       console.error("Failed to mark notification as read:", error);
     }
+  };
+
+  const toggleModelLoader = () => {
+    setShowModelLoader((prev) => !prev);
   };
 
   useEffect(() => {
@@ -180,8 +186,15 @@ const BasicLayout = ({ children }) => {
             >
               항공권
             </Link>
-            <Link to="/photo-search" className="basic-layout__nav-link">
+            <Link
+              to="#"
+              onClick={toggleModelLoader}
+              className="basic-layout__nav-link"
+            >
               사진검색
+            </Link>
+            <Link to="/tour/list" className="basic-layout__nav-link">
+              여행지
             </Link>
             <Link to="/community" className="basic-layout__nav-link">
               커뮤니티
@@ -199,6 +212,7 @@ const BasicLayout = ({ children }) => {
             />
           </div>
         )}
+        {showModelLoader && <ModelLoader onClose={toggleModelLoader} />}
       </header>
 
       {/*본문 컨텐츠*/}

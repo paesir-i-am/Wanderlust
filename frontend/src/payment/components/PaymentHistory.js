@@ -4,14 +4,24 @@ import { getCookie } from "../../common/util/cookieUtil";
 import { fetchPaymentsByEmail } from "../api/paymentApi";
 import axios from "axios";
 import "../styles/PaymentHistory.scss";
+import useCustomLogin from "../../member/hook/useCustomLogin";
+import { useSelector } from "react-redux";
 
 const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const { isLogin, doLoginPopup } = useCustomLogin();
 
-  const email = getCookie("member")?.email || "";
+  const email = useSelector((state) => state.loginSlice.email);
+
+  useEffect(() => {
+    if (!isLogin) {
+      doLoginPopup();
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     const fetchPayments = async () => {
@@ -49,7 +59,7 @@ const PaymentHistory = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       console.log("환불 요청 성공:", response.data);
@@ -59,8 +69,8 @@ const PaymentHistory = () => {
         prevPayments.map((payment) =>
           payment.merchantUid === impUid
             ? { ...payment, paymentStatus: "REFUND_REQUESTED" }
-            : payment
-        )
+            : payment,
+        ),
       );
 
       if (selectedPayment?.merchantUid === impUid) {
@@ -87,7 +97,7 @@ const PaymentHistory = () => {
         <div className="user-info">
           <h3>회원 이메일: {email}</h3>
         </div>
-        
+
         <div className="content-wrapper">
           <aside className="payment-list">
             <header>
@@ -97,7 +107,11 @@ const PaymentHistory = () => {
               {payments.map((payment) => (
                 <li
                   key={payment.merchantUid}
-                  className={selectedPayment?.merchantUid === payment.merchantUid ? "active" : ""}
+                  className={
+                    selectedPayment?.merchantUid === payment.merchantUid
+                      ? "active"
+                      : ""
+                  }
                   onClick={() => setSelectedPayment(payment)}
                 >
                   <span>{payment.merchantUid}</span>
@@ -134,7 +148,11 @@ const PaymentHistory = () => {
                 {selectedPayment.companions?.length > 0 && (
                   <div className="detail-item">
                     <label>동승자명:</label>
-                    <span>{selectedPayment.companions.map((c) => c.nameEnglish).join(", ")}</span>
+                    <span>
+                      {selectedPayment.companions
+                        .map((c) => c.nameEnglish)
+                        .join(", ")}
+                    </span>
                   </div>
                 )}
                 <div className="detail-item">

@@ -189,7 +189,12 @@ const ModelLoader = ({ onClose }) => {
                       <button
                         onClick={() => handleCityClick(prediction.label)}
                         className="city-link"
-                        style={{ color: "white", fontSize: "1.5rem" }}
+                        style={{
+                          color: "white",
+                          fontSize: "1.5rem",
+                          marginLeft: "1rem",
+                          background: "none",
+                        }}
                       >
                         {prediction.label}
                       </button>

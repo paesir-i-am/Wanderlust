@@ -28,7 +28,7 @@ body {
   border-radius: 8px;
   margin-bottom: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: 250px;
   position: fixed;
   left: 2rem;
   top: 2rem;
@@ -62,6 +62,7 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   width: calc(100% - 4rem);
   max-width: 800px;
+  margin-top: 2rem;
 }
 
 .section-info h2 {
@@ -122,9 +123,14 @@ body {
 }
 
 .companions-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: calc(100% - 4rem);
+  max-width: 800px;
+  margin-top: 2rem;
 }
 
 .companion-card {

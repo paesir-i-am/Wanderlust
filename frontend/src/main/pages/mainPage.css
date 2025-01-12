@@ -111,6 +111,14 @@ img {
   margin-bottom: 1.5rem;
   padding: 0 0.5rem;
 }
+.main-page .additional-contents {
+  background: white;
+  width: 1200px;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 .main-page .more-btn {
   position: absolute; /* 리스트 마지막 항목 오른쪽에 위치 */
   transform: translate(50%, -50%);
