@@ -111,14 +111,14 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   gap: 2rem;
   flex-wrap: wrap;
-  left: 500px;
+  left: 320px;
   width: 100%;
   min-height: 100vh;
   overflow-y: auto;
 }
 
 .payment-header {
-  background: linear-gradient(to right, #2b96ed, #2173db);
+  background: linear-gradient(to right, #44FF93, #228B22);
   color: white;
   padding: 2rem 2.5rem;
   border-radius: 8px;
@@ -160,7 +160,7 @@ body {
   max-width: 800px;
 }
 
-section h2 {
+.section-info h2 {
   color: #333;
   font-size: 1.4rem;
   margin: 0 0 1.8rem 0;
@@ -203,13 +203,13 @@ section h2 {
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #40a9ff;
+  border-color: #228B22;
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 
 .form-group input:hover,
 .form-group select:hover {
-  border-color: #40a9ff;
+  border-color: #228B22;
 }
 
 .form-group select {
@@ -249,7 +249,7 @@ section h2 {
 .btn-submit {
   width: 100%;
   height: 3.5rem;
-  background: #1890ff;
+  background: #228B22;
   color: white;
   border: none;
   border-radius: 6px;
@@ -264,11 +264,11 @@ section h2 {
 }
 
 .btn-submit:hover {
-  background: #40a9ff;
+  background: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
 
 .btn-submit:active {
-  background: #096dd9;
+  background: rgb(23.9768786127, 98.0231213873, 23.9768786127);
 }
 
 .no-companions {

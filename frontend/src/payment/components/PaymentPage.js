@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { processPayment } from "../api/paymentapi";
+import { processPayment } from "../api/paymentApi";
 import "../styles/PaymentPage.scss";
 
 const PaymentPage = () => {
@@ -80,6 +80,7 @@ const PaymentPage = () => {
     }
 
     const merchantUid = `order_${new Date().getTime()}`;
+    const paymentDate = new Date().toISOString().split("T")[0]; // 결제 날짜
 
     const IMP = window.IMP;
     IMP.init("imp10303705");
@@ -114,10 +115,16 @@ const PaymentPage = () => {
               passportExpiryDate,
               nationality,
               companions,
+              email: reservatorEmail,
             });
 
+            // 결제가 완료되면 이메일을 localStorage에 저장
+            localStorage.setItem("email", reservatorEmail);
+
             alert("결제가 성공적으로 완료되었습니다.");
-            navigate("/mypage/payment/history", { state: { reservatorEmail } });
+
+            // 결제 완료 후 결제 내역 페이지로 이동
+            navigate("/mypage/payment/history");
           } catch (error) {
             console.error("백엔드 결제 처리 실패:", error);
             alert("결제 처리 중 문제가 발생했습니다.");
@@ -217,7 +224,7 @@ const PaymentPage = () => {
         </div>
       </section>
       {companions.length > 0 && (
-        <section className="companions-info section-info">
+        <section className="companions-info">
           <h2>동승자 정보</h2>
           {companions.map((companion, index) => (
             <div key={index} className="companion-card">

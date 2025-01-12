@@ -332,19 +332,19 @@ img {
   cursor: pointer;
 }
 .flight-search .flight-search-container .flight-fields .flight-dropdown .flight-dropdown-menu .fare-section button.active {
-  background: #2563eb;
+  background: #228B22;
   color: white;
-  border-color: #2563eb;
+  border-color: #228B22;
 }
 .flight-search .flight-search-container .flight-fields .flight-dropdown .flight-dropdown-menu .fare-section button:hover:not(.active) {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #228B22;
+  color: #228B22;
 }
 .flight-search .flight-search-container .flight-fields button[type=submit],
 .flight-search .flight-search-container .flight-fields .search-button {
   height: 40px;
   padding: 0 24px;
-  background: #2563eb;
+  background: #228B22;
   color: white;
   border: none;
   border-radius: 8px;
@@ -353,7 +353,7 @@ img {
 }
 .flight-search .flight-search-container .flight-fields button[type=submit]:hover:not(:disabled),
 .flight-search .flight-search-container .flight-fields .search-button:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #228B22;
 }
 .flight-search .flight-search-container .flight-fields button[type=submit]:disabled,
 .flight-search .flight-search-container .flight-fields .search-button:disabled {

@@ -134,11 +134,13 @@ const BasicLayout = ({ children }) => {
                 )}
               </div>
               <button className="basic-layout__icon-button">
-                <img
-                  src="/icons/reservation.svg"
-                  alt="Reservations"
-                  className="basic-layout__icon-img"
-                />
+                <Link to="/mypage/payment/history">
+                  <img
+                    src="/icons/reservation.svg"
+                    alt="Reservations"
+                    className="basic-layout__icon-img"
+                  />
+                </Link>
               </button>
               {isLogin ? (
                 <button
@@ -178,8 +180,8 @@ const BasicLayout = ({ children }) => {
             >
               항공권
             </Link>
-            <Link to="/tour/list" className="basic-layout__nav-link">
-              여행지
+            <Link to="/photo-search" className="basic-layout__nav-link">
+              사진검색
             </Link>
             <Link to="/community" className="basic-layout__nav-link">
               커뮤니티

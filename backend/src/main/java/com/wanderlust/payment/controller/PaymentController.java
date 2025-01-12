@@ -1,12 +1,17 @@
 package com.wanderlust.payment.controller;
 
 import com.wanderlust.payment.dto.PaymentRequestDTO;
+import com.wanderlust.payment.entity.Payment;
 import com.wanderlust.payment.service.PaymentService;
 import com.wanderlust.payment.service.PortoneService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/payments")
@@ -63,6 +68,55 @@ public class PaymentController {
         } catch (Exception e) {
             log.error("결제 검증 중 오류 발생: {}", e.getMessage(), e);
             return ResponseEntity.badRequest().body("결제 검증 실패: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/member/{email}")
+    public ResponseEntity<?> getPaymentsByNickname(@PathVariable String email) {
+        log.info("이메일 기반 결제 내역 조회 요청: email={}", email); // 디버깅 로그
+        if (email == null || email.isEmpty()) {
+            log.error("이메일 값이 null 또는 비어 있습니다.");
+            return ResponseEntity.badRequest().body("유효한 이메일을 입력하세요.");
+        }
+        List<Payment> payments = paymentService.getPaymentsByEmail(email);
+        if (payments.isEmpty()) {
+            log.warn("결제 내역이 존재하지 않습니다: email={}", email);
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+        log.info("결제 내역 조회 성공: {}건 조회됨", payments.size());
+        return ResponseEntity.ok(payments);
+    }
+    /**
+     * 환불 요청 처리
+     */
+    @PostMapping("/refund/request")
+    public ResponseEntity<?> requestRefund(@RequestBody Map<String, String> request) {
+        String impUid = request.get("impUid");
+        log.info("환불 요청 수신: impUid={}", impUid);
+        try {
+            paymentService.requestRefund(impUid);
+            log.info("환불 요청 처리 완료: impUid={}", impUid);
+            return ResponseEntity.ok("환불 요청이 성공적으로 처리되었습니다.");
+        } catch (Exception e) {
+            log.error("환불 요청 처리 중 오류 발생: {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().body("환불 요청 처리 실패: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * 환불 승인 또는 거부 처리
+     */
+    @PostMapping("/refund/process")
+    public ResponseEntity<?> processRefund(@RequestParam String impUid, @RequestParam boolean approve) {
+        try {
+            log.info("환불 처리 요청 수신: impUid={}, approve={}", impUid, approve);
+            paymentService.processRefund(impUid, approve);
+            log.info("환불 처리 완료: impUid={}, approve={}", impUid, approve);
+            return ResponseEntity.ok(approve ? "환불이 승인되었습니다." : "환불 요청이 거부되었습니다.");
+        } catch (Exception e) {
+            log.error("환불 처리 중 오류 발생: {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().body("환불 처리 실패: " + e.getMessage());
         }
     }
 }

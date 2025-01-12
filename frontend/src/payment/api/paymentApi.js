@@ -34,6 +34,7 @@ export const processPayment = async ({
   passportExpiryDate,
   nationality,
   companions,
+  memberEmail,
 }) => {
   try {
     const response = await axios.post(
@@ -52,13 +53,14 @@ export const processPayment = async ({
         passportExpiryDate,
         nationality,
         companions,
+        memberEmail,
       },
       {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
-      }
+      },
     );
     console.log("결제 요청 성공:", response.data);
     return response.data;
@@ -69,29 +71,55 @@ export const processPayment = async ({
 };
 
 /**
- * 결제 내역 조회
- * @returns {Promise<Array>} - 결제 내역 목록
+ * 이메일 기반 결제 내역 조회
+ * @param {string} email - 조회할 회원의 이메일
+ * @returns {Promise<Array>} - 해당 회원의 결제 내역 목록
  */
-export const fetchPaymentHistory = async () => {
+export const fetchPaymentsByEmail = async (email) => {
   try {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(`${API_BASE_URL}/history`, {
+    const token = localStorage.getItem("token"); // 인증 토큰 가져오기
+    const response = await axios.get(`${API_BASE_URL}/member/${email}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Bearer 토큰 추가
       },
-      withCredentials: true,
+      withCredentials: true, // 인증 쿠키 전달
     });
-    console.log("결제 내역 조회 성공:", response.data);
-    return response.data;
+    console.log("이메일 기반 결제 내역 조회 성공:", response.data);
+    return response.data; // 결제 내역 반환
   } catch (error) {
     console.error(
-      "결제 내역 조회 실패:",
-      error.response?.data || error.message
+      "이메일 기반 결제 내역 조회 실패:",
+      error.response?.data || error.message,
     );
-    throw error;
+    throw error; // 호출 측에서 오류 처리
   }
 };
+
+// /**
+//  * 결제 내역 조회
+//  * @returns {Promise<Array>} - 결제 내역 목록
+//  */
+// export const fetchPaymentHistory = async () => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     const response = await axios.get(`${API_BASE_URL}/history`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//       withCredentials: true,
+//     });
+//     console.log("결제 내역 조회 성공:", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error(
+//       "결제 내역 조회 실패:",
+//       error.response?.data || error.message
+//     );
+//     throw error;
+//   }
+// };
 
 /**
  * 결제 취소 요청
@@ -110,14 +138,14 @@ export const requestCancelPayment = async (impUid) => {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
-      }
+      },
     );
     console.log("결제 취소 요청 성공:", response.data);
     return response.data;
   } catch (error) {
     console.error(
       "결제 취소 요청 실패:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -142,7 +170,7 @@ export const fetchCancelRequests = async () => {
   } catch (error) {
     console.error(
       "취소 요청 목록 조회 실패:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -165,14 +193,14 @@ export const handleApproval = async (impUid, approve) => {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
-      }
+      },
     );
     console.log("취소 요청 처리 성공:", response.data);
     return response.data;
   } catch (error) {
     console.error(
       "취소 요청 처리 실패:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }

@@ -119,7 +119,7 @@ const FlightList = () => {
           id: airline.id || airline.airline_id,
           airlineCode: airline.code || airline.airline_code,
           airlineName: airline.name || airline.airline_name,
-        }))
+        })),
       );
 
       const grouped = [];
@@ -132,7 +132,7 @@ const FlightList = () => {
           (s) =>
             s.departureAirport === schedule.arrivalAirport &&
             s.arrivalAirport === schedule.departureAirport &&
-            s.airlineCode === schedule.airlineCode
+            s.airlineCode === schedule.airlineCode,
         );
 
         let departure = schedule;
@@ -159,7 +159,6 @@ const FlightList = () => {
     }
   }, [location.state]);
 
-
   const handleSelect = (group) => {
     const adultFare = parseInt(group.departure.fareDetail.adultFare, 10) || 0;
     const childFare = parseInt(group.departure.fareDetail.childFare, 10) || 0;
@@ -181,7 +180,6 @@ const FlightList = () => {
       },
     });
   };
-
 
   const getFilteredAndSortedData = () => {
     const filteredData = groupedData.filter((group) => {
@@ -323,7 +321,7 @@ const FlightList = () => {
                       왕복{" "}
                       {addDurations(
                         group.departure.journeyTime,
-                        group.return.journeyTime
+                        group.return.journeyTime,
                       )}{" "}
                       ~
                       <br />
@@ -337,15 +335,14 @@ const FlightList = () => {
                             searchInfo.child +
                           (parseInt(
                             group.departure.fareDetail.infantFare,
-                            10
+                            10,
                           ) || 0) *
-                            searchInfo.infant
+                            searchInfo.infant,
                       )}{" "}
                       ~
-
                     </p>
                   ) : (
-                    <p className="price one-way">
+                    <div className="price one-way">
                       <div className="oneway1">
                         편도 {formatJourneyTime(group.departure.journeyTime)} ~
                         <br />
@@ -358,18 +355,18 @@ const FlightList = () => {
                             searchInfo.adult +
                             (parseInt(
                               group.departure.fareDetail.childFare,
-                              10
+                              10,
                             ) || 0) *
                               searchInfo.child +
                             (parseInt(
                               group.departure.fareDetail.infantFare,
-                              10
+                              10,
                             ) || 0) *
-                              searchInfo.infant
+                              searchInfo.infant,
                         )}{" "}
                         ~
                       </div>
-                    </p>
+                    </div>
                   )}
                   {/* 선택하기 버튼 추가 */}
                   <button

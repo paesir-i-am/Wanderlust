@@ -11,6 +11,8 @@ public class PaymentResponseDTO {
     // 예약자 정보
     private String reservatorName;         // 예약자 이름
     private String reservatorPhone;        // 예약자 휴대폰 번호
+    private String memberEmail;            // 사용자 이메일 (추가)
+
 
     // 탑승자 정보
     private String passengerNameEnglish;   // 탑승자 영문 이름

@@ -75,7 +75,7 @@ const FlightFilter = ({ filters, onFilterChange, airlines = [] }) => {
             <input
               type="checkbox"
               checked={filters.lowestFare}
-              onC저hange={(e) => onFilterChange("lowestFare", e.target.checked)}
+              onChange={(e) => onFilterChange("lowestFare", e.target.checked)}
             />
             최저가
           </label>

@@ -34,8 +34,8 @@ public class PortoneService {
         post.setHeader("Content-Type", "application/json");
 
         StringEntity entity = new StringEntity(new Gson().toJson(Map.of(
-                "imp_key", apiKey,
-                "imp_secret", apiSecret
+            "imp_key", apiKey,
+            "imp_secret", apiSecret
         )));
         post.setEntity(entity);
 

@@ -249,7 +249,7 @@
               padding: 8px 16px;
             }
             &:hover {
-              background-color: #003d80;
+              background-color: darken($primary-color, 10%);
             }
           }
         }
