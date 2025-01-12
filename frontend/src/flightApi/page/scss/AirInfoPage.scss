@@ -1,0 +1,193 @@
+@import "../../../core";
+
+.air-info-page {
+  width: 100%;
+  max-width: 1200px; /* 중앙 정렬을 위한 최대 너비 */
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+
+
+  /* 각 섹션의 공통 스타일 */
+  .air-info-section {
+    margin-bottom: 3rem; /* 섹션 간 간격 */
+    padding: 1.5rem;
+    background-color: #f9f9f9; /* 연한 배경색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+
+  /* FlightInfoPage 스타일 */
+  .flights-info-section {
+    .flights-page-container {
+
+      .flights-page-banner {
+        width: 100%;
+        text-align: center;
+        background: #228b22; /* 배경색 */
+        color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      .search-form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .input-field {
+          flex: 1;
+          height: 60px;
+          min-width: 200px;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+
+        .search-button {
+          background: #228b22;
+          color: #fff;
+          padding: 0.5rem 1rem;
+          border: none;
+          height: 60px;
+         width: 30%;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #1a6b1a;
+          }
+        }
+      }
+    }
+  }
+
+  /* ParkingInfoPage 스타일 */
+  .parking-info-section {
+    .parking-info-page {
+      .parking-info-banner {
+        width: 100%;
+        text-align: center;
+        background: #f39c12;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .selected-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        .terminal-button,
+        .parking-type-button {
+          display: flex;
+          gap: 1rem;
+
+          .button {
+            background: white;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &.active {
+              background: #f39c12;
+              color: #fff;
+              border-color: transparent;
+            }
+          }
+        }
+        .search-button {
+          background: #f39c12;
+          color: #fff;
+          padding: 0.5rem 1rem;
+          border: none;
+          width: 100%;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: darken(#f39c12, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  /* ShuttleBusInfoPage 스타일 */
+  .shuttle-info-section {
+    .shuttlebus-info-page {
+      .shuttlebus-info-banner {
+        width: 100%;
+        text-align: center;
+        background: #3498db;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .selected-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        .terminal-button {
+          display: flex;
+          gap: 1rem;
+
+          .button {
+            background: white;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &.active {
+              background: #3498db;
+              color: #fff;
+              border-color: transparent;
+            }
+          }
+        }
+
+        .search-button-container {
+          margin-top: 1rem;
+
+          .search-button {
+            background: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: #2a7dbc;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,365 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.flight-list-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .flight-list-container {
+    flex-direction: column; /* 모바일에서 세로 정렬 */
+    gap: 16px; /* 리스트 간격 */
+    padding: 16px; /* 내부 여백 */
+    background-color: #f8f9fa; /* 배경색 */
+  }
+}
+.flight-list-container .search-summary {
+  width: 100%;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.flight-list-container .search-summary h2 {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+.flight-list-container .search-summary span {
+  font-size: 16px;
+  color: #228B22;
+}
+.flight-list-container .search-summary p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .search-summary {
+    display: none; /* 모바일에서 숨김 */
+  }
+}
+.flight-list-container .list-content {
+  display: flex;
+  gap: 20px;
+  overflow: visible;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+.flight-list-container .list-content .filter-sidebar {
+  flex: 0 0 250px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  display: flex;
+  position: sticky;
+  top: 20px;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .filter-sidebar {
+    flex: none;
+    position: relative;
+    top: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    flex-direction: row; /* 가로 정렬 */
+    justify-content: space-between; /* 간격 조정 */
+    align-items: center; /* 세로 가운데 정렬 */
+  }
+  .flight-list-container .list-content .filter-sidebar .filter-button {
+    width: auto;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 0; /* 아래 여백 제거 */
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .flight-list-container .list-content .filter-sidebar .filter-content {
+    display: flex;
+    flex-direction: row; /* 가로 정렬 */
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 0; /* 아래 여백 제거 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .flight-list-container .list-content .filter-sidebar .filter-content > * {
+    margin: 0 8px; /* 각 요소 간격 */
+  }
+}
+.flight-list-container .list-content .flight-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flight-list-container .list-content .flight-list .flight-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .airline-info {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #228B22;
+  min-width: 150px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .airline-info {
+    font-size: 16px;
+    min-width: auto;
+    margin-bottom: 12px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .flight-info {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  gap: 10px;
+}
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route .time,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route .time2,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .time,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .time2 {
+  font-size: 14px;
+  color: #555;
+  width: 90px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route .time,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route .time2,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .time,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .time2 {
+    width: auto;
+    font-size: 12px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route .airport-code,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route .airport-code2,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .airport-code,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .airport-code2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #228B22;
+  width: 70px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route .airport-code,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route .airport-code2,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .airport-code,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .airport-code2 {
+    width: auto;
+    font-size: 14px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route .plane-icon,
+.flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .plane-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route .plane-icon,
+  .flight-list-container .list-content .flight-list .flight-card .flight-info .route2 .plane-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .price-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex: 1;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .price-info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .price-info .price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .price-info .price {
+    margin-bottom: 0;
+    font-size: 18px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .price-info .select-button {
+  background-color: #228B22;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .flight-list-container .list-content .flight-list .flight-card .price-info .select-button {
+    width: auto;
+    padding: 8px 16px;
+  }
+}
+.flight-list-container .list-content .flight-list .flight-card .price-info .select-button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+
+/*# sourceMappingURL=FlightList.css.map */

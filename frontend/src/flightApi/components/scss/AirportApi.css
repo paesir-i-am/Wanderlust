@@ -1,0 +1,839 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 반응형 메인 페이지 배너 스타일 */
+@media (max-width: 1024px) {
+  .flightBoard-banner,
+  .parking-banner,
+  .shuttlebus-banner {
+    width: 130px !important; /* 데스크탑에서 조금 더 작은 크기 */
+    height: 130px !important; /* 높이도 조금 더 줄임 */
+  }
+  .flightBoard-banner p,
+  .parking-banner p,
+  .shuttlebus-banner p {
+    font-size: 0.9rem; /* 모바일에서 폰트 크기 줄이기 */
+  }
+  .flightBoard-banner img,
+  .parking-banner img,
+  .shuttlebus-banner img {
+    width: 35px; /* 모바일에서 아이콘 크기 줄이기 */
+    margin-top: 8px;
+  }
+  .parking-banner p {
+    position: relative;
+    top: -5px;
+  }
+}
+.additional-contents {
+  display: flex;
+  justify-content: center; /* 가로로 가운데 정렬 */
+  align-items: center;
+  gap: 2rem; /* 배너들 간의 기본 간격 */
+  padding: 2rem 0;
+}
+
+.flightBoard-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4; /* 기본 배경색 */
+  width: 200px; /* 배너 크기 */
+  height: 150px; /* 배너 크기 */
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer; /* 마우스 커서 포인터 표시 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  position: relative; /* 애니메이션을 위한 상대 위치 */
+  overflow: hidden; /* 배경 색이 밖으로 나가지 않도록 처리 */
+  flex-shrink: 0;
+}
+
+.flightBoard-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%; /* 시작 위치: 왼쪽 밖 */
+  width: 100%;
+  height: 100%;
+  background-color: #44FF93; /* 호버 시 배경색 */
+  transition: left 0.5s ease; /* 슬라이드 효과 */
+}
+
+.flightBoard-banner:hover::before {
+  left: 0; /* 호버 시 왼쪽으로 슬라이드 */
+}
+
+.flightBoard-banner p {
+  margin: 0;
+  color: #34495e;
+  font-weight: bold;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.flightBoard-banner .english-text {
+  color: #7f8c8d; /* 영어 텍스트 색상 */
+  font-size: 0.9rem;
+  z-index: 1; /* 텍스트가 배경 위에 보이도록 설정 */
+}
+
+.flightBoard-banner img {
+  margin-top: 10px;
+  width: 70px; /* 아이콘 크기 */
+  height: auto;
+  z-index: 1; /* 아이콘이 배경 위에 보이도록 설정 */
+}
+
+.link-styles {
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.flight-board-container {
+  max-width: 1500px;
+  margin: auto;
+  padding: 2rem;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  color: #228B22;
+  font-weight: bold;
+}
+.flight-board-container h2 {
+  color: #228B22;
+  margin-top: -3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.flight-board-container .flight-board-search {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(68, 255, 147, 0.2);
+}
+.flight-board-container .flight-board-search .search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: stretch;
+}
+.flight-board-container .flight-board-search .search-form .input-field {
+  flex: 1;
+  min-width: 150px;
+  margin-top: 5px;
+  height: 48px;
+  padding: 0 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #228B22;
+}
+.flight-board-container .flight-board-search .search-form .input-field:focus {
+  border-color: #44FF93;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(68, 255, 147, 0.2);
+}
+.flight-board-container .flight-board-search .search-form .input-field::placeholder {
+  color: #999;
+}
+.flight-board-container .flight-board-search .search-form select.input-field {
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.75rem) center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.flight-board-container .flight-board-search .search-form .search-button {
+  flex: 0 0 auto;
+  padding: 0 2rem;
+  height: 48px;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 5px;
+}
+.flight-board-container .flight-board-search .search-form .search-button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+.flight-board-container .flight-board-table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.flight-board-container .flight-board-table-container .flight-board-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.flight-board-container .flight-board-table-container .flight-board-table thead {
+  background-color: #228B22;
+}
+.flight-board-container .flight-board-table-container .flight-board-table thead th {
+  padding: 1rem;
+  color: white;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.flight-board-container .flight-board-table-container .flight-board-table tbody tr {
+  border-bottom: 1px solid #228B22;
+  transition: #44FF93;
+}
+.flight-board-container .flight-board-table-container .flight-board-table tbody tr:hover {
+  background-color: rgba(34, 139, 34, 0.02);
+}
+.flight-board-container .flight-board-table-container .flight-board-table tbody tr:last-child {
+  border-bottom: none;
+}
+.flight-board-container .flight-board-table-container .flight-board-table tbody tr td {
+  padding: 1.2rem;
+  text-align: center;
+  color: #000000;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+.flight-board-container .flight-board-table-container .flight-board-table tbody tr td:first-child {
+  font-weight: 500;
+}
+.flight-board-container .loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #228B22;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .flight-board-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f8fafc;
+  }
+  .flight-board-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .flight-board-container .flight-board-search {
+    padding: 2rem;
+  }
+  .flight-board-container .flight-board-search .search-form .input-field {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 140px;
+  }
+  .flight-board-container .flight-board-search .search-form .search-button {
+    flex: 1 1 100%;
+  }
+  .flight-board-container .flight-board-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .flight-board-container .flight-board-table-container .flight-board-table th, .flight-board-container .flight-board-table-container .flight-board-table td {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+.parking-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.parking-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #44FF93;
+  transition: left 0.5s ease;
+}
+
+.parking-banner:hover::before {
+  left: 0;
+}
+
+.parking-banner p {
+  margin-top: -0.2rem;
+  color: #34495e;
+  font-weight: bold;
+  z-index: 1;
+  position: relative;
+  top: -7px;
+}
+
+.parking-banner .english-text {
+  color: #7f8c8d;
+  position: relative;
+  top: -1px;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.parking-banner img {
+  margin-top: 10px;
+  width: 70px;
+  height: auto;
+  z-index: 1;
+}
+
+.parking-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  transition: box-shadow 0.3s ease;
+  /* 버튼들을 하나의 공간으로 묶은 스타일 */
+  /* 버튼 그룹의 공통 스타일: terminal-buttons와 parking-type-buttons 동일하게 설정 */
+  /* 버튼 기본 스타일 */
+  /* 버튼 호버 효과 */
+  /* 활성화된 버튼 스타일 */
+  /* .parking-levels 스타일 */
+}
+.parking-container .header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.parking-container .header .title {
+  margin-top: -2.2rem;
+  font-size: 2rem;
+  color: #228B22;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.2rem;
+}
+.parking-container .header .subtitle {
+  font-size: 1.2rem;
+  color: #228B22;
+}
+.parking-container .selection-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.parking-container .terminal-buttons,
+.parking-container .parking-type-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* 버튼 간의 간격을 1rem로 설정 */
+  flex-wrap: wrap; /* 여러 줄로 버튼이 나올 수 있도록 설정 */
+}
+.parking-container .button {
+  padding: 1.2rem 2rem;
+  background-color: white;
+  color: #228B22;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px; /* 둥근 테두리 */
+  border: 2px solid #000000;
+  width: 200px; /* 버튼 너비를 일정하게 설정 */
+  height: 50px; /* 버튼 높이를 일정하게 설정 */
+  display: flex; /* 버튼 내 콘텐츠가 가로/세로로 중앙에 정렬되도록 설정 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+.parking-container .button:hover {
+  background-color: rgba(41, 128, 185, 0.1);
+}
+.parking-container .button.active {
+  background-color: #228B22;
+  color: white;
+}
+.parking-container .loading,
+.parking-container .error {
+  text-align: center;
+  padding: 2rem;
+  color: #228B22;
+  font-size: 1.1rem;
+}
+.parking-container .error {
+  color: red;
+}
+.parking-container .parking-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  background-color: #f8f9fa; /* 배경색 추가 */
+  border-radius: 8px; /* 둥근 테두리 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  margin-top: 30px;
+}
+.parking-container .parking-level {
+  background-color: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 2px solid #000000;
+  text-align: center;
+}
+.parking-container .parking-level:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.parking-container .parking-lot-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.parking-container .availability {
+  font-size: 1.1rem;
+  color: #228B22;
+}
+.parking-container .occupancy-bar-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+.parking-container .occupancy-bar {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 6px;
+}
+.parking-container .occupancy-bar.danger {
+  background-color: #e74c3c;
+}
+.parking-container .occupancy-bar.warning {
+  background-color: #f39c12;
+}
+.parking-container .occupancy-bar.success {
+  background-color: #2ecc71;
+}
+.parking-container .occupancy-rate {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2980b9;
+  padding-left: 5px;
+}
+.parking-container .parking-info {
+  margin-top: 1.5rem;
+}
+.parking-container .parking-info p {
+  margin: 0.75rem 0;
+  color: #000000;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+.parking-container .parking-info p strong {
+  color: #000000;
+  font-weight: bold;
+}
+.parking-container .parking-info .reservation-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.parking-container .parking-info .reservation-button:hover {
+  background-color: #21618c;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .parking-container {
+    padding: 3rem;
+    /* terminal-buttons와 parking-type-buttons의 레이아웃 수정 */
+    /* 버튼 스타일 수정 */
+    /* 버튼 호버 효과 */
+    /* 활성화된 버튼 스타일 */
+    /* 주차장 항목 레이아웃 수정 */
+    /* 주차장 항목 스타일 수정 */
+  }
+  .parking-container .header .title {
+    font-size: 1.8rem;
+  }
+  .parking-container .terminal-buttons,
+  .parking-container .parking-type-buttons {
+    display: flex; /* flexbox를 사용하여 배치 */
+    justify-content: space-between; /* 버튼들이 가로로 배치되도록 설정 */
+    gap: 1rem; /* 버튼들 간의 간격을 설정 */
+    flex-wrap: wrap; /* 버튼이 화면에 맞게 줄 바꿈되도록 설정 */
+    width: 100%; /* 부모 컨테이너에 맞게 버튼들이 확장 */
+  }
+  .parking-container .button {
+    flex: 1; /* 버튼들이 동일한 크기를 가질 수 있도록 설정 */
+    padding: 0.75rem 0.75rem; /* 버튼의 패딩을 줄여서 적절한 크기로 설정 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 조정 */
+    font-size: 1rem; /* 폰트 크기 동일하게 설정 */
+    border-radius: 8px; /* 둥근 모서리 */
+    border: 2px solid #000; /* 테두리 설정 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    cursor: pointer; /* 클릭 가능한 커서 */
+    transition: background-color 0.3s ease; /* 호버 시 배경색 변화 */
+  }
+  .parking-container .button:hover {
+    background-color: rgba(41, 128, 185, 0.1); /* 호버 시 배경색 */
+  }
+  .parking-container .button.active {
+    background-color: #228B22; /* 활성화된 버튼 배경색 */
+    color: white; /* 활성화된 버튼 텍스트 색상 */
+  }
+  .parking-container .parking-levels {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 두 열로 표시 */
+    gap: 1rem; /* 간격 조정 */
+  }
+  .parking-container .parking-level {
+    padding: 0.3rem;
+    text-align: center; /* 텍스트 중앙 정렬 */
+  }
+  .parking-container .parking-level .parking-lot-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  .parking-container .parking-level .occupancy-rate {
+    font-size: 1rem;
+    color: #666;
+  }
+  .parking-container .parking-level .parking-info p {
+    font-size: 0.9rem;
+  }
+  .parking-container .parking-level .reservation-button {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+.shuttlebus-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.shuttlebus-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #44ff93;
+  transition: left 0.5s ease;
+}
+
+.shuttlebus-banner:hover::before {
+  left: 0;
+}
+
+.shuttlebus-banner p {
+  margin: 0;
+  color: #34495e;
+  font-weight: bold;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.shuttlebus-banner .english-text {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.shuttlebus-banner img {
+  margin-top: 10px;
+  width: 70px;
+  height: auto;
+  z-index: 1;
+}
+
+.airport-bus {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.airport-bus h2 {
+  text-align: center;
+  color: #228B22;
+  margin-top: -2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+.airport-bus h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #228B22, rgb(66.1849710983, 208.8150289017, 66.1849710983));
+  border-radius: 2px;
+}
+.airport-bus .bus {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.airport-bus .bus:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.airport-bus .bus h3 {
+  color: #228B22;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(34, 139, 34, 0.2);
+  text-align: center;
+}
+.airport-bus .bus table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.airport-bus .bus table thead {
+  background-color: #228B22;
+}
+.airport-bus .bus table thead th {
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border: none;
+  white-space: nowrap;
+}
+.airport-bus .bus table thead th:first-child {
+  padding-left: 1.5rem;
+}
+.airport-bus .bus table thead th:last-child {
+  padding-right: 1.5rem;
+}
+.airport-bus .bus table tbody tr {
+  transition: background-color 0.2s ease;
+}
+.airport-bus .bus table tbody tr:hover {
+  background-color: rgba(34, 139, 34, 0.05);
+}
+.airport-bus .bus table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #44FF93;
+}
+.airport-bus .bus table tbody tr td {
+  padding: 1rem;
+  text-align: center;
+  color: #000000;
+  font-size: 0.95rem;
+  border: none;
+}
+.airport-bus .bus table tbody tr td:first-child {
+  padding-left: 1.5rem;
+  color: #000000;
+  font-weight: 500;
+}
+.airport-bus .bus table tbody tr td:last-child {
+  padding-right: 1.5rem;
+}
+@media (max-width: 768px) {
+  .airport-bus {
+    padding: 1rem;
+  }
+  .airport-bus h2 {
+    font-size: 1.5rem;
+  }
+  .airport-bus .bus {
+    padding: 1.5rem;
+  }
+  .airport-bus table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .airport-bus table thead th {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .airport-bus table tbody tr {
+    display: table-row;
+    width: 100%;
+  }
+  .airport-bus table tbody td {
+    display: table-cell;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: #228B22;
+    min-width: 100px;
+  }
+  .airport-bus table tbody td:first-child {
+    padding-left: 1.5rem;
+    font-weight: 500;
+  }
+  .airport-bus table tbody td:last-child {
+    padding-right: 1.5rem;
+  }
+  .airport-bus table tbody:hover {
+    background-color: rgba(34, 139, 34, 0.05);
+  }
+}
+
+/*# sourceMappingURL=AirportApi.css.map */

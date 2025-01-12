@@ -1,0 +1,239 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 300vh;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+.page-container .content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: 600px;
+}
+.page-container .content-grid .left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-column: 1;
+  height: 600px;
+}
+.page-container .content-grid .city-img-container {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.page-container .content-grid .city-img-container .city-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-container .content-grid .title-section {
+  padding: 10px;
+  flex-grow: 1;
+}
+.page-container .content-grid .title-section .tour-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #228B22;
+  margin-bottom: 10px;
+}
+.page-container .content-grid .title-section .tour-description .city-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #adb5bd;
+  margin-bottom: 5px;
+}
+.page-container .content-grid .title-section .tour-description p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+.page-container .content-grid .map-container {
+  grid-column: 2;
+  width: 100%;
+  height: 600px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.page-container .content-grid .category-section {
+  grid-column: 1/-1;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.page-container .content-grid .place-list {
+  grid-column: 1/-1;
+  height: 500px;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.page-container .content-grid .place-list .list-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s;
+}
+.page-container .content-grid .place-list .list-item:hover {
+  background-color: rgb(247.7631578947, 248.75, 249.7368421053);
+}
+.page-container .content-grid .random-tours-section {
+  grid-column: 1/-1;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .page-container .content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .page-container .content-grid .left-content,
+  .page-container .content-grid .map-container {
+    grid-column: 1;
+    height: auto;
+  }
+  .page-container .content-grid .place-list {
+    height: auto;
+  }
+}
+@media (max-width: 576px) {
+  .page-container {
+    padding: 10px;
+  }
+  .page-container .content-grid {
+    gap: 15px;
+  }
+  .page-container .content-grid .city-img-container {
+    height: 300px;
+  }
+  .page-container .content-grid .title-section .tour-title {
+    font-size: 20px;
+  }
+  .page-container .content-grid .title-section .tour-description .city-name {
+    font-size: 16px;
+  }
+  .page-container .content-grid .title-section .tour-description p {
+    font-size: 13px;
+  }
+  .page-container .content-grid .map-container {
+    height: 400px;
+  }
+  .page-container .content-grid .place-list {
+    padding: 10px;
+  }
+  .page-container .content-grid .random-tours-section {
+    padding: 10px;
+  }
+}
+
+/*# sourceMappingURL=TourReadPage.css.map */

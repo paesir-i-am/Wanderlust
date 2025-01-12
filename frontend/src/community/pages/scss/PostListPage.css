@@ -1,0 +1,218 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-list-page {
+  display: flex;
+  gap: 1rem;
+  background-color: #f8f9fa;
+}
+.post-list-page::-webkit-scrollbar {
+  display: none;
+}
+.post-list-page__main {
+  overflow-y: auto;
+  flex: 4;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 0 5rem 0 5rem;
+  height: 1000px;
+}
+.post-list-page__main__post-form {
+  margin-bottom: 1rem; /* 폼과 리스트 간격 */
+}
+.post-list-page__main__post-list {
+  max-height: 600px;
+  padding-right: 0.5rem;
+}
+.post-list-page__sidebar {
+  flex: 1;
+  min-height: 300px; /* 사이드바 최대 너비 설정 */
+  height: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+  align-self: flex-start;
+}
+.post-list-page__sidebar .profile-link {
+  cursor: pointer;
+  color: #228B22;
+}
+.post-list-page__sidebar__follow-list {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.post-list-page__sidebar__follow-list ul {
+  list-style: none;
+  padding: 0;
+}
+.post-list-page__sidebar__follow-list ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.post-list-page__sidebar__follow-list ul li:hover {
+  background-color: #e9ecef; /* 호버 효과 */
+  cursor: pointer;
+}
+.post-list-page__sidebar__follow-list ul li .profile-image {
+  width: 2.2rem; /* 35px → rem 변환 */
+  height: 2.2rem;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+.post-list-page__sidebar__follow-list ul li span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+.post-list-page__sidebar__follow-list p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+.post-list-page__sidebar__section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #228B22;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #228B22;
+  padding-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+  .post-list-page {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .post-list-page__main {
+    max-height: calc(100vh - 100px);
+    overflow-y: scroll;
+    margin: 0;
+    padding: 1rem;
+  }
+  .post-list-page__main::-webkit-scrollbar {
+    display: none;
+  }
+  .post-list-page__sidebar {
+    display: none;
+  }
+  .post-list-page .profile-link {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .post-list-page {
+    padding: 0.25rem;
+  }
+  .post-list-page__main {
+    padding: 0.75rem;
+  }
+}
+
+/*# sourceMappingURL=PostListPage.css.map */

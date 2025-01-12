@@ -1,0 +1,175 @@
+@import "../../core";
+
+.payment-history-container {
+  padding: 20px 30px;
+  margin-top: -2rem;
+  height: 750px;
+  width: 100%;
+
+  background-color: #f8f9fa;
+
+  .user-info {
+    margin-bottom: 10px;
+    padding: 15px 20px;  // 패딩 살짝 줄임
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    h3 {
+      font-size: 1.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+  }
+
+  // 전체 컨테이너 flex 레이아웃
+  display: flex;
+  flex-direction: column;
+
+  // 메인 콘텐츠 영역
+  .content-wrapper {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 180px);
+  }
+
+  // 왼쪽 결제 내역 리스트
+  .payment-list {
+    flex :1;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    header {
+      padding:20px;
+      border-bottom: 1px solid #eee;
+
+      h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+
+    ul {
+      height: calc(100% - 70px);
+      overflow-y: auto;
+
+      li {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #f8f9fa;
+        }
+
+        &.active {
+          background-color: #e3f2fd;
+          border-left: 4px solid $primary-color;
+        }
+
+        span {
+          display: block;
+          margin-bottom: 5px;
+
+          &:nth-child(1) {
+            font-weight: 500;
+            color: #333;
+          }
+
+          &:nth-child(2) {
+            color: #666;
+            font-size: 0.9rem;
+          }
+
+          &:nth-child(3) {
+            font-weight: 600;
+            color: $primary-color;
+          }
+
+          &:nth-child(4) {
+            color: #757575;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+
+  // 오른쪽 상세 정보
+  .payment-details {
+    flex :8;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;  // 추가: flex-direction column으로 설정
+
+    header {
+      margin-bottom: -10px;
+      padding-bottom: 10px;
+      
+
+      h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+
+    .details-content {  // 추가: 상세 내용을 감싸는 컨테이너
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-item {
+      display: flex;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 6px;
+      
+
+      label {
+        width: 120px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      span {
+        flex: 1;
+        color: #333;
+        font-weight: 400;
+      }
+    }
+
+    .refund-button {
+      width: 20%;
+      padding: 15px;
+      margin-top: auto;  // 변경: auto margin-top으로 버튼을 하단에 배치
+      margin-left: auto;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

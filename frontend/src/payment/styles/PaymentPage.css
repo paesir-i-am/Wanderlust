@@ -1,0 +1,303 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.payment-container {
+  position: absolute;
+  top: 0;
+  margin: 2rem;
+  padding: 0 2rem;
+  padding-bottom: 6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  gap: 2rem;
+  flex-wrap: wrap;
+  left: 320px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.payment-header {
+  background: linear-gradient(to right, #44FF93, #228B22);
+  color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  position: fixed;
+  left: 2rem;
+  top: 2rem;
+}
+
+.payment-header h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.payment-header p {
+  margin: 0;
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-info {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: calc(100% - 4rem);
+  max-width: 800px;
+  margin-top: 2rem;
+}
+
+.section-info h2 {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0 0 1.8rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f0f0;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.form-group label::after {
+  content: "*";
+  color: #ff4d4f;
+  margin-left: 4px;
+}
+
+.form-group input,
+.form-group select {
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #228B22;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #228B22;
+}
+
+.form-group select {
+  background-color: white;
+  padding-right: 2rem;
+}
+
+.companions-info {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: calc(100% - 4rem);
+  max-width: 800px;
+  margin-top: 2rem;
+}
+
+.companion-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.companion-card h3 {
+  color: #444;
+  font-size: 1.2rem;
+  margin: 0 0 1.2rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f0f0f0;
+  font-weight: 500;
+}
+
+.companion-card .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 3.5rem;
+  background: #228B22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 200px;
+}
+
+.btn-submit:hover {
+  background: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+
+.btn-submit:active {
+  background: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+
+.no-companions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+@media (min-width: 768px) {
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .form-group label {
+    flex: 0 0 180px;
+    text-align: right;
+  }
+  .form-group input,
+  .form-group select {
+    flex: 1;
+  }
+}
+
+/*# sourceMappingURL=PaymentPage.css.map */

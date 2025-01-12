@@ -1,0 +1,231 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.list-container {
+  width: 95%;
+  margin: 0 auto;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+@media (max-width: 576px) {
+  .list-container {
+    width: 100%;
+  }
+}
+.list-container .header {
+  font-weight: bold;
+  font-size: 25px;
+  color: #228B22;
+}
+@media (max-width: 576px) {
+  .list-container .header {
+    font-size: 22px;
+  }
+}
+.list-container .list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #e9ecef;
+  padding: 27px 0;
+  position: relative;
+}
+@media (max-width: 576px) {
+  .list-container .list-item {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+}
+.list-container .list-item .image-box {
+  flex: 0 0 250px;
+  height: 250px;
+  overflow: hidden;
+}
+@media (max-width: 576px) {
+  .list-container .list-item .image-box {
+    width: 100%;
+    height: 200px;
+  }
+}
+.list-container .list-item .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.list-container .list-item .content-box {
+  flex: 1;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.list-container .list-item .content-box .title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color: #228B22;
+}
+.list-container .list-item .content-box .location {
+  color: #adb5bd;
+  font-size: 14px;
+}
+.list-container .list-item .content-box .tour-context {
+  color: #adb5bd;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 10px 0;
+  display: -webkit-box;
+  max-width: 850px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  max-height: 3em;
+}
+.list-container .list-item .action-box {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 576px) {
+  .list-container .list-item .action-box {
+    position: static;
+    margin-top: 20px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+.list-container .list-item .action-box .like-button, .list-container .list-item .action-box .detail-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 45px;
+  border: 1px solid #228B22;
+  background-color: #228B22;
+  color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .list-container .list-item .action-box .like-button, .list-container .list-item .action-box .detail-button {
+    width: 45%;
+  }
+}
+.list-container .list-item .action-box .like-button:hover, .list-container .list-item .action-box .detail-button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+.list-container .list-item .action-box .like-button.liked {
+  background-color: red;
+  border-color: red;
+}
+.list-container .list-item .action-box .like-button .star-icon {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=TourList.css.map */

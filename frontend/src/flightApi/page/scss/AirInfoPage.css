@@ -1,0 +1,262 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #228B22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button:hover {
+  background-color: rgb(23.9768786127, 98.0231213873, 23.9768786127);
+}
+@media (max-width: 576px) {
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+input {
+  background-color: #e9ecef;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+@media (max-width: 576px) {
+  input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: #228B22;
+}
+
+.bg-primary {
+  background-color: #228B22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.air-info-page {
+  width: 100%;
+  max-width: 1200px; /* 중앙 정렬을 위한 최대 너비 */
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  /* 각 섹션의 공통 스타일 */
+  /* FlightInfoPage 스타일 */
+  /* ParkingInfoPage 스타일 */
+  /* ShuttleBusInfoPage 스타일 */
+}
+.air-info-page .air-info-section {
+  margin-bottom: 3rem; /* 섹션 간 간격 */
+  padding: 1.5rem;
+  background-color: #f9f9f9; /* 연한 배경색 */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .air-info-page .air-info-section {
+    padding: 1rem;
+  }
+}
+.air-info-page .flights-info-section .flights-page-container .flights-page-banner {
+  width: 100%;
+  text-align: center;
+  background: #228b22; /* 배경색 */
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+.air-info-page .flights-info-section .flights-page-container .search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.air-info-page .flights-info-section .flights-page-container .search-form .input-field {
+  flex: 1;
+  height: 60px;
+  min-width: 200px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.air-info-page .flights-info-section .flights-page-container .search-form .search-button {
+  background: #228b22;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  height: 60px;
+  width: 30%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.air-info-page .flights-info-section .flights-page-container .search-form .search-button:hover {
+  background-color: #1a6b1a;
+}
+.air-info-page .parking-info-section .parking-info-page .parking-info-banner {
+  width: 100%;
+  text-align: center;
+  background: #f39c12;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info .terminal-button,
+.air-info-page .parking-info-section .parking-info-page .selected-info .parking-type-button {
+  display: flex;
+  gap: 1rem;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info .terminal-button .button,
+.air-info-page .parking-info-section .parking-info-page .selected-info .parking-type-button .button {
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info .terminal-button .button.active,
+.air-info-page .parking-info-section .parking-info-page .selected-info .parking-type-button .button.active {
+  background: #f39c12;
+  color: #fff;
+  border-color: transparent;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info .search-button {
+  background: #f39c12;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.air-info-page .parking-info-section .parking-info-page .selected-info .search-button:hover {
+  background-color: rgb(199.8795180723, 126.5060240964, 10.1204819277);
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .shuttlebus-info-banner {
+  width: 100%;
+  text-align: center;
+  background: #3498db;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .terminal-button {
+  display: flex;
+  gap: 1rem;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .terminal-button .button {
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .terminal-button .button.active {
+  background: #3498db;
+  color: #fff;
+  border-color: transparent;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .search-button-container {
+  margin-top: 1rem;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .search-button-container .search-button {
+  background: #3498db;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.air-info-page .shuttle-info-section .shuttlebus-info-page .selected-info .search-button-container .search-button:hover {
+  background-color: #2a7dbc;
+}
+
+/*# sourceMappingURL=AirInfoPage.css.map */
