@@ -14,6 +14,7 @@ import {
 import FollowListModal from "../component/profile/FollowListModal";
 import "./scss/ProfilePage.css";
 import BasicLayout from "../../common/layout/basicLayout/BasicLayout";
+import BasicLayoutWithoutFlight from "../../common/layout/basicLayout/BasicLayoutWithoutFlight";
 
 const ProfilePage = () => {
   const { nickname } = useParams();
@@ -179,7 +180,7 @@ const ProfilePage = () => {
   if (!profile) return <div>Loading profile...</div>;
 
   return (
-    <BasicLayout>
+    <BasicLayoutWithoutFlight>
       <div className="profile-page">
         <ProfileInfo
           profile={profile}
@@ -221,7 +222,7 @@ const ProfilePage = () => {
           />
         )}
       </div>
-    </BasicLayout>
+    </BasicLayoutWithoutFlight>
   );
 };
 

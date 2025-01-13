@@ -30,7 +30,10 @@ public class Post {
   private Long id;
 
   private String authorNickname;
+
+  @Column(length = 2000)
   private String content;
+
   private String imageUrl;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;

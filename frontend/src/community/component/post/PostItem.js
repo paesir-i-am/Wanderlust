@@ -5,6 +5,7 @@ import CommentList from "../comment/CommentList";
 import { useSelector } from "react-redux";
 import "../scss/post/PostItem.css";
 import { useNavigate } from "react-router-dom";
+import { deleteComment, updateComment } from "../../api/commentApi";
 
 const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -45,6 +46,29 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
   const formatDate = (date) => {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     return new Date(date).toLocaleDateString("ko-KR", options);
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      // 서버로 댓글 삭제 요청
+      await deleteComment(commentId); // `deleteComment`는 API 호출 함수로 별도 구현 필요
+      // 댓글 개수 업데이트
+      setCommentCount((prev) => prev - 1);
+    } catch (error) {
+      console.error("댓글 삭제 실패:", error);
+      alert("댓글 삭제에 실패했습니다.");
+    }
+  };
+
+  const handleUpdateComment = async (commentId, updatedContent) => {
+    try {
+      // 서버로 댓글 수정 요청
+      await updateComment(commentId, updatedContent); // `updateComment`는 API 호출 함수로 별도 구현 필요
+      alert("댓글이 수정되었습니다.");
+    } catch (error) {
+      console.error("댓글 수정 실패:", error);
+      alert("댓글 수정에 실패했습니다.");
+    }
   };
 
   return (
@@ -124,6 +148,8 @@ const PostItem = ({ post, onEdit, onDelete, currentUserNickname }) => {
             postId={post.id}
             currentUserNickname={currentUserNickname}
             onCommentCountChange={setCommentCount}
+            onUpdate={handleUpdateComment}
+            onDelete={handleDeleteComment}
           />
         </div>
       )}

@@ -7,8 +7,8 @@ const CommentItem = ({
   postId,
   currentUserNickname,
   depth = 0,
-  onUpdate,
-  onDelete,
+  onUpdate = () => {},
+  onDelete = () => {},
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
