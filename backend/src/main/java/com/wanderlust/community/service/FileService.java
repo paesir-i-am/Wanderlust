@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 public class FileService {
-  private final String uploadDir = "uploads";
+  private final String uploadDir = "backend/uploads";
 
   public String saveFile(MultipartFile file) throws IOException {
 
