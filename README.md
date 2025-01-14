@@ -46,7 +46,7 @@
 
 ## 시연영상 및 팀 프로젝트 PDF
 🎥 https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w
-
+📋 [PDF 보기](https://raw.githubusercontent.com/paesir-i-am/Wanderlust/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
 ## 계층구조
 
 
