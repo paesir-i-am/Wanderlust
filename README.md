@@ -37,7 +37,7 @@
   8. JWT 토큰 사용 보안처리
   9. AWS 이용한 서버 배포
 
-###  사용 스택
+###  📚사용 스택
 <div>
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">
@@ -60,7 +60,7 @@
 
 🖥️ Front-end : React
 
-📒 back-end : Spring Boot
+🗄️ back-end : Spring Boot
 
 💾 Database : MariaDB
 
