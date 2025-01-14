@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/07572aa1-6eda-4493-8289-797ef702fb97" width="200" /><br/>
+<img src="https://github.com/user-attachments/assets/80c3df25-2885-4f5c-ba39-556e391a3fb5" width="200" /><br/>
 
 <img src="https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=30&duration=3000&pause=1000&color=0969DAFF&width=600&lines=RESTful%2C+SPA+%EA%B8%B0%EB%B0%98+%EB%B0%98%EC%9D%91%ED%98%95+%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80" />
 
