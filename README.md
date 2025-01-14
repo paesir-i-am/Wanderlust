@@ -65,15 +65,7 @@
 
 <img src="https://github.com/user-attachments/assets/5280402b-e995-4337-8536-e5fe9ac53c7c" width="512" /><br/>
 
-
-조회 플로우차트ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ결제 플로우차트
-
-<img src="https://github.com/user-attachments/assets/a28bc353-1efa-43d9-8e00-6d76b45943df" width="500" />
-<img src="https://github.com/user-attachments/assets/121d5441-0044-4d54-b975-40597c8fc6fe" width="500" /><br/>
-
-<img width="512" alt="image" src="https://github.com/user-attachments/assets/cd613b54-fb5a-433d-a944-c024fd18647f" />
-
-<img width="1024" alt="image" src="https://github.com/user-attachments/assets/8ceedab0-a6d6-4a6c-9b71-9f9a3ee63ec1" />
+#### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/readMe/readMe/flight.md)
 
 
 
