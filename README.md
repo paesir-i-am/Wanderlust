@@ -71,9 +71,11 @@
 # 기능 소개
 
 ## 시연영상 및 팀 프로젝트 PDF
-# 🎥 https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w
 
-# 📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
+
+## 🎥 https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w
+
+## 📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
 
 
 ## 계층구조
@@ -110,7 +112,7 @@
 #### 프로필 페이지, 프로필 정보 수정
 <img src="https://github.com/user-attachments/assets/3569f4b0-f93a-4745-9fee-18ff9780e04d" width="512" /><br/>
 
-#### [SNS 커뮤니티 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/community.md)
+### [SNS 커뮤니티 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/community.md)
 
 ---
 
@@ -126,7 +128,7 @@
 
 <img src="https://github.com/user-attachments/assets/931dcee0-35c4-462b-92a4-641a7d6838a6" width="512" /><br/>
 
-#### [이미지 검색 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/searchImage.md)
+### [이미지 검색 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/searchImage.md)
 
 ---
 
@@ -136,7 +138,7 @@
 
 <img src="https://github.com/user-attachments/assets/e345a2f2-792c-448d-a50e-b8a7a8d9d56b" width="512" /><br/>
 
-#### [로그인 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/login.md)
+### [로그인 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/login.md)
 
 ----
 
