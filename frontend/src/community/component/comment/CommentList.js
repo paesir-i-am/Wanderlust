@@ -5,7 +5,13 @@ import { fetchComments } from "../../api/commentApi";
 import buildCommentTree from "./buildCommentTree";
 import "../scss/comment/CommentList.css";
 
-const CommentList = ({ postId, currentUserNickname, onCommentCountChange }) => {
+const CommentList = ({
+  postId,
+  currentUserNickname,
+  onCommentCountChange,
+  onUpdate,
+  onDelete,
+}) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -50,6 +56,8 @@ const CommentList = ({ postId, currentUserNickname, onCommentCountChange }) => {
           comment={comment}
           postId={postId}
           currentUserNickname={currentUserNickname}
+          onUpdate={onUpdate}
+          onDelete={onDelete}
         />
       ))}
     </div>
