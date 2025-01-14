@@ -71,9 +71,9 @@
 # 기능 소개
 
 ## 시연영상 및 팀 프로젝트 PDF
-🎥 https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w
+# 🎥 https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w
 
-📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
+# 📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
 
 
 ## 계층구조
@@ -91,7 +91,7 @@
 
 <img src="https://github.com/user-attachments/assets/5280402b-e995-4337-8536-e5fe9ac53c7c" width="512" /><br/>
 
-#### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/readMe/readMe/flight.md)
+#### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/flight.md)
 
 ### SNS 커뮤니티
 
