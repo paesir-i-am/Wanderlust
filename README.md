@@ -1,6 +1,6 @@
-<img src="https://github.com/user-attachments/assets/103fbba4-4369-4264-92f6-e79ca715b9d6" width="200" /><br/>
+<img src="https://github.com/user-attachments/assets/53e47e4d-8fbc-4ea9-b14d-0a4d5436f35e" width="200" /><br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=30&duration=3000&pause=1000&color=000000&background=FFFFFF00&width=600&lines=RESTful%2C+SPA+%EA%B8%B0%EB%B0%98+%EB%B0%98%EC%9D%91%ED%98%95+%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=30&duration=3000&pause=1000&color=0969DAFF&width=600&lines=RESTful%2C+SPA+%EA%B8%B0%EB%B0%98+%EB%B0%98%EC%9D%91%ED%98%95+%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
 
 ----
 
@@ -10,19 +10,19 @@
 
 팀장 : [이정현](https://github.com/paesir-i-am) 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=000000&&background=FFFFFF00width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8%2C+JWT+%ED%86%A0%ED%81%B0+%2B+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%9C+%EB%B3%B4%EC%95%88%EC%B2%98%EB%A6%AC%2C+SNS+%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8%2C+JWT+%ED%86%A0%ED%81%B0+%2B+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%9C+%EB%B3%B4%EC%95%88%EC%B2%98%EB%A6%AC%2C+SNS+%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0)](https://git.io/typing-svg)
 
 팀원 : [박남수](https://github.com/Namsu-park)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=000000&background=FFFFFF00&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5+API+%EB%B0%8F+%EA%B5%AC%EA%B8%80+%EB%A7%B5+API+%EC%A0%9C%EA%B3%B5+%ED%8E%98%EC%9D%B4%EC%A7%80%2C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A6%AC%EC%8A%A4%ED%8A%B8+%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5+API+%EB%B0%8F+%EA%B5%AC%EA%B8%80+%EB%A7%B5+API+%EC%A0%9C%EA%B3%B5+%ED%8E%98%EC%9D%B4%EC%A7%80%2C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A6%AC%EC%8A%A4%ED%8A%B8+%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
 
 ㅤㅤㅤ[황수림](https://github.com/SuLim0813)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=000000&background=FFFFFF00&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EC%B6%94%EC%B2%9C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A1%9C%EC%A7%81+%EB%B0%8F+%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EC%B6%94%EC%B2%9C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A1%9C%EC%A7%81+%EB%B0%8F+%ED%8E%98%EC%9D%B4%EC%A7%80)](https://git.io/typing-svg)
 
 ㅤㅤㅤ[정우성](https://github.com/weare2415)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=000000&background=FFFFFF00&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5%EA%B6%8C+%EC%A1%B0%ED%9A%8C+%EB%B0%8F+%ED%8F%AC%ED%8A%B8%EC%9B%90+api%EB%A5%BC+%ED%86%B5%ED%95%9C+%EA%B2%B0%EC%A0%9C+%EB%B0%8F+%ED%99%98%EB%B6%88)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5%EA%B6%8C+%EC%A1%B0%ED%9A%8C+%EB%B0%8F+%ED%8F%AC%ED%8A%B8%EC%9B%90+api%EB%A5%BC+%ED%86%B5%ED%95%9C+%EA%B2%B0%EC%A0%9C+%EB%B0%8F+%ED%99%98%EB%B6%88)](https://git.io/typing-svg)
 
 ---
 
@@ -78,7 +78,7 @@
 
 ## 계층구조
 
-<img src="https://github.com/user-attachments/assets/c35fe642-ad2a-4c3a-8d52-ccc8e868ce16" />
+<img src="https://github.com/user-attachments/assets/d74967c4-cbd6-407a-99fa-9c8c243e3561" />
 
 
 ## 구현 기능
