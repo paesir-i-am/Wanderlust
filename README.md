@@ -92,8 +92,6 @@
 
 #### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/readMe/readMe/flight.md)
 
----
-
 ### SNS 커뮤니티
 
 게시글, 댓글 등과 개인별 프로필 페이지를 이용하여 본인의 포스트나 자기소개 프로필 이미지 등을 구성하고
@@ -157,6 +155,8 @@
 
 
 ---
+
+
 
 
 
