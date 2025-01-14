@@ -93,7 +93,7 @@
 
 <img src="https://github.com/user-attachments/assets/5280402b-e995-4337-8536-e5fe9ac53c7c" width="512" /><br/>
 
-#### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/flight.md)
+### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/flight.md)
 
 ### SNS 커뮤니티
 
