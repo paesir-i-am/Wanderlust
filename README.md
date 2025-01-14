@@ -10,6 +10,7 @@
   4. API 사용 페이지
   5. 로그인 시큐리티 및 소셜로그인
   6. JWT 토큰 사용 보안처리
+  7. AWS 이용한 서버 배포
 
 ###  사용 스택
 <div>
@@ -75,6 +76,49 @@
 <img src="https://github.com/user-attachments/assets/e345a2f2-792c-448d-a50e-b8a7a8d9d56b" width="512" /><br/>
 
 #### [로그인 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/login.md)
+
+
+### 추천 여행지 리스트
+
+추천 여행지 리스트를 만들어서 사용자들이 주변 여행지를 찾을 수 있고 해당 지역 주변 정보들을 구글 맵 api를 이용하여 필터링 및 경로 안내를 가능하도록 구현
+
+<img src="https://github.com/user-attachments/assets/c18c7607-ed1c-4dc0-b777-7701ff95f614" width="512" /><br/>
+
+### 이미지 검색
+
+파이썬의 TensorFlow 를 이용하여 사진 검색 엔진을 개발 및 학습시켜 추천 여행지의 리스트들을 학습시켰고 모델링하여 해당 리스트 페이지로 리다이렉트
+
+<img src="https://github.com/user-attachments/assets/931dcee0-35c4-462b-92a4-641a7d6838a6" width="512" /><br/>
+
+#### [이미지 검색 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/searchImage.md)
+
+### API를 통한 항공 정보 페이지 제공
+
+공공데이터포탈 및 여러 항공 관련 api의 정보를 제공하여 사용자의 이용성 증가
+
+<img src="https://github.com/user-attachments/assets/4cdb0dde-bae5-44a3-9141-24014786cf9d" width="512" /><br/>
+
+### SNS 커뮤니티
+
+게시글, 댓글 등과 개인별 프로필 페이지를 이용하여 본인의 포스트나 자기소개 프로필 이미지 등을 구성하고
+
+팔로우 서비스를 통한 멤버별로의 관계를 형성해서 소셜 네트워크 서비스를 구현하였고
+
+실시간 알림 서비스를 통해 본인을 팔로우하거나 새로운 글, 댓글 등의 정보를 실시간으로 제공받을 수 있음
+
+#### 포스트 작성, 팔로우, 댓글
+<img src="https://github.com/user-attachments/assets/e86c3640-a8e4-4d6f-893c-5a6d70caf59c" width="512" /><br/>
+
+#### 대댓글 작성, 실시간 알림
+<img src="https://github.com/user-attachments/assets/618a5006-dc84-48df-8f66-15fe0a09435a" width="512" /><br/>
+
+#### 프로필 페이지, 프로필 정보 수정
+<img src="https://github.com/user-attachments/assets/3569f4b0-f93a-4745-9fee-18ff9780e04d" width="512" /><br/>
+
+
+
+
+
 
 
 
