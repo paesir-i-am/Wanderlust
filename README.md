@@ -8,21 +8,32 @@
 
 ### 각 팀원은 기능별로 백엔드와 프론트엔드 하이브리드로 개발
 
-팀장 : [이정현](https://github.com/paesir-i-am) 
+|                    (팀장) [이정현](https://github.com/paesir-i-am)                    |                     [박남수](https://github.com/Namsu-park)                     |                      [황수림](https://github.com/SuLim0813)                     |                      [정우성](https://github.com/weare2415)                     |
+|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|
+| [<img src="https://avatars.githubusercontent.com/u/183713556?v=4" width="200" />](https://github.com/paesir-i-am) | [<img src="https://avatars.githubusercontent.com/u/184890981?v=4" width="200" />](https://github.com/Namsu-park) | [<img src="https://avatars.githubusercontent.com/u/183588723?v=4" width="200" />](https://github.com/SuLim0813) | [<img src="https://avatars.githubusercontent.com/u/177728506?v=4" width="200" />](https://github.com/weare2415) |
 
-<img src="https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8%2C+JWT+%ED%86%A0%ED%81%B0+%2B+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%9C+%EB%B3%B4%EC%95%88%EC%B2%98%EB%A6%AC%2C+SNS+%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0" />
+#### 이정현 :
+로그인 및 회원가입 : JWT를 이용한 보안처리 및 백엔드 스프링 시큐리티 사용하여 구현
 
-팀원 : [박남수](https://github.com/Namsu-park)
+SNS 커뮤니티 : 게시물, 댓글, 팔로우, 이미지 처리, 실시간 알림 구현
 
-<img src="https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5+API+%EB%B0%8F+%EA%B5%AC%EA%B8%80+%EB%A7%B5+API+%EC%A0%9C%EA%B3%B5+%ED%8E%98%EC%9D%B4%EC%A7%80%2C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A6%AC%EC%8A%A4%ED%8A%B8+%ED%8E%98%EC%9D%B4%EC%A7%80" />
 
-ㅤㅤㅤ[황수림](https://github.com/SuLim0813)
+#### 박남수 : 
+API를 활용한 항공 정보 페이지 구현
 
-<img src="https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%EC%B6%94%EC%B2%9C+%EC%97%AC%ED%96%89%EC%A7%80+%EB%A1%9C%EC%A7%81+%EB%B0%8F+%ED%8E%98%EC%9D%B4%EC%A7%80" />
+구글맵 API를 활용하여 여행지 리스트 페이지 구현
 
-ㅤㅤㅤ[정우성](https://github.com/weare2415)
 
-<img src="https://readme-typing-svg.demolab.com?font=Do+Hyeon&size=16&duration=2000&pause=8000&color=0969DAFF&width=900&lines=%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%E3%85%A4%ED%95%AD%EA%B3%B5%EA%B6%8C+%EC%A1%B0%ED%9A%8C+%EB%B0%8F+%ED%8F%AC%ED%8A%B8%EC%9B%90+api%EB%A5%BC+%ED%86%B5%ED%95%9C+%EA%B2%B0%EC%A0%9C+%EB%B0%8F+%ED%99%98%EB%B6%88" />
+#### 황수림 :
+추천 여행지 DB 작업 및 여행지 로직 구현
+
+구글맵 API를 활용하여 여행지 리스트 페이지 구현
+
+
+#### 정우성 :
+항공권 조회 시스템 구현
+
+포트원API를 통한 결제 시스템 및 환불 구현
 
 ---
 
