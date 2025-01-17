@@ -86,7 +86,7 @@ API를 활용한 항공 정보 페이지 구현
 
 ## 🎥 [유튜브 시연영상](https://youtu.be/FkKbrmHiR6Y?si=i88SdIl2fiTTzo5w)
 
-## 📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/develop/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
+## 📋 [PDF 보기](https://nbviewer.org/github/paesir-i-am/Wanderlust/blob/main/Wanderlust_%E1%84%89%E1%85%AE%E1%84%8C%E1%85%A5%E1%86%BC.pdf)
 
 
 ## 계층구조
@@ -104,7 +104,7 @@ API를 활용한 항공 정보 페이지 구현
 
 <img src="https://github.com/user-attachments/assets/5280402b-e995-4337-8536-e5fe9ac53c7c" width="512" /><br/>
 
-### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/flight.md)
+### [플로우차트 및 주요 코드 확인](https://github.com/paesir-i-am/Wanderlust/blob/main/readMe/flight.md)
 
 ### SNS 커뮤니티
 
@@ -123,7 +123,7 @@ API를 활용한 항공 정보 페이지 구현
 #### 프로필 페이지, 프로필 정보 수정
 <img src="https://github.com/user-attachments/assets/3569f4b0-f93a-4745-9fee-18ff9780e04d" width="512" /><br/>
 
-### [SNS 커뮤니티 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/community.md)
+### [SNS 커뮤니티 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/main/readMe/community.md)
 
 ---
 
@@ -139,7 +139,7 @@ API를 활용한 항공 정보 페이지 구현
 
 <img src="https://github.com/user-attachments/assets/931dcee0-35c4-462b-92a4-641a7d6838a6" width="512" /><br/>
 
-### [이미지 검색 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/searchImage.md)
+### [이미지 검색 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/main/readMe/searchImage.md)
 
 ---
 
@@ -149,7 +149,7 @@ API를 활용한 항공 정보 페이지 구현
 
 <img src="https://github.com/user-attachments/assets/e345a2f2-792c-448d-a50e-b8a7a8d9d56b" width="512" /><br/>
 
-### [로그인 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/readMe/readMe/login.md)
+### [로그인 플로우 및 주요 코드](https://github.com/paesir-i-am/Wanderlust/blob/main/readMe/login.md)
 
 ----
 
